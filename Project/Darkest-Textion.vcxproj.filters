@@ -108,6 +108,21 @@
     <ClCompile Include="Consumable.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>소스 파일\Game\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>소스 파일\Game\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Troll.cpp">
+      <Filter>소스 파일\Game\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="BossMonster.cpp">
+      <Filter>소스 파일\Game\Character\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일\Game\Character\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -133,6 +148,18 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>헤더 파일\Game\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>헤더 파일\Game\Character\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>헤더 파일\Game\Character\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Troll.h">
+      <Filter>헤더 파일\Game\Character\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="BossMonster.h">
+      <Filter>헤더 파일\Game\Character\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
