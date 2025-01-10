@@ -54,8 +54,26 @@ CMakeUserPresets.json
 # External projects
 *-prefix/
 
+# Visual Studio 빌드 결과물
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.lib
+*.dll
+*.suo
+*.user
+*.ipch
+*.log
+*.tlog
+*.lastbuildstate
+
+# 빌드 폴더
+x64/
+Debug/
+Release/
+
+# 기타 Visual Studio 파일
+.vscode/
 .vs/
-.bin/
-.obj/
-.x64/*
-.Project/x64/*
