@@ -5,12 +5,13 @@ using namespace std;
 class Character abstract
 {
 protected:
-	string Name;
-	int Health;
-	int Damage;
+	string name;
+	int health;
+	int currentHealth;
+	int damage;
 
 public:
-	virtual void Hit(int Damage) = 0;
+	virtual void Hit(int damage) = 0;
 	virtual void Attack() = 0;
 };
 
