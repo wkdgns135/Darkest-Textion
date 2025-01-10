@@ -54,7 +54,19 @@
     <ClCompile Include="src\Game\GameManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Darkest-Textion.cpp">
+    <ClCompile Include="src\Game\Character\Monster\BossMonster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Character\Monster\Goblin.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Character\Monster\Monster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Character\Monster\Orc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Character\Monster\Troll.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -135,6 +147,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\Global\ProjectEnum.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Character\Monster\BossMonster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Character\Monster\Goblin.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Character\Monster\Orc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Character\Monster\Troll.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
