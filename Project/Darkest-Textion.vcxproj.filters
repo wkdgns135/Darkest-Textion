@@ -49,6 +49,33 @@
     <Filter Include="헤더 파일\Game\Encounter">
       <UniqueIdentifier>{29a16ef4-8fa7-48c9-ad68-ac072e9d1a81}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Game">
+      <UniqueIdentifier>{048f48e2-54ea-419d-a3b2-9ce19e17a088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Character">
+      <UniqueIdentifier>{acf4657a-b8c2-4caf-bdd9-26074e6abd57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Character\Monster">
+      <UniqueIdentifier>{8b6b467d-4902-41d6-87db-0e238edcc62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Character\Player">
+      <UniqueIdentifier>{58754b8d-25d9-4a2b-b050-477a46cdbd28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Encounter">
+      <UniqueIdentifier>{db912109-6265-49e8-90d9-83fee9ea2b90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Item">
+      <UniqueIdentifier>{25973720-6e43-4f8a-b464-bba1c9cf5c71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Scene">
+      <UniqueIdentifier>{196550c1-91cd-4433-91e1-f77cca0ed8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\System">
+      <UniqueIdentifier>{d38d036e-0249-4027-b8d7-7ed30faca9a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Utility">
+      <UniqueIdentifier>{ec4e4c09-dbb8-4730-9212-eb7882c94ad1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp">
@@ -57,7 +84,7 @@
     <ClCompile Include="Observer.h">
       <Filter>헤더 파일\Utility\DesignPattern</Filter>
     </ClCompile>
-    <ClCompile Include="SingleTone.h">
+    <ClCompile Include="Singleton.h">
       <Filter>헤더 파일\Utility\DesignPattern</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.h">

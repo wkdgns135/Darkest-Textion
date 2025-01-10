@@ -134,7 +134,7 @@
     <ClCompile Include="Observer.h" />
     <ClCompile Include="SelectDungeonScene.h" />
     <ClCompile Include="ShopScene.h" />
-    <ClCompile Include="SingleTone.h" />
+    <ClCompile Include="Singleton.h" />
     <ClCompile Include="TitleScene.h" />
     <ClCompile Include="Consumable.h" />
   </ItemGroup>
