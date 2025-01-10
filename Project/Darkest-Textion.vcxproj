@@ -134,6 +134,7 @@
     <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="MainScene.h" />
     <ClCompile Include="Observer.h" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SelectDungeonScene.h" />

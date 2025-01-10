@@ -111,6 +111,8 @@
     <ClCompile Include="Consumable.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Game\Character\Player</Filter>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Game\Scene</Filter>
     </ClCompile>
