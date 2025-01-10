@@ -57,7 +57,7 @@
     <ClCompile Include="Observer.h">
       <Filter>헤더 파일\Utility\DesignPattern</Filter>
     </ClCompile>
-    <ClCompile Include="SingleTone.h">
+    <ClCompile Include="Singleton.h">
       <Filter>헤더 파일\Utility\DesignPattern</Filter>
     </ClCompile>
     <ClCompile Include="TitleScene.h">
