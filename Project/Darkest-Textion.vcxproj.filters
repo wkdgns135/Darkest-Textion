@@ -76,6 +76,9 @@
     <Filter Include="소스 파일\Utility">
       <UniqueIdentifier>{ec4e4c09-dbb8-4730-9212-eb7882c94ad1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Utility\Global">
+      <UniqueIdentifier>{4936aa0c-0217-4db4-8e6a-2a3184ae532f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp">
@@ -108,6 +111,21 @@
     <ClCompile Include="Consumable.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>소스 파일\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
+      <Filter>소스 파일\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>소스 파일\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="MainScene.cpp">
+      <Filter>소스 파일\Game\Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -119,12 +137,6 @@
     <ClInclude Include="Monster.h">
       <Filter>헤더 파일\Game\Character\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>헤더 파일\Utility\DesignPattern</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Artifact.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClInclude>
@@ -133,6 +145,18 @@
     </ClInclude>
     <ClInclude Include="Item.h">
       <Filter>헤더 파일\Game\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>헤더 파일\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>헤더 파일\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectEnum.h">
+      <Filter>헤더 파일\Utility\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>헤더 파일\Utility\Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

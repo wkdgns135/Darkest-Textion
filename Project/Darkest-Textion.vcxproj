@@ -129,12 +129,17 @@
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="DungeonScene.h" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameManager.h" />
+    <ClCompile Include="MainScene.cpp" />
     <ClCompile Include="MainScene.h" />
     <ClCompile Include="Observer.h" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SelectDungeonScene.h" />
     <ClCompile Include="ShopScene.h" />
     <ClCompile Include="Singleton.h" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TitleScene.h" />
     <ClCompile Include="Consumable.h" />
   </ItemGroup>
@@ -142,11 +147,13 @@
     <ClInclude Include="Artifact.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Encounter.h" />
+    <ClInclude Include="Global.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="Subject.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ProjectEnum.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
