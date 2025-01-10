@@ -108,6 +108,9 @@
     <ClCompile Include="Consumable.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Game\Character\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">

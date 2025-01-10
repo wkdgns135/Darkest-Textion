@@ -132,6 +132,7 @@
     <ClCompile Include="GameManager.h" />
     <ClCompile Include="MainScene.h" />
     <ClCompile Include="Observer.h" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="SelectDungeonScene.h" />
     <ClCompile Include="ShopScene.h" />
     <ClCompile Include="Singleton.h" />
