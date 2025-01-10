@@ -113,6 +113,7 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Game\Character\Player</Filter>
+    </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Game\Scene</Filter>
     </ClCompile>
