@@ -8,4 +8,5 @@ private:
 
 public:
 	void StartGame();
+	inline Player* GetPlayer() { return player; }
 };
