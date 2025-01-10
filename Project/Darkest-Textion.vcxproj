@@ -127,26 +127,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="BossMonster.cpp" />
+    <ClCompile Include="Darkest-Textion.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="DungeonScene.h" />
     <ClCompile Include="GameManager.h" />
+    <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="MainScene.h" />
+    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Observer.h" />
+    <ClCompile Include="Orc.cpp" />
     <ClCompile Include="SelectDungeonScene.h" />
     <ClCompile Include="ShopScene.h" />
     <ClCompile Include="Singleton.h" />
     <ClCompile Include="TitleScene.h" />
     <ClCompile Include="Consumable.h" />
+    <ClCompile Include="Troll.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Artifact.h" />
+    <ClInclude Include="BossMonster.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="Encounter.h" />
+    <ClInclude Include="Goblin.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Orc.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
+    <ClInclude Include="Troll.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
