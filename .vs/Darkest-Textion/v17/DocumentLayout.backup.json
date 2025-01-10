@@ -1,10 +1,62 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Janghoon\\Desktop\\NBC\\Darkest-Textion\\",
+  "WorkspaceRootPath": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\Darkest-Textion\\Darkest-Textion.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\MainScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:MainScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\DungeonScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:DungeonScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Scene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\GameManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:GameManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\TitleScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:TitleScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Subject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Subject.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Observer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Observer.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\ShopScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:ShopScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SelectDungeonScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:SelectDungeonScene.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Darkest-Textion.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Darkest-Textion.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SingleTone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:SingleTone.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Monster.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Monster.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{750B4E1B-F2CB-494A-82CC-7FBA6303FDC8}|Darkest-Textion.vcxproj|solutionrelative:Character.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -22,15 +74,184 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameManager.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\GameManager.h",
+              "RelativeDocumentMoniker": "GameManager.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\GameManager.h",
+              "RelativeToolTip": "GameManager.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:44:42.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DungeonScene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\DungeonScene.h",
+              "RelativeDocumentMoniker": "DungeonScene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\DungeonScene.h",
+              "RelativeToolTip": "DungeonScene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:43:32.184Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainScene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\MainScene.h",
+              "RelativeDocumentMoniker": "MainScene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\MainScene.h",
+              "RelativeToolTip": "MainScene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:32:46.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TitleScene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\TitleScene.h",
+              "RelativeDocumentMoniker": "TitleScene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\TitleScene.h",
+              "RelativeToolTip": "TitleScene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:32:11.99Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Scene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Scene.h",
+              "RelativeDocumentMoniker": "Scene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Scene.h",
+              "RelativeToolTip": "Scene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:24:07.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Darkest-Textion.cpp",
-              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\Darkest-Textion\\Darkest-Textion.cpp",
-              "RelativeDocumentMoniker": "Darkest-Textion.cpp",
-              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\Darkest-Textion\\Darkest-Textion.cpp",
-              "RelativeToolTip": "Darkest-Textion.cpp",
+              "Title": "Player.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Player.h",
+              "RelativeDocumentMoniker": "Player.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Player.h",
+              "RelativeToolTip": "Player.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:13:06.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ShopScene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\ShopScene.h",
+              "RelativeDocumentMoniker": "ShopScene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\ShopScene.h",
+              "RelativeToolTip": "ShopScene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:41:22.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Observer.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Observer.h",
+              "RelativeDocumentMoniker": "Observer.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Observer.h",
+              "RelativeToolTip": "Observer.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:23:12.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Subject.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Subject.h",
+              "RelativeDocumentMoniker": "Subject.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Subject.h",
+              "RelativeToolTip": "Subject.h",
               "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:23:43.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SelectDungeonScene.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SelectDungeonScene.h",
+              "RelativeDocumentMoniker": "SelectDungeonScene.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SelectDungeonScene.h",
+              "RelativeToolTip": "SelectDungeonScene.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:42:42.064Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SingleTone.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SingleTone.h",
+              "RelativeDocumentMoniker": "SingleTone.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\SingleTone.h",
+              "RelativeToolTip": "SingleTone.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:31:46.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Darkest-Textion.cpp",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Darkest-Textion.cpp",
+              "RelativeDocumentMoniker": "Darkest-Textion.cpp",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Darkest-Textion.cpp",
+              "RelativeToolTip": "Darkest-Textion.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-01-10T05:04:14.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Character.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Character.h",
+              "RelativeDocumentMoniker": "Character.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Character.h",
+              "RelativeToolTip": "Character.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:12:36.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Monster.h",
+              "DocumentMoniker": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Monster.h",
+              "RelativeDocumentMoniker": "Monster.h",
+              "ToolTip": "C:\\Users\\Janghoon\\Desktop\\NBC\\TeamProject\\Darkest-Textion\\Monster.h",
+              "RelativeToolTip": "Monster.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-01-10T05:13:17.521Z",
               "EditorCaption": ""
             }
           ]
