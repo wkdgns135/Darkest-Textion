@@ -6,7 +6,7 @@ class Shop
 	private:
 
 	public:
-		Shop(); //아이템 및 골드 초기화할 예정
+		Shop(); //아이템 초기화 할 예정
 		void purchaseItem(int index);
 		void sellItem(int index);
 };
