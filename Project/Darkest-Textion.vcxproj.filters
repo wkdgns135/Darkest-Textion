@@ -90,109 +90,127 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game\Character\Player\Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Character\Character.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\SpeedStone.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Consumable\Antivenom.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Consumable\DamageBoost.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Consumable\HealthPotion.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Consumable\Laudanum.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\MainScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\Scene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\SceneManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\TitleScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Shop\Shop.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\GameManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="Darkest-Textion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Observer.h">
-      <Filter>헤더 파일\Utility\DesignPattern</Filter>
-    </ClCompile>
-    <ClCompile Include="Singleton.h">
-      <Filter>헤더 파일\Utility\DesignPattern</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleScene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="MainScene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ShopScene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectDungeonScene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="DungeonScene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.h">
-      <Filter>헤더 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Consumable.h">
-      <Filter>헤더 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthPotion.cpp">
-      <Filter>소스 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="DamageBoost.cpp">
-      <Filter>소스 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="Antivenom.h">
-      <Filter>헤더 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="Antivenom.cpp">
-      <Filter>소스 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="Laudanum.cpp">
-      <Filter>소스 파일\Game\Item\Consumable</Filter>
-    </ClCompile>
-    <ClCompile Include="SpeedStone.cpp">
-      <Filter>소스 파일\Game\Item\Artifact</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일\Game\Character\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>소스 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="TitleScene.cpp">
-      <Filter>소스 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>소스 파일\Game\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="MainScene.cpp">
-      <Filter>소스 파일\Game\Scene</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Character.h">
-      <Filter>헤더 파일\Game\Character</Filter>
+    <ClInclude Include="include\Game\Character\Monster\Monster.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일\Game\Character\Player</Filter>
+    <ClInclude Include="include\Game\Character\Player\Player.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>헤더 파일\Game\Character\Monster</Filter>
+    <ClInclude Include="include\Game\Character\Character.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>헤더 파일\Utility\DesignPattern</Filter>
+    <ClInclude Include="include\Game\Encounter\Encounter.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
+    <ClInclude Include="include\Game\Item\Artifact\Artifact.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Encounter.h">
-      <Filter>헤더 파일\Game\Encounter</Filter>
+    <ClInclude Include="include\Game\Item\Artifact\SpeedStone.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>헤더 파일\Game\Item</Filter>
+    <ClInclude Include="include\Game\Item\Consumable\Antivenom.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Artifact.h">
-      <Filter>헤더 파일\Game\Item\Artifact</Filter>
+    <ClInclude Include="include\Game\Item\Consumable\Consumable.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HealthPotion.h">
-      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    <ClInclude Include="include\Game\Item\Consumable\DamageBoost.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="DamageBoost.h">
-      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    <ClInclude Include="include\Game\Item\Consumable\HealthPotion.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Laudanum.h">
-      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    <ClInclude Include="include\Game\Item\Consumable\Laudanum.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SpeedStone.h">
-      <Filter>헤더 파일\Game\Item\Artifact</Filter>
+    <ClInclude Include="include\Game\Item\Item.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\DungeonScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\MainScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\Scene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\SceneManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\SelectDungeonScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\ShopScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\TitleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Shop\Shop.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\GameManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System\IO\InputEvent.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\DesignPattern\Observer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\DesignPattern\Singleton.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\Global\Global.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Utility\Global\ProjectEnum.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

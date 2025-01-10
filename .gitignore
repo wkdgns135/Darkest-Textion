@@ -57,5 +57,5 @@ CMakeUserPresets.json
 .vs/
 .bin/
 .obj/
-.x64/
-/Project/x64/
+.x64/*
+.Project/x64/*

@@ -1,6 +1,13 @@
-﻿  DamageBoost.cpp
+﻿  Darkest-Textion.cpp
+  Player.cpp
+  GameManager.cpp
+  Antivenom.cpp
+  DamageBoost.cpp
   HealthPotion.cpp
-  Consumable.h
-  Generating Code...
-x64\Debug\Antivenom.obj : warning LNK4042: object specified more than once; extras ignored
-  Darkest-Textion.vcxproj -> C:\Users\ehdwn\GitHub\Darkest-Textion\x64\Debug\Darkest-Textion.exe
+  Laudanum.cpp
+  MainScene.cpp
+  SceneManager.cpp
+  TitleScene.cpp
+  Shop.cpp
+  코드를 생성하고 있습니다...
+  Darkest-Textion.vcxproj -> C:\Users\Janghoon\Desktop\NBC\TeamProject\Darkest-Textion\x64\Debug\Darkest-Textion.exe
