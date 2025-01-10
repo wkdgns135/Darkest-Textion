@@ -76,8 +76,17 @@
     <Filter Include="소스 파일\Utility">
       <UniqueIdentifier>{ec4e4c09-dbb8-4730-9212-eb7882c94ad1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="헤더 파일\Utility\Global">
-      <UniqueIdentifier>{4936aa0c-0217-4db4-8e6a-2a3184ae532f}</UniqueIdentifier>
+    <Filter Include="헤더 파일\Game\Item\Consumable">
+      <UniqueIdentifier>{b648af65-147e-4753-9b19-b32fef74a892}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Item\Consumable">
+      <UniqueIdentifier>{ba25d385-f312-44f9-88b6-fc24d96b6453}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Game\Item\Artifact">
+      <UniqueIdentifier>{6f5fd4bf-911e-48a3-afde-dd6db046fc29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Game\Item\Artifact">
+      <UniqueIdentifier>{4d0e1925-83ad-4dd0-8e7d-3a6e55d3112b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,7 +118,25 @@
       <Filter>헤더 파일\Game</Filter>
     </ClCompile>
     <ClCompile Include="Consumable.h">
-      <Filter>헤더 파일\Game\Item</Filter>
+      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>소스 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageBoost.cpp">
+      <Filter>소스 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="Antivenom.h">
+      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="Antivenom.cpp">
+      <Filter>소스 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="Laudanum.cpp">
+      <Filter>소스 파일\Game\Item\Consumable</Filter>
+    </ClCompile>
+    <ClCompile Include="SpeedStone.cpp">
+      <Filter>소스 파일\Game\Item\Artifact</Filter>
     </ClCompile>
     <ClCompile Include="SceneManager.cpp">
       <Filter>소스 파일\Game\Scene</Filter>
@@ -137,8 +164,11 @@
     <ClInclude Include="Monster.h">
       <Filter>헤더 파일\Game\Character\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="Artifact.h">
-      <Filter>헤더 파일\Game\Item</Filter>
+    <ClInclude Include="Subject.h">
+      <Filter>헤더 파일\Utility\DesignPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>헤더 파일\Game\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Encounter.h">
       <Filter>헤더 파일\Game\Encounter</Filter>
@@ -146,17 +176,20 @@
     <ClInclude Include="Item.h">
       <Filter>헤더 파일\Game\Item</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
+    <ClInclude Include="Artifact.h">
+      <Filter>헤더 파일\Game\Item\Artifact</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>헤더 파일\Game\Scene</Filter>
+    <ClInclude Include="HealthPotion.h">
+      <Filter>헤더 파일\Game\Item\Consumable</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectEnum.h">
-      <Filter>헤더 파일\Utility\Global</Filter>
+    <ClInclude Include="DamageBoost.h">
+      <Filter>헤더 파일\Game\Item\Consumable</Filter>
     </ClInclude>
-    <ClInclude Include="Global.h">
-      <Filter>헤더 파일\Utility\Global</Filter>
+    <ClInclude Include="Laudanum.h">
+      <Filter>헤더 파일\Game\Item\Consumable</Filter>
+    </ClInclude>
+    <ClInclude Include="SpeedStone.h">
+      <Filter>헤더 파일\Game\Item\Artifact</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
