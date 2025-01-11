@@ -1,15 +1,17 @@
 #include "Character/Monster/Orc.h"
 
-Orc::Orc(int dungeonLevel, int playerLevel) : Monster(dungeonLevel, playerLevel)
+Orc::Orc(int dungeonLevel) : Monster(dungeonLevel)
 {
 	name = "Orc";
+	Rank = 0;
+	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
 }
 
 Orc::~Orc()
 {
-
+	__super::~Monster();
 }
 
 Item* Orc::DropItem()

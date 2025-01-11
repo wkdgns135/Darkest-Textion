@@ -1,15 +1,17 @@
 #include "Character/Monster/Troll.h"
 
-Troll::Troll(int dungeonLevel, int playerLevel) : Monster(dungeonLevel, playerLevel)
+Troll::Troll(int dungeonLevel) : Monster(dungeonLevel)
 {
 	name = "Troll";
+	Rank = 1;
+	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
 }
 
 Troll::~Troll()
 {
-
+	__super::~Monster();
 }
 
 Item* Troll::DropItem()

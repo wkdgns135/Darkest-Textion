@@ -1,15 +1,17 @@
 #include "Character/Monster/Goblin.h"
 
-Goblin::Goblin(int dungeonLevel, int playerLevel) : Monster(dungeonLevel, playerLevel)
+Goblin::Goblin(int dungeonLevel) : Monster(dungeonLevel)
 {
 	name = "Goblin";
+	Rank = 0;
+	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
 }
 
 Goblin::~Goblin()
 {
-
+	__super::~Monster();
 }
 
 Item* Goblin::DropItem()

@@ -5,7 +5,7 @@
 class Troll : public Monster
 {
 public:
-	Troll(int dungeonlevel, int playerLevel);
+	Troll(int dungeonlevel);
 	~Troll() override;
 	Item* DropItem() override;
 	void Hit(int damage) override;

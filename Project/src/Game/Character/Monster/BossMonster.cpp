@@ -4,7 +4,7 @@
 #include "Character/Monster/Orc.h"
 #include "Character/Monster/Goblin.h"
 
-BossMonster::BossMonster(int dungeonLevel, int playerLevel) : Monster(dungeonLevel, playerLevel)
+BossMonster::BossMonster(int dungeonLevel) : Monster(dungeonLevel)
 {
 	switch (DungeonLevel)
 	{
@@ -25,13 +25,15 @@ BossMonster::BossMonster(int dungeonLevel, int playerLevel) : Monster(dungeonLev
 		break;
 	}
 
+	Rank = 2;
+	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
 }
 
 BossMonster::~BossMonster()
 {
-
+	__super::~Monster();
 }
 
 Item* BossMonster::DropItem()
@@ -64,10 +66,10 @@ void BossMonster::Magnification()
 
 int main()
 {
-	Monster* Boss = new BossMonster(1, 5);
-	Monster* troll = new Troll(1, 5);
-	Monster* orc = new Orc(1, 5);
-	Monster* goblin = new Goblin(1, 5);
+	Monster* Boss = new BossMonster(1);
+	Monster* troll = new Troll(1);
+	Monster* orc = new Orc(1);
+	Monster* goblin = new Goblin(1);
 
 	Boss->TestPrint();
 	troll->TestPrint();

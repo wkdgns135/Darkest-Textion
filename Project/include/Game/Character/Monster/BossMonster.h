@@ -6,7 +6,7 @@ class BossMonster : public Monster
 {
 
 public:
-    BossMonster(int dungeonlevel, int playerLevel);
+    BossMonster(int dungeonlevel);
     ~BossMonster() override;
     Item* DropItem() override;
     void Hit(int damage) override;

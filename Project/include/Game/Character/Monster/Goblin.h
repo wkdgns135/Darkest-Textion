@@ -5,7 +5,7 @@
 class Goblin : public Monster
 {
 public:
-	Goblin(int dungeonlevel, int playerLevel);
+	Goblin(int dungeonlevel);
 	~Goblin() override;
 	Item* DropItem() override;
 	void Hit(int damage) override;
