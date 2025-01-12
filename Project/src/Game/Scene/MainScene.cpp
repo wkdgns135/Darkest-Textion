@@ -2,20 +2,20 @@
 
 using namespace std;
 
-void CallbackText1() {
-	cout << "Callback Test 2" << '\n';
+void StaticCallbackTest() {
+	cout << "Static function callback" << '\n';
 }
 
-void CallbackText2() {
-	cout << "Complete Test 2" << '\n';
+void StaticCompleteTest() {
+	cout << "Static function complete" << '\n';
 }
 
 
 void MainScene::Enter()
 {
 	cout << "MainSceneEnter" << '\n';
-	AddInputEvent(Key_1, [this]() { CallbackTest(); }); // ¸â¹ö ÇÔ¼ö
-	AddInputEvent(Key_2, CallbackText1, CallbackText2);
+	AddInputEvent(Key_1, [this]() { MemberCallbackTest(); }, [this]() { MemberCompleteTest(); }); // ¸â¹ö ÇÔ¼ö
+	AddInputEvent(Key_2, StaticCallbackTest, StaticCompleteTest);
 }
 
 void MainScene::Update()
@@ -28,9 +28,14 @@ void MainScene::Exit()
 
 }
 
-void MainScene::CallbackTest()
+void MainScene::MemberCallbackTest()
 {
-	cout << "Callback Test 1" << '\n';
+	cout << "Memeber function Callback" << '\n';
+}
+
+void MainScene::MemberCompleteTest()
+{
+	cout << "Memeber function Complete" << '\n';
 }
 
 

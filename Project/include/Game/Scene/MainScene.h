@@ -8,5 +8,6 @@ public:
 	void Exit() override;
 
 private:
-	void CallbackTest();
+	void MemberCallbackTest();
+	void MemberCompleteTest();
 };
