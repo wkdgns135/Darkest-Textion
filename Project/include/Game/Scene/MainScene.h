@@ -6,4 +6,7 @@ public:
 	void Enter() override;
 	void Update() override;
 	void Exit() override;
+
+private:
+	void CallbackTest();
 };
