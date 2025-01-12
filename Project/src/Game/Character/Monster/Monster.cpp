@@ -3,9 +3,13 @@
 Monster::Monster(int dungeonLevel)
 {
 	DungeonLevel = dungeonLevel; 
-	APlayer = GameManager::GetInstance().GetPlayer();
-	PlayerLevel = APlayer->GetLevel();
-	if (DungeonLevel > 3) DungeonLevel %= 3;
+	//APlayer = GameManager::GetInstance().GetPlayer();
+	//PlayerLevel = APlayer->GetLevel();
+	PlayerLevel = 20; //Test
+
+	if (DungeonLevel >= 4) DungeonLevel %= 4;
+
+	CoolDown1 = CoolDown2 = CoolDown3 = 0;
 }
 
 Monster::~Monster()
@@ -15,8 +19,8 @@ Monster::~Monster()
 
 void Monster::Magnification()
 {
-	health = GetRandomValue(20, 30) * PlayerLevel * DungeonLevel;
-	damage = GetRandomValue(5, 10) * PlayerLevel * DungeonLevel;
+	health = GetRandomValue(20, 30) * PlayerLevel * (Rank + 1);
+	damage = GetRandomValue(5, 10) * PlayerLevel * (Rank + 1);
 }
 
 int Monster::GetRandomValue(int min, int max)
@@ -30,33 +34,12 @@ int Monster::GetRandomValue(int min, int max)
 
 void Monster::InitializeByDungeonLevel()
 {
-	if (Rank == 0)
-	{
-		MinDropValue = 0;
-		ArtifactRate = 5;
-		MaxItemRank = 71;
-		MaxItemCount = 1;
-		HitRate = 80;
-		AvoidRate = 5;
-	}
-	else if (Rank == 1)
-	{
-		MinDropValue = 25;
-		ArtifactRate = 10;
-		MaxItemRank = 95;
-		MaxItemCount = 2;
-		HitRate = 90;
-		AvoidRate = 10;
-	}
-	else
-	{
-		MinDropValue = 50;
-		ArtifactRate = 20;
-		MaxItemRank = 100;
-		MaxItemCount = 4;
-		HitRate = 99;
-		AvoidRate = 20;
-	}
+	MinDropValue = 0;
+	ArtifactRate = 0;
+	MaxItemRank = 40;
+	MaxItemCount = 1;
+	HitRate = 70;
+	AvoidRate = 0;
 }
 
 Item* Monster::DropItem()
@@ -104,8 +87,10 @@ Item* Monster::DropItem()
 
 void Monster::Hit(int damage)
 {
-	if (AvoidRate > GetRandomValue(0, 100)) currentHealth -= damage;
+	if (AvoidRate < GetRandomValue(0, 100)) currentHealth -= damage;
 	else currentHealth -= damage * 0.7f;
+
+	cout << name << " Get Hit, current Hp is " << currentHealth << endl;
 
 	if (currentHealth <= 0)
 	{
@@ -117,8 +102,30 @@ void Monster::Hit(int damage)
 
 void Monster::Attack()
 {
-	if (HitRate >= GetRandomValue(0, 100)) APlayer->Hit(damage);
-	else APlayer->Hit(damage * 0.5f);
+	if (CoolDown1 > 0) --CoolDown1;
+	if (CoolDown2 > 0) --CoolDown2;
+	if (CoolDown3 > 0) --CoolDown3;
+
+	int Skill = GetRandomValue(0, Rank % 4);
+
+	switch (Skill)
+	{
+	case 0:
+		NormalAttack();
+		break;
+
+	case 1:
+		FirstSkillAttack();
+		break;
+
+	case 2:
+		SecondSkillAttack();
+		break;
+
+	case 3:
+		FinalSkillAttack();
+		break;
+	}
 }
 
 void Monster::Die()
@@ -131,7 +138,37 @@ void Monster::Die()
 	APlayer->AddGold(500 * Rank);
 }
 
+void Monster::FirstSkillAttack()
+{
+	if (CoolDown1 > 0)
+	{
+		NormalAttack();
+		return;
+	}
+}
+
+void Monster::SecondSkillAttack()
+{
+	if (CoolDown2 > 0)
+	{
+		FirstSkillAttack();
+		return;
+	}
+}
+
+void Monster::FinalSkillAttack()
+{
+	if (CoolDown3 > 0)
+	{
+		SecondSkillAttack();
+		return;
+	}
+}
+
 void Monster::TestPrint()
 {
-	cout << name << " : if Player Level = " << PlayerLevel << ", DungeonLevel = " << DungeonLevel << " : " << name << "Health = " << health << ", " << name << "Damage = " << damage << endl;
+	cout << name << " : if Player Level = " << PlayerLevel << ", DungeonLevel = " << DungeonLevel << " : \n"
+		<< "Rank = " << Rank << ", Health = " << health << ", Damage = " << damage << "\n"
+		<< "Min Drop Value = " << MinDropValue << ", MaxItemRank = " << MaxItemRank << ", MaxItemCount = " << MaxItemCount << "\n"
+		<< "AtrtifactRate = " << ArtifactRate << ", HitRate = " << HitRate << ", AvoidRate = " << AvoidRate << "\n" << endl;
 }

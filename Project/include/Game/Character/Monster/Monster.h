@@ -23,6 +23,7 @@ protected:
     int DungeonLevel;
     int PlayerLevel;
     int Rank;
+    int RealDamage;
 
     int AvoidRate;
     int HitRate;
@@ -32,9 +33,17 @@ protected:
     int MaxItemRank;
     int MaxItemCount;
 
+    int CoolDown1;
+    int CoolDown2;
+    int CoolDown3;
+
     Player* APlayer;
 
     virtual void Magnification();
+    virtual void InitializeByDungeonLevel();
+    virtual void NormalAttack() = 0;
+    virtual void FirstSkillAttack();
+    virtual void SecondSkillAttack();
+    virtual void FinalSkillAttack();
     int GetRandomValue(int min, int max);
-    void InitializeByDungeonLevel();
 };

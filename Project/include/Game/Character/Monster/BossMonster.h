@@ -12,8 +12,18 @@ public:
     void Hit(int damage) override;
     void Attack() override;
     void Die() override;
-    void Magnification() override;
-
-private:
     
+private:
+    int Skill3Counter;
+    int Skill2Counter;
+    int Skill1Counter;
+    int CurrentAvoidRate;
+    float GetDamageRate;
+
+    void Magnification() override;
+    void InitializeByDungeonLevel() override;
+    void NormalAttack() override;
+    void FirstSkillAttack() override;
+    void SecondSkillAttack() override;
+    void FinalSkillAttack() override;
 };

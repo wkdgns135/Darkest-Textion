@@ -13,5 +13,9 @@ public:
 	void Die() override;
 
 private:
-
+	void InitializeByDungeonLevel() override;
+	void NormalAttack() override;
+	void FirstSkillAttack() override;
+	void SecondSkillAttack() override;
+	void FinalSkillAttack() override;
 };
