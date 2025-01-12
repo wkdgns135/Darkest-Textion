@@ -18,9 +18,12 @@ void SceneManager::ChangeScene(EScene newScene)
 {
 	if (currentScene) {
 		currentScene->Exit();
+		currentScene->RootExit();
 	}
 	currentScene = move(ChangeEScene(newScene));
 	if (currentScene) {
 		currentScene->Enter();
+		currentScene->RootEnter();
 	}
+	currentScene->RootUpdate();
 }

@@ -6,7 +6,9 @@ enum EScene {
 };
 
 enum EKeyEvent {
-	Key1,
-	Key2,
-	Key3,
+	Key_1,
+	Key_2,
+	Key_3,
+	Key_A,
+	Key_I,
 };

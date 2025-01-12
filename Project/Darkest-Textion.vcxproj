@@ -128,8 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\System\IO\InputEvent.cpp" />
     <ClCompile Include="src\Game\Character\Character.cpp" />
-    <ClCompile Include="src\Game\Character\Monster\BossMonster.cpp" />
     <ClCompile Include="src\Game\Character\Monster\Goblin.cpp" />
     <ClCompile Include="src\Game\Character\Monster\Monster.cpp" />
     <ClCompile Include="src\Game\Character\Monster\Orc.cpp" />
