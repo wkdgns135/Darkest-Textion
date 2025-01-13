@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
+    <ClCompile Include="src\Game\Scene\MainShopScene.cpp" />
     <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
     <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp" />
     <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="include\Game\Scene\DungeonInfoScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonScene.h" />
     <ClInclude Include="include\Game\Scene\MainScene.h" />
+    <ClInclude Include="include\Game\Scene\MainShopScene.h" />
     <ClInclude Include="include\Game\Scene\NewPlayerScene.h" />
     <ClInclude Include="include\Game\Scene\Scene.h" />
     <ClInclude Include="include\Game\Scene\SceneManager.h" />
