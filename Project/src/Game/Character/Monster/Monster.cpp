@@ -3,9 +3,9 @@
 Monster::Monster(int dLevel)
 {
 	dungeonLevel = dLevel; 
-	//APlayer = GameManager::GetInstance().GetPlayer();
-	//PlayerLevel = APlayer->GetLevel();
-	playerLevel = 20; //Test
+	player = GameManager::GetInstance().GetPlayer();
+	playerLevel = player->GetLevel();
+	//playerLevel = 20; //Test
 
 	if (dungeonLevel >= 4) dungeonLevel %= 4;
 
