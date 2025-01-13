@@ -24,9 +24,6 @@
     <ClCompile Include="src\Game\Item\Artifact\SpeedStone.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Item\Consumable\Antivenom.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Item\Consumable\DamageBoost.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -75,6 +72,24 @@
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="src\System\IO\OutputManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Game.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="include\System\IO\OutputManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game\Character\Monster\Monster.h">
@@ -93,9 +108,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Item\Artifact\SpeedStone.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Game\Item\Consumable\Antivenom.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Item\Consumable\Consumable.h">
@@ -168,6 +180,18 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Character\Player\Inventory.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Game.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System\IO\Image.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\DungeonInfoScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\NewPlayerScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

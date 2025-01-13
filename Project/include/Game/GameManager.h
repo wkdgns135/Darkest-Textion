@@ -7,6 +7,6 @@ private:
 	Player* player;
 
 public:
-	void StartGame();
 	inline Player* GetPlayer() { return player; }
+	inline void SetPlayer(Player* player) { this->player = player; }
 };
