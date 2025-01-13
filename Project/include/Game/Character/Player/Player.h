@@ -14,6 +14,7 @@ private:
 	int level;
 	int exp;
 	int gold;
+	int stress;
 
 public:
 	Player(string name);
@@ -22,13 +23,16 @@ public:
 	virtual void Attack() override;
 	void ShowStatus();
 
-	string GetName() const;
-	int GetHealth() const;
-	int GetDamage() const;
-	int GetLevel() const;
-	void AddHealth(int health); //아이템으로 인한 변동될때 사용할 함수
-	void AddDamage(int damage);
-	void AddGold(int gold);
+	inline string GetName() const { return name; }
+	inline int GetHealth() const { return health; }
+	inline int GetDamage() const { return damage; }
+	inline int GetLevel() const { return level; }
+	inline int GetGold() const { return gold; }
+	inline int GetStress() const { return stress; }
+	inline void AddHealth(int health) { this->health += health;; } //아이템으로 인한 변동될때 사용할 함수
+	inline void AddDamage(int damage) { this->damage += damage; }
+	inline void AddGold(int gold) { this->gold += gold; }
+	inline void AddStress(int stress) {this->stress += stress;}
 	void AddItem(Item* myItem);
 	void UseItem(int num);
 	void LevelUp();

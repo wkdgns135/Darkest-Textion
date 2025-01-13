@@ -29,41 +29,6 @@ Player::Player(string name, int level, int currentHealth, int exp, int gold, vec
 #pragma endregion »ý¼ºÀÚ
 
 #pragma region GetSet
-string Player::GetName() const
-{
-	return name;
-}
-
-int Player::GetHealth() const
-{
-	return health;
-}
-
-int Player::GetDamage() const
-{
-	return damage;
-}
-
-int Player::GetLevel() const
-{
-	return level;
-}
-
-void Player::AddDamage(int damage)
-{
-	this->damage += damage;
-}
-
-void Player::AddHealth(int health)
-{
-	this->health += health;;
-}
-
-void Player::AddGold(int gold)
-{
-	this->gold += gold;
-}
-
 void Player::AddItem(Item* myItem)
 {
 	if(inventory.size() < 10)
