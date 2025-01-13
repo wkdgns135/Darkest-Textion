@@ -15,4 +15,5 @@ public:
 	virtual void Detach(Player& player) = 0;
 	inline int GetAmount() { return amount; };
 	inline void SetAmount(int amount) { this->amount = amount; };
+	inline void SetRank(EArtifactRank rank) { this->rank = rank; };
 };
