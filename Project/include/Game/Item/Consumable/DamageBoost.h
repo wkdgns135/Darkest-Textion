@@ -1,10 +1,11 @@
 #pragma once
 #include "Consumable.h"
 
-class DamageBoost : Consumable {
+class DamageBoost : public Consumable {
 private:
-	virtual string GetName() const override;
+	float duration;
 public:
 	DamageBoost();
-	virtual void Use(Player& Player);
+	inline virtual string GetName() const override { return name; };
+	virtual void Use(Player& player) override;
 };

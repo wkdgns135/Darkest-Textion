@@ -3,13 +3,8 @@
 Laudanum::Laudanum()
 {
 	name = "Laudanum";
-	amount = 10.f;
-	price = 5.f;
-}
-
-string Laudanum::GetName() const
-{
-	return name;
+	price = 5;
+	amount = 10;
 }
 
 void Laudanum::Use(Player& Player)

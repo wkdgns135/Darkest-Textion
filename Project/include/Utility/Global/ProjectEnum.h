@@ -12,3 +12,10 @@ enum EKeyEvent {
 	Key_A,
 	Key_I,
 };
+
+enum EArtifactRank
+{
+	COMMON,
+	RARE,
+	ANCESTAL
+};

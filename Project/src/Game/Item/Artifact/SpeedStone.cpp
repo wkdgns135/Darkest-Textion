@@ -3,14 +3,9 @@
 SpeedStone::SpeedStone()
 {
 	name = "SpeedStone";
-	amount = 1.f;
+	price = 100;
 	rank = EArtifactRank::COMMON;
-	price = 100.f;
-}
-
-string SpeedStone::GetName() const
-{
-	return name;
+	amount = 1;
 }
 
 void SpeedStone::Attach(Player& player)
