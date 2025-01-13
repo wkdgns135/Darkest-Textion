@@ -129,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
     <ClCompile Include="src\System\IO\InputEvent.cpp" />
     <ClCompile Include="src\Game\Character\Character.cpp" />
     <ClCompile Include="src\Game\Character\Monster\Goblin.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="include\Game\Character\Monster\Monster.h" />
     <ClInclude Include="include\Game\Character\Monster\Orc.h" />
     <ClInclude Include="include\Game\Character\Monster\Troll.h" />
+    <ClInclude Include="include\Game\Character\Player\Inventory.h" />
     <ClInclude Include="include\Game\Character\Player\Player.h" />
     <ClInclude Include="include\Game\Encounter\Encounter.h" />
     <ClInclude Include="include\Game\GameManager.h" />
