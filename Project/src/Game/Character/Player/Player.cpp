@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <typeinfo>
 #include "Character/Player/Player.h"
 #include "Item/Item.h"
+#include "Item/Consumable/Consumable.h";
 using namespace std;
 
 #pragma region 생성자
@@ -13,61 +15,33 @@ Player::Player(string name)
 	gold = 0;
 	damage = 30;
 	exp = 0;
+	stress = 0;
 }
 
-Player::Player(string name, int level, int currentHealth, int exp, int gold, vector<Item*> &inventory) // 저장파일 불러올때 사용될 생성자
+/*Player::Player(string name, int level, int currentHealth, int exp, int gold, int stress, vector<Item*>& inventory) // 저장파일 불러올때 사용될 생성자
 {
 	this->name = name;
 	this->level = level;
 	this->gold = gold;
+	this->stress = stress;
 	damage = 30 + (level - 1 * levelUpDamage);
 	this->currentHealth = currentHealth;;
 	health = 200 + (level - 1 * levelUpHealth);
 	this->exp = exp;
 	this->inventory = inventory;
-}
+}*/
 #pragma endregion 생성자
 
 #pragma region GetSet
-string Player::GetName() const
+void Player::AddItem(Item* item,int num)
 {
-	return name;
+	// inventory map에 item.name 이 키값으로 존재하면 count값만 증가시키고 없으면 새로 추가해준다
 }
-
-int Player::GetHealth() const
+void Player::AddGold(int gold) 
 {
-	return health;
-}
-
-int Player::GetDamage() const
-{
-	return damage;
-}
-
-int Player::GetLevel() const
-{
-	return level;
-}
-
-void Player::AddDamage(int damage)
-{
-	this->damage += damage;
-}
-
-void Player::AddHealth(int health)
-{
-	this->health += health;;
-}
-
-void Player::AddGold(int gold)
-{
-	this->gold += gold;
-}
-
-void Player::AddItem(Item* myItem)
-{
-	if(inventory.size() < 10)
-	inventory.push_back(myItem);
+	if (gold + this->gold >= 0) {
+		this->gold += gold;
+	}
 }
 
 #pragma endregion GetSet함수
@@ -120,12 +94,9 @@ void Player::LevelUp()
 
 }
 
-void Player::UseItem(int num)
+void Player::UseItem(string name)
 {
-	if (num < inventory.size())
-	{
-		//inventory[num].Use(*this);
-	}
+	
 }
 
 #pragma endregion 이벤트함수
