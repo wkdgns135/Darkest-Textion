@@ -4,14 +4,15 @@
 #include "Character/Monster/Orc.h"
 #include "Character/Monster/Goblin.h"
 
-BossMonster::BossMonster(int dungeonLevel) : Monster(dungeonLevel)
+BossMonster::BossMonster(int dLevel) : Monster(dLevel)
 {
 	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
-	Skill3Counter = Skill2Counter = Skill1Counter = 0;
-	GetDamageRate = 0.7f;
-	RealDamage = damage;
+	skill3Counter = skill2Counter = skill1Counter = 0;
+	currentAvoidRate = avoidRate;
+	getDamageRate = 0.7f;
+	realDamage = damage;
 }
 
 BossMonster::~BossMonster()
@@ -26,17 +27,17 @@ Item* BossMonster::DropItem()
 
 void BossMonster::Hit(int damage)
 {
-	if (Skill3Counter > 0)
+	if (skill3Counter > 0)
 	{
 		if (GetRandomValue(0, 100) < 50)
 		{
-			//APlayer->Hit(damage);
+			player->Hit(damage);
 			return;
 		}
 	}
 
-	if (CurrentAvoidRate < GetRandomValue(0, 100)) currentHealth -= damage;
-	else currentHealth -= damage * GetDamageRate;
+	if (currentAvoidRate < GetRandomValue(0, 100)) currentHealth -= damage;
+	else currentHealth -= damage * getDamageRate;
 
 	if (currentHealth <= 0)
 	{
@@ -48,22 +49,22 @@ void BossMonster::Hit(int damage)
 
 void BossMonster::Attack()
 {
-	if (Skill1Counter > 0)
+	if (skill1Counter > 0)
 	{
-		--Skill1Counter;
-		//APlayer->Hit(RealDamage * 0.8f);
-		cout << name << " Skill1 지속 데미지 = " << RealDamage * 0.8f << endl;
+		--skill1Counter;
+		player->Hit(realDamage * 0.8f);
+		cout << name << " Skill1 지속 데미지 = " << realDamage * 0.8f << endl;
 	}
 
-	if (Skill2Counter == 0)
+	if (skill2Counter == 0)
 	{
-		CurrentAvoidRate = AvoidRate;
-		GetDamageRate = 0.7f;
+		currentAvoidRate = avoidRate;
+		getDamageRate = 0.7f;
 	}
-	else --Skill2Counter;
+	else --skill2Counter;
 
-	if (Skill3Counter > 0) --Skill3Counter;
-	else RealDamage = damage;
+	if (skill3Counter > 0) --skill3Counter;
+	else realDamage = damage;
 
 	__super::Attack();
 }
@@ -85,9 +86,9 @@ void BossMonster::InitializeByDungeonLevel()
 {
 	__super::InitializeByDungeonLevel();
 
-	Rank = GetRandomValue(4, 4 + DungeonLevel);
+	rank = GetRandomValue(4, 4 + dungeonLevel);
 
-	switch (Rank)
+	switch (rank)
 	{
 	case 4:
 		name = "EasyBoss";
@@ -106,55 +107,55 @@ void BossMonster::InitializeByDungeonLevel()
 		break;
 	}
 
-	MinDropValue += Rank * 10;
-	ArtifactRate += Rank * 4;
-	MaxItemRank += Rank * 10;
-	HitRate += Rank * 4;
-	AvoidRate += Rank * 3;
-	MaxItemCount += Rank / 2;
+	minDropValue += rank * 10;
+	artifactRate += rank * 4;
+	maxItemRank += rank * 10;
+	hitRate += rank * 4;
+	avoidRate += rank * 3;
+	maxItemCount += rank / 2;
 }
 
 void BossMonster::NormalAttack() // 일반 공격. 공격력의 90% 만큼의 피해를 입힌다.
 {
-	cout << name << " Use Normal Attack Damage = " << RealDamage * 0.9f << endl;
-	//APlayer->Hit(RealDamage * 0.9f);
+	//cout << name << " Use Normal Attack Damage = " << realDamage * 0.9f << endl;
+	player->Hit(realDamage * 0.9f);
 }
 
 void BossMonster::FirstSkillAttack() //스킬 1 빛을 먹는 불꽃. 사용 시 공격력의 150% 만큼의 피해를 입힌 후, 3턴 동안 공격력의 80% 만큼 지속 피해를 입힌다.
 {
 	__super::FirstSkillAttack();
 
-	CoolDown1 = 4;
-	Skill1Counter = 3;
+	coolDown1 = 4;
+	skill1Counter = 3;
 
-	cout << name << " Use Skill 3 Attack Damage = " << RealDamage * 1.5f << endl;
-	//APlayer->Hit(RealDamage * 1.5f);
+	//cout << name << " Use Skill 3 Attack Damage = " << realDamage * 1.5f << endl;
+	player->Hit(realDamage * 1.5f);
 }
 
 void BossMonster::SecondSkillAttack() // 스킬 2 짙어지는 어둠. 5턴 동안 명중률을 50 퍼센트 떨어뜨린다. (회피율 50 상승) 회피시 받는 데미지가 50%로 감소
 {
 	__super::SecondSkillAttack();
 
-	CoolDown2 = 7;
-	Skill2Counter = 5;
+	coolDown2 = 7;
+	skill2Counter = 5;
 
-	CurrentAvoidRate = AvoidRate * 1.5f;
-	GetDamageRate = 0.5f;
+	currentAvoidRate = avoidRate * 1.5f;
+	getDamageRate = 0.5f;
 
-	cout << name << " Use Skill 2. CurrentAvoidRate = " << CurrentAvoidRate << ", DamageRate = " << GetDamageRate << endl;
+	//cout << name << " Use Skill 2. CurrentAvoidRate = " << currentAvoidRate << ", DamageRate = " << getDamageRate << endl;
 }
 
 void BossMonster::FinalSkillAttack() // 스킬 3 Darkest. 5턴 동안 플레이어가 공격 시 50% 확률로 플레이어 자신을 공격하게 만들고, 공격력을 50% 상승시킨다.
 {
 	__super::FinalSkillAttack();
 
-	CoolDown3 = 7;
-	Skill3Counter = 5;
-	RealDamage *= 1.5f;
+	coolDown3 = 7;
+	skill3Counter = 5;
+	realDamage *= 1.5f;
 
-	cout << name << " Use Skill 3. RealDamage = " << RealDamage  << endl;
+	//cout << name << " Use Skill 3. RealDamage = " << realDamage  << endl;
 }
-
+/*
 int main()
 {
 	Monster* Boss = new BossMonster(3);
@@ -167,8 +168,9 @@ int main()
 	orc->TestPrint();
 	goblin->TestPrint();
 
-	Boss->Attack();
-	troll->Attack();
-	orc->Attack();
-	goblin->Attack();
+	//Boss->Attack();
+	//troll->Attack();
+	//orc->Attack();
+	//goblin->Attack();
 }
+*/

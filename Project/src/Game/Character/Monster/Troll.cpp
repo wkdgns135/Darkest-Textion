@@ -1,12 +1,12 @@
 #include "Character/Monster/Troll.h"
 
-Troll::Troll(int dungeonLevel) : Monster(dungeonLevel)
+Troll::Troll(int dLevel) : Monster(dLevel)
 {
 	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
-	RealDamage = damage;
-	Skill2Counter = 0;
+	realDamage = damage;
+	skill2Counter = 0;
 }
 
 Troll::~Troll()
@@ -26,11 +26,11 @@ void Troll::Hit(int damage)
 
 void Troll::Attack()
 {
-	if (Skill2Counter > 0)
+	if (skill2Counter > 0)
 	{
-		Skill2Counter--;
-		//APlayer->Hit(RealDamage * 0.3f);
-		cout << name << " 독 지속 Damage = " << RealDamage * 0.3f << endl;
+		skill2Counter--;
+		player->Hit(realDamage * 0.3f);
+		//cout << name << " 독 지속 Damage = " << realDamage * 0.3f << endl;
 	}
 	__super::Attack();
 }
@@ -44,9 +44,9 @@ void Troll::InitializeByDungeonLevel()
 {
 	__super::InitializeByDungeonLevel();
 
-	Rank = GetRandomValue(0, DungeonLevel);
+	rank = GetRandomValue(0, dungeonLevel);
 
-	switch (Rank)
+	switch (rank)
 	{
 	case 0:
 		name = "Troll";
@@ -65,44 +65,44 @@ void Troll::InitializeByDungeonLevel()
 		break;
 	}
 
-	MinDropValue += Rank * 10;
-	ArtifactRate += Rank * 2;
-	MaxItemRank += Rank * 18;
-	HitRate += Rank * 5;
-	AvoidRate += Rank * 2;
-	MaxItemCount += Rank / 2;
+	minDropValue += rank * 10;
+	artifactRate += rank * 2;
+	maxItemRank += rank * 18;
+	hitRate += rank * 5;
+	avoidRate += rank * 2;
+	maxItemCount += rank / 2;
 }
 
 void Troll::NormalAttack() //일반 공격. 공격력의 80% 만큼의 피해를 입힌다.
 {
-	//APlayer->Hit(RealDamage * 0.8f);
-	cout << name << " Use Normal Attack. Damage = " << RealDamage * 0.8f << endl;
+	player->Hit(realDamage * 0.8f);
+	//cout << name << " Use Normal Attack. Damage = " << realDamage * 0.8f << endl;
 }
 
 void Troll::FirstSkillAttack() // 스킬 1 짓밟기. 공격력의 130% 만큼의 피해를 입힌다.
 {
 	__super::FirstSkillAttack();
 
-	CoolDown1 = 2;
-	//APlayer->Hit(RealDamage * 1.3f);
-	cout << name << " Use Skill 1 Attack. Damage = " << RealDamage * 1.3f << endl;
+	coolDown1 = 2;
+	player->Hit(realDamage * 1.3f);
+	//cout << name << " Use Skill 1 Attack. Damage = " << realDamage * 1.3f << endl;
 }
 
 void Troll::SecondSkillAttack() // 스킬 2 트롤의 독. 2턴 동안 공격력의 30% 만큼의 지속 피해를 입힌다.
 {
 	__super::SecondSkillAttack();
 
-	CoolDown2 = 3;
-	Skill2Counter = 2;
-	cout << name << " Use Skill 2 Attack" << endl;
+	coolDown2 = 3;
+	skill2Counter = 2;
+	//cout << name << " Use Skill 2 Attack" << endl;
 }
 
-void Troll::FinalSkillAttack() // 스킬 3 기분 나쁜 감촉. 공격력의 80% 만큼의 피해를 입히고, 스트레스 수치를 10 증가시킨다.
+void Troll::FinalSkillAttack() // 스킬 3 기분 나쁜 감촉. 공격력의 80% 만큼의 피해를 입히고, 스트레스 수치를 5 증가시킨다.
 {
 	__super::FinalSkillAttack();
 
-	CoolDown3 = 5;
-	//APlayer->Hit(RealDamage * 0.8f);
-	//APlayer->stress(10)
-	cout << name << " Use Skill 3 Attack. Damage = " << RealDamage * 0.8f << "Add Player Stress 10" << endl;
+	coolDown3 = 5;
+	player->Hit(realDamage * 0.8f);
+	//player->stress(5) // TODO : 플레이어 스트레스 수치 구현 되면 수정 필요
+	//cout << name << " Use Skill 3 Attack. Damage = " << realDamage * 0.8f << "Add Player Stress 10" << endl;
 }

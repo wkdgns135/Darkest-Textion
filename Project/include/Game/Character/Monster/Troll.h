@@ -5,7 +5,7 @@
 class Troll : public Monster
 {
 public:
-	Troll(int dungeonlevel);
+	Troll(int dLevel);
 	~Troll() override;
 	Item* DropItem() override;
 	void Hit(int damage) override;
@@ -13,7 +13,7 @@ public:
 	void Die() override;
 
 private:
-	int Skill2Counter;
+	int skill2Counter;
 
 	void InitializeByDungeonLevel() override;
 	void NormalAttack() override;

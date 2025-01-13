@@ -5,7 +5,7 @@
 class Orc : public Monster
 {
 public:
-	Orc(int dungeonlevel);
+	Orc(int dLevel);
 	~Orc() override;
 	Item* DropItem() override;
 	void Hit(int damage) override;

@@ -6,7 +6,7 @@ class BossMonster : public Monster
 {
 
 public:
-    BossMonster(int dungeonlevel);
+    BossMonster(int dLevel);
     ~BossMonster() override;
     Item* DropItem() override;
     void Hit(int damage) override;
@@ -14,11 +14,11 @@ public:
     void Die() override;
     
 private:
-    int Skill3Counter;
-    int Skill2Counter;
-    int Skill1Counter;
-    int CurrentAvoidRate;
-    float GetDamageRate;
+    int skill3Counter;
+    int skill2Counter;
+    int skill1Counter;
+    int currentAvoidRate;
+    float getDamageRate;
 
     void Magnification() override;
     void InitializeByDungeonLevel() override;

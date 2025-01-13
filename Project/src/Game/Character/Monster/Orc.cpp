@@ -1,11 +1,11 @@
 #include "Character/Monster/Orc.h"
 
-Orc::Orc(int dungeonLevel) : Monster(dungeonLevel)
+Orc::Orc(int dLevel) : Monster(dLevel)
 {
 	InitializeByDungeonLevel();
 	Magnification();
 	currentHealth = health;
-	RealDamage = damage;
+	realDamage = damage;
 }
 
 Orc::~Orc()
@@ -37,9 +37,9 @@ void Orc::InitializeByDungeonLevel()
 {
 	__super::InitializeByDungeonLevel();
 
-	Rank = GetRandomValue(0, DungeonLevel);
+	rank = GetRandomValue(0, dungeonLevel);
 
-	switch (Rank)
+	switch (rank)
 	{
 	case 0:
 		name = "Orc";
@@ -58,46 +58,46 @@ void Orc::InitializeByDungeonLevel()
 		break;
 	}
 
-	MinDropValue += Rank * 10;
-	ArtifactRate += Rank * 2;
-	MaxItemRank += Rank * 18;
-	HitRate += Rank * 5;
-	AvoidRate += Rank * 2;
-	MaxItemCount += Rank / 2;
+	minDropValue += rank * 10;
+	artifactRate += rank * 2;
+	maxItemRank += rank * 18;
+	hitRate += rank * 5;
+	avoidRate += rank * 2;
+	maxItemCount += rank / 2;
 }
 
 void Orc::NormalAttack() // 일반 공격. 공격력의 80% 만큼의 피해를 입힌다.
 {
-	//APlayer->Hit(RealDamage * 0.8f);
-	cout << name << " Use Normal Attack. Damage = " << RealDamage * 0.8f << endl;
+	player->Hit(realDamage * 0.8f);
+	//cout << name << " Use Normal Attack. Damage = " << realDamage * 0.8f << endl;
 }
 
 void Orc::FirstSkillAttack() // 스킬1 강타. 공격력의 120% 만큼의 피해를 입힌다.
 {
 	__super::FirstSkillAttack();
 
-	CoolDown1 = 1;
+	coolDown1 = 1;
 	
-	//APlayer->Hit(RealDamage * 1.2f);
-	cout << name << " Use First Skill Attack. Damage = " << RealDamage * 1.2f << endl;
+	player->Hit(realDamage * 1.2f);
+	//cout << name << " Use First Skill Attack. Damage = " << realDamage * 1.2f << endl;
 }
 
 void Orc::SecondSkillAttack() // 스킬 2 강타 2. 공격력의 150% 만큼의 피해를 입힌다.
 {
 	__super::SecondSkillAttack();
 
-	CoolDown2 = 2;
+	coolDown2 = 2;
 	
-	//APlayer->Hit(RealDamage * 1.5f);
-	cout << name << " Use Second Skill Attack. Damage = " << RealDamage * 1.5f << endl;
+	player->Hit(realDamage * 1.5f);
+	//cout << name << " Use Second Skill Attack. Damage = " << realDamage * 1.5f << endl;
 }
 
 void Orc::FinalSkillAttack() // 스킬 3 광포화. 이번 전투에서 공격력을 10% 만큼 누적 상승시킨다.
 {
 	__super::FinalSkillAttack();
 
-	CoolDown3 = 3;
-	RealDamage = damage * 1.1f;
+	coolDown3 = 3;
+	realDamage = damage * 1.1f;
 
-	cout << name << " Use Final Skill. Enhanced Damage = " << damage << endl;
+	//cout << name << " Use Final Skill. Enhanced Damage = " << damage << endl;
 }
