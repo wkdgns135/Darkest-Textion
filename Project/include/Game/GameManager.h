@@ -7,6 +7,5 @@ private:
 	Player* player;
 
 public:
-	void StartGame();
 	inline Player* GetPlayer() { return player; }
 };
