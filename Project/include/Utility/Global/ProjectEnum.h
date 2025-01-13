@@ -12,3 +12,8 @@ enum EKeyEvent {
 	Key_A,
 	Key_I,
 };
+
+enum EAsciiArt {
+	TitleAsciiArt,
+	MainAsciiArt,
+};

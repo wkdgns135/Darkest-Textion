@@ -24,4 +24,5 @@ void Scene::RootEnter()
 void Scene::RootExit()
 {
 	isActive = false;
+	system("cls");
 }
