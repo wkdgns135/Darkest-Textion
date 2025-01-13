@@ -25,6 +25,7 @@ void SelectDungeonScene::Enter()
 	AddInputEvent(Key_1, [this]() {SelectWeald(); });
 	AddInputEvent(Key_2, [this]() {SelectCove(); });
 	AddInputEvent(Key_3, [this]() {SelectDarkestDungeon(); });
+	AddInputEvent(Key_ESC, [this]() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
 }
 
 void SelectDungeonScene::Update()
@@ -36,4 +37,5 @@ void SelectDungeonScene::Exit()
 {
 	OutputManager::GetInstance().SetConsoleFontForText();
 	cout << name << "을(를) 선택하셨습니다." << '\n';
+	if (name == "가장 어두운 던전")cout << "이 던전은 극도로 위험합니다. ";
 }
