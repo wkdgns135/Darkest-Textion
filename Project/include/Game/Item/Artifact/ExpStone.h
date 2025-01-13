@@ -3,13 +3,10 @@
 
 
 
-class SpeedStone : public Artifact
+class ExpStone : public Artifact
 {
-private:
-	float amount;
 public:
-	SpeedStone();
-	inline virtual string GetName() const override { return name; };
+	ExpStone();
 	virtual void Attach(Player& player) override;
 	virtual void Detach(Player& player) override;
 };

@@ -1,10 +1,10 @@
 #pragma once
 #include "Consumable.h"
 
-class Laudanum : Consumable {
+class Laudanum : public Consumable {
 private:
-	virtual string GetName() const override;
 public:
 	Laudanum();
-	virtual void Use(Player& Player) override;
+	inline virtual string GetName() const override { return name; };
+	virtual void Use(Player& player) override;
 };

@@ -3,18 +3,12 @@
 HealthPotion::HealthPotion()
 {
 	name = "HealthPotion";
-	amount = 10.f;
-	price = 5.f;
+	price = 5;
+	amount = 10;
 }
 
-string HealthPotion::GetName() const
+void HealthPotion::Use(Player& player)
 {
-	return name;
-}
-
-void HealthPotion::Use(Player& Player)
-{
-	//HERE : player의 체력 올려주기
-	//Player.Heal(amount);
+	player.AddHealth(amount);
 	return;
 }

@@ -9,6 +9,14 @@ enum EKeyEvent {
 	Key_I,
 };
 
+
+enum EArtifactRank
+{
+	COMMON,
+	RARE,
+	ANCESTAL
+};
+
 enum EAsciiArt {
 	TitleAsciiArt,
 	MainAsciiArt,

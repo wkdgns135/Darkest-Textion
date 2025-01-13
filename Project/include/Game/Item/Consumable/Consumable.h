@@ -1,14 +1,11 @@
 #include "Item/Item.h"
 #include "Character/Player/Player.h"
 
-class Consumable : Item {
+class Consumable : public Item {
 protected:
-	string name;
-	float amount;
-	float price;
+	int amount;
 
 public:
 	virtual ~Consumable() {};
-	virtual string GetName() const = 0;
-	virtual void Use(Player& Player) = 0;
+	virtual void Use(Player& player) = 0;
 };

@@ -1,0 +1,19 @@
+#include "Item/Artifact/RareArtifact.h"
+#include "Global/ProjectEnum.h"
+
+
+RareArtifact::RareArtifact(Artifact* artifact) : ArtifactDecorator(artifact)
+{
+	wrappee->SetRank(EArtifactRank::RARE);
+}
+
+void RareArtifact::Attach(Player& player)
+{
+	wrappee->SetAmount(wrappee->GetAmount() + 1);
+	wrappee->Attach(player);
+}
+
+void RareArtifact::Detach(Player& player)
+{
+	wrappee->Detach(player);
+}

@@ -1,27 +1,19 @@
 #pragma once
 #include "Item/Item.h"
+#include "Global/ProjectEnum.h"
 
 class Player;
 
-enum EArtifactRank
-{
-	COMMON,
-	UNCOMMON,
-	RARE,
-	VERY_RARE,
-	TROPHY,
-	ANCESTAL
-};
-
-class Artifact : Item 
+class Artifact : public Item 
 {
 protected:
-	string name;
+	int amount;
 	EArtifactRank rank;
-	float price;
 public:
 	~Artifact() {};
-	virtual string GetName() const = 0;
 	virtual void Attach(Player& player) = 0;
 	virtual void Detach(Player& player) = 0;
+	inline int GetAmount() { return amount; };
+	inline void SetAmount(int amount) { this->amount = amount; };
+	inline void SetRank(EArtifactRank rank) { this->rank = rank; };
 };
