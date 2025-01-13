@@ -8,6 +8,8 @@ unique_ptr<Scene> SceneManager::ChangeEScene(EScene target)
 		return make_unique<TitleScene>();
 	case EMainScene:
 		return make_unique<MainScene>();
+	case ESelectDungeonScene:
+		return make_unique<SelectDungeonScene>();
 	default:
 		break;
 	}

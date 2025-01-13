@@ -132,6 +132,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp" />
+    <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\System\IO\OutputManager.cpp" />
     <ClCompile Include="include\System\IO\OutputManager.h" />
     <ClCompile Include="src\System\IO\InputEvent.cpp" />

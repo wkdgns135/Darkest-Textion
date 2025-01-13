@@ -13,6 +13,7 @@ private:
 	{
 		{TitleAsciiArt, "drawable/Title.bmp"},
 		{MainAsciiArt, "drawable/Main.bmp" },
+		{SelectDungeonAsciiArt, "drawable/SelectDungeon.bmp" },
 	};
 
 private :
@@ -25,5 +26,7 @@ private :
 
 public:
 	OutputManager();
+	void SetConsoleFontForDraw();
+	void SetConsoleFontForText();
 	void PrintAsciiArt(const EAsciiArt &asciiArt);
 };

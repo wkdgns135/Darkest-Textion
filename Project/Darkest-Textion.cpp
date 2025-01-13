@@ -1,7 +1,8 @@
-﻿#include "Global/Global.h"
+﻿#include "Game.h"
 
 using namespace std;
 
 int main(){
-	GameManager::GetInstance().StartGame();
+	Game game;
+	game.Start();
 }

@@ -3,6 +3,7 @@
 enum EScene {
 	ETitleScene,
 	EMainScene,
+	ESelectDungeonScene,
 };
 
 enum EKeyEvent {
@@ -16,4 +17,5 @@ enum EKeyEvent {
 enum EAsciiArt {
 	TitleAsciiArt,
 	MainAsciiArt,
+	SelectDungeonAsciiArt,
 };
