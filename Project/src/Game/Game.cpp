@@ -9,5 +9,5 @@ Game::Game()
 
 void Game::Start()
 {
-	sceneManager->ChangeScene(ETitleScene);
+	sceneManager->ChangeScene<TitleScene>();
 }

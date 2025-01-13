@@ -9,6 +9,8 @@ class Image;
 
 class OutputManager : public Singleton<OutputManager>{
 private:
+	int width = 500, height = 300;
+
 	unordered_map<EAsciiArt, string> asciiArtPath = 
 	{
 		{TitleAsciiArt, "drawable/Title.bmp"},
@@ -19,7 +21,6 @@ private:
 private :
 	Image* CreateImage(const EAsciiArt& asciiArt);
 	void DrawImage(Image* data);
-	void SetConsoleFont(const wchar_t* fontName, int fontSize);
 	void SetConsoleWindowSize(int width, int height);
 	void DisableConsoleResize();
 	void CenterConsoleWindow();

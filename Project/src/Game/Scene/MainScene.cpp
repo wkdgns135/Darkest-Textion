@@ -5,7 +5,7 @@ using namespace std;
 void MainScene::Enter()
 {
 	OutputManager::GetInstance().PrintAsciiArt(MainAsciiArt);
-	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene(ESelectDungeonScene); });
+	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
 
 
 }

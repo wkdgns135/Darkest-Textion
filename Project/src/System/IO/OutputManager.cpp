@@ -8,12 +8,18 @@ using namespace cimg_library;
 
 OutputManager::OutputManager()
 {
+    this->width = width;
+    this->height = height;
+
     // 콘솔 창 크기 및 글꼴 크기 설정
-    SetConsoleWindowSize(500, 300); // 콘솔 창 크기를 300x300으로 설정
+    SetConsoleFontForDraw();
+    SetConsoleWindowSize(width, height); // 콘솔 창 크기를 300x300으로 설정
     DisableConsoleResize(); // 콘솔 창 크기 변경 비활성화
     CenterConsoleWindow(); // 콘솔 창을 모니터 중앙에 배치
 
 }
+
+
 
 void OutputManager::SetConsoleFontForDraw()
 {
@@ -27,6 +33,7 @@ void OutputManager::SetConsoleFontForDraw()
     wcscpy_s(cfi.FaceName, L"Consolas");
 
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    SetConsoleWindowSize(width, height); // 콘솔 창 크기를 300x300으로 설정
 }
 
 void OutputManager::SetConsoleFontForText()
@@ -35,12 +42,13 @@ void OutputManager::SetConsoleFontForText()
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
     cfi.dwFontSize.X = 0;
-    cfi.dwFontSize.Y = 12;
+    cfi.dwFontSize.Y = 18;
     cfi.FontFamily = FF_DONTCARE;
     cfi.FontWeight = FW_NORMAL;
     wcscpy_s(cfi.FaceName, L"Consolas");
 
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+    SetConsoleWindowSize(width / 6, height / 6); // 콘솔 창 크기를 300x300으로 설정
 }
 
 
@@ -104,9 +112,7 @@ Image* OutputManager::CreateImage(const EAsciiArt& asciiArt)
     temp.load(asciiArtPath[asciiArt].c_str());
 
     // 스케일링 적용
-    int consoleWidth = 500;
-    int consoleHeight = 300;
-    temp = ScaleImage(temp, consoleWidth, consoleHeight);
+    temp = ScaleImage(temp, this->width, this->height);
 
     int width = temp.width();
     int height = temp.height();

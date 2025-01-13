@@ -29,5 +29,4 @@ public:
 	void AddInputEvent(const EKeyEvent& key, Func&& Callback, function<void()> Complete = nullptr) {
 		inputEvent->AddEvent(key, function<void()>(forward<Func>(Callback)), move(Complete));
 	}
-
 };

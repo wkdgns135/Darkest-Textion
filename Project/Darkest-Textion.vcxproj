@@ -132,6 +132,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp" />
     <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\System\IO\OutputManager.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="include\Game\Item\Consumable\HealthPotion.h" />
     <ClInclude Include="include\Game\Item\Consumable\Laudanum.h" />
     <ClInclude Include="include\Game\Item\Item.h" />
+    <ClInclude Include="include\Game\Scene\DungeonInfoScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonScene.h" />
     <ClInclude Include="include\Game\Scene\MainScene.h" />
     <ClInclude Include="include\Game\Scene\Scene.h" />
