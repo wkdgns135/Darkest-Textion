@@ -11,8 +11,8 @@ Monster::Monster()
 	dropItemObj = new DropItemObj;
 	monsterActionHandle = new MonsterActionHandle(player);
 
-	//playerLevel = player->GetLevel();
-	playerLevel = 20; //Test
+	playerLevel = player->GetLevel();
+	//playerLevel = 20; //Test
 }
 
 Monster::~Monster()
@@ -80,7 +80,7 @@ void Monster::Attack()
 	if (GetMonsterType() >= 40) maxValue = 3;
 
 	int skill = GetRandomValue(0, maxValue);
-	cout << GetName() << " Active Skill Num = " << skill << endl;
+	//cout << GetName() << " Active Skill Num = " << skill << endl;
 	monsterActionHandle->Attack(skill);
 }
 
@@ -90,13 +90,13 @@ void Monster::Die()
 	{
 		if (GetRandomValue(minDropValue, 100) >= 50)
 		{
-			//player->AddItem(DropItem(), 1);
-			cout << GetName() << " Item drop. Item name = " << DropItem()->GetName() << endl;
+			player->AddItem(DropItem(), 1);
+			//cout << GetName() << " Item drop. Item name = " << DropItem()->GetName() << endl;
 		}
 	}
 
-	//player->AddGold(500 * rank);
-	cout << GetName() << " Gold drop. drop value = 500" << endl;
+	player->AddGold(500 * rank);
+	//cout << GetName() << " Gold drop. drop value = 500" << endl;
 }
 
 void Monster::TestPrint()

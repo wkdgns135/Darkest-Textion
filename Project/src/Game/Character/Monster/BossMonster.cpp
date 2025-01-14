@@ -40,7 +40,7 @@ void BossMonsterHeart::SetAttackInfo()
 	vector<MonsterAttackInfo> skill0 = { MonsterAttackInfo("찌르기", 0, 0, 1.5f), MonsterAttackInfo("찌르기", 0, 1, 10) }; //공격력 150% 만큼 노멀 공격, 플레이어 스트레스 10 증가. 쿨 0, 지속 0
 	vector<MonsterAttackInfo> skill1 = { MonsterAttackInfo("용해", 3, 0, 1.5f), MonsterAttackInfo("용해", 3, 3, 1.5f, 2) }; //공격력 150% 만큼 노멀 공격, 공격력 150% 만큼 중독 공격. 쿨 3, 지속 2
 	vector<MonsterAttackInfo> skill2 = { MonsterAttackInfo("알지어다", 4, 0, 1.5f), MonsterAttackInfo("알지어다", 4, 1, 30) }; //공격력 150% 만큼 노멀 공격, 플레이어 스트레스 30 증가. 쿨 4, 지속 0
-	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("네 조물주에게 오라", 10, 0, 10000) }; //즉사(죽음의 일격). 쿨 10 지속 0
+	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("네 조물주에게 오라", 10, 0, player->GetHealth()) }; //즉사(죽음의 일격). 쿨 10 지속 0
 	//player->GetHealth()로 변경 필요 (skill3)
 	attackInfo.push_back(skill0);
 	attackInfo.push_back(skill1);
@@ -146,7 +146,7 @@ void BossMonsterHag::SetAttackInfo()
 	vector<MonsterAttackInfo> skill0 = { MonsterAttackInfo("육질 다지기", 0, 0, 1.0f) }; //공격력 100% 만큼 노멀 공격. 쿨 0, 지속 0
 	vector<MonsterAttackInfo> skill1 = { MonsterAttackInfo("마무리 양념", 3, 0, 0.7f), MonsterAttackInfo("마무리 양념", 3, 1, 10) }; //공격력 70% 만큼 노멀 공격, 플레이어 스트레스 10 증가. 쿨 3, 지속 0
 	vector<MonsterAttackInfo> skill2 = { MonsterAttackInfo("스튜 맛보기", 5, 0, 0.5f), MonsterAttackInfo("스튜 맛보기", 5, 2, 0.1f, 0, 4), MonsterAttackInfo("스튜 맛보기", 5, 1, 10) }; //공격력 50% 만큼 노멀 공격, 현재 체력 10% 증가, 플레이어 스트레스 10 증가. 쿨 5, 지속 0
-	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("솥 안에 들어가!", 10, 3, health * 0.08f / realDamage, 5) }; //. 매 턴 플레이어 최대 체력의 8% 만큼 공격. 쿨 10 지속 5
+	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("솥 안에 들어가!", 10, 3, player->GetHealth() / damage, 5) }; //. 매 턴 플레이어 최대 체력의 8% 만큼 공격. 쿨 10 지속 5
 	//player->GetHealth()로 변경 필요 (skill 3)
 	attackInfo.push_back(skill0);
 	attackInfo.push_back(skill1);

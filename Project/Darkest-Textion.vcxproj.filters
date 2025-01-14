@@ -132,7 +132,7 @@
     <ClCompile Include="src\Game\Character\Monster\SeasideMonsters.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Character\Monster\TestMain.cpp">
+    <ClCompile Include="Darkest-Textion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

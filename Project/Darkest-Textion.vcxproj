@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="src\Game\Character\Monster\BossMonster.cpp" />
     <ClCompile Include="src\Game\Character\Monster\DarkestMonsters.cpp" />
     <ClCompile Include="src\Game\Character\Monster\DropItemObj.cpp" />
@@ -143,7 +144,6 @@
     <ClCompile Include="src\Game\Character\Monster\MonsterHit.cpp" />
     <ClCompile Include="src\Game\Character\Monster\MonsterSpawnHandle.cpp" />
     <ClCompile Include="src\Game\Character\Monster\SeasideMonsters.cpp" />
-    <ClCompile Include="src\Game\Character\Monster\TestMain.cpp" />
     <ClCompile Include="src\System\IO\Image.cpp" />
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
     <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp" />

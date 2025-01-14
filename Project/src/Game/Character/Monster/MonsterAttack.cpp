@@ -74,7 +74,7 @@ void MonsterAttack::AttackToPlayer(int skillNum)
 {
 	if (isDecreaseContinue)
 	{
-		cout << "It is Tick Damage ";
+		//cout << "It is Tick Damage ";
 		DecreasePlayerHealth(decreaseValue, true);
 	}
 
@@ -135,10 +135,10 @@ void MonsterAttack::NormalAttack()
 {
 	if (skillInfo0[0].GetCoolDown() > 0)
 	{
-		cout << "Skill 0 is cooldown. Not Action." << endl;
+		//cout << "Skill 0 is cooldown. Not Action." << endl;
 		return;
 	}
-	cout << monster->GetName() << " Attack. Skill Name : " << skillInfo0[0].GetName() << endl;
+	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo0[0].GetName() << endl;
 	monster->SetCurrentSkillName(skillInfo0[0].GetName());
 	for (int i = 0; i < skillInfo0.size(); i++)
 	{
@@ -153,10 +153,10 @@ void MonsterAttack::FirstSkillAttack()
 	if (skillInfo1[0].GetCoolDown() > 0)
 	{
 		NormalAttack();
-		cout << "Skill 1 is cooldown. Change skill Num 0" << endl;
+		//cout << "Skill 1 is cooldown. Change skill Num 0" << endl;
 		return;
 	}
-	cout << monster->GetName() << " Attack. Skill Name : " << skillInfo1[0].GetName() << endl;
+	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo1[0].GetName() << endl;
 	monster->SetCurrentSkillName(skillInfo1[0].GetName());
 	for (int i = 0; i < skillInfo1.size(); i++)
 	{
@@ -171,10 +171,10 @@ void MonsterAttack::SecondSkillAttack()
 	if (skillInfo2[0].GetCoolDown() > 0)
 	{
 		FirstSkillAttack();
-		cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
+		//cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
 		return;
 	}
-	cout << monster->GetName() << " Attack. Skill Name : " << skillInfo2[0].GetName() << endl;
+	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo2[0].GetName() << endl;
 	monster->SetCurrentSkillName(skillInfo2[0].GetName());
 	for (int i = 0; i < skillInfo2.size(); i++)
 	{
@@ -189,10 +189,10 @@ void MonsterAttack::FinalSkillAttack()
 	if (skillInfo3[0].GetCoolDown() > 0)
 	{
 		SecondSkillAttack();
-		cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
+		//cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
 		return;
 	}
-	cout << monster->GetName() << " Attack. Skill Name : " << skillInfo3[0].GetName() << endl;
+	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo3[0].GetName() << endl;
 	monster->SetCurrentSkillName(skillInfo3[0].GetName());
 	for (int i = 0; i < skillInfo3.size(); i++)
 	{
@@ -232,8 +232,8 @@ void MonsterAttack::DecreasePlayerHealth(float value, bool onOff)
 {
 	if (onOff)
 	{
-		//player->Hit(monster->GetRealDamage() * value);
-		cout << monster->GetName() << " Attack To Player. Attack Damage = " << originRealDamage * value << endl;
+		player->Hit(originRealDamage * value);
+		//cout << monster->GetName() << " Attack To Player. Attack Damage = " << originRealDamage * value << endl;
 	}
 }
 
@@ -241,8 +241,8 @@ void MonsterAttack::IncreasePlayerStress(float value, bool onOff)
 {
 	if (onOff)
 	{
-		//player->AddStress(value);
-		cout << monster->GetName() << " Attack To Player. Attack is Increase Stress. Stress = " << value << endl;
+		player->AddStress(value);
+		//cout << monster->GetName() << " Attack To Player. Attack is Increase Stress. Stress = " << value << endl;
 	}
 }
 
@@ -253,8 +253,8 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 	case 0: //realDamage
 		if (onOff)
 		{
-			monster->SetRealDamage(monster->GetRealDamage() * value);
-			cout << monster->GetName() << " Increase RealDamaage. Post increase RealDamage = " << monster->GetRealDamage() << endl;
+			monster->SetRealDamage(originRealDamage * value);
+			//cout << monster->GetName() << " Increase RealDamaage. Post increase RealDamage = " << monster->GetRealDamage() << endl;
 		}
 		else
 		{
@@ -266,7 +266,7 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 		if (onOff)
 		{
 			monster->SetHitRate(originHitRate + value);
-			cout << monster->GetName() << " Increase HitRate. Post increase HitRate = " << monster->GetHitRate() << endl;
+			//cout << monster->GetName() << " Increase HitRate. Post increase HitRate = " << monster->GetHitRate() << endl;
 		}
 		else
 		{
@@ -278,7 +278,7 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 		if (onOff)
 		{
 			monster->SetAvoidRate(originAvoidRate + value);
-			cout << monster->GetName() << " Increase AvoidRate. Post increase AvoidRate = " << monster->GetAvoidRate() << endl;
+			//cout << monster->GetName() << " Increase AvoidRate. Post increase AvoidRate = " << monster->GetAvoidRate() << endl;
 		}
 		else
 		{
@@ -290,7 +290,7 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 		if (onOff)
 		{
 			monster->SetDamageRate(value);
-			cout << monster->GetName() << " Increase DamageRate. Post increase DamageRate = " << monster->GetDamageRate() << endl;
+			//cout << monster->GetName() << " Increase DamageRate. Post increase DamageRate = " << monster->GetDamageRate() << endl;
 		}
 		else
 		{
@@ -303,7 +303,7 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 		{
 			monster->SetCurrentHealth(monster->GetCurrentHealth() + monster->GetMaxHealth() * value);
 			if (monster->GetCurrentHealth() > monster->GetMaxHealth()) monster->SetCurrentHealth(monster->GetMaxHealth());
-			cout << monster->GetName() << " Increase CurrentHealth. Post increase CurrentHealth = " << monster->GetCurrentHealth() << endl;
+			//cout << monster->GetName() << " Increase CurrentHealth. Post increase CurrentHealth = " << monster->GetCurrentHealth() << endl;
 		}
 	}
 }
@@ -314,7 +314,7 @@ void MonsterAttack::ContinueDecreasePlayerHealth(float value, bool onOff)
 	{
 		isDecreaseContinue = true;
 		decreaseValue = value;
-		cout << monster->GetName() << " Active DecreaseContinue Skill. Skill Damage = " << monster->GetRealDamage() * value << endl;
+		//cout << monster->GetName() << " Active DecreaseContinue Skill. Skill Damage = " << monster->GetRealDamage() * value << endl;
 	}
 	else
 	{
@@ -328,7 +328,7 @@ void MonsterAttack::ReflecctionPlayerAttack(bool onOff)
 	if (onOff)
 	{
 		isReflection = true;
-		cout << monster->GetName() << " Active Reflection Skill." << endl;
+		//cout << monster->GetName() << " Active Reflection Skill." << endl;
 	}
 	else
 	{
