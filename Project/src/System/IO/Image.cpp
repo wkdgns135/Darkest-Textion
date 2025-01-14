@@ -42,7 +42,7 @@ Image::Image(string path, int width, int height)
 
         // saving píxel values into image information
         grayWeight(x, y, 0, 0) = grayValueWeight;
-        mask(x, y, 0, 0) = (R == 255 && G == 0 && B == 255) ? 0 : 1;
+        mask(x, y, 0, 0) = (R == 255 && G == 255 && B == 255) ? 0 : 1;
     }
 
     this->data = new TCHAR[width * height];
