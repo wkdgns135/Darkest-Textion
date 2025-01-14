@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Scene\BattleScene.cpp" />
+    <ClCompile Include="src\Game\Scene\DungeonScene.cpp" />
     <ClCompile Include="src\System\IO\Image.cpp" />
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
     <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp" />
@@ -185,6 +187,7 @@
     <ClInclude Include="include\Game\Item\Consumable\HealthPotion.h" />
     <ClInclude Include="include\Game\Item\Consumable\Laudanum.h" />
     <ClInclude Include="include\Game\Item\Item.h" />
+    <ClInclude Include="include\Game\Scene\BattleScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonInfoScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonScene.h" />
     <ClInclude Include="include\Game\Scene\MainScene.h" />
@@ -203,6 +206,7 @@
     <ClInclude Include="include\Utility\DesignPattern\Singleton.h" />
     <ClInclude Include="include\Utility\Global\Global.h" />
     <ClInclude Include="include\Utility\Global\ProjectEnum.h" />
+    <ClInclude Include="include\Utility\Utility.h" />
     <ClInclude Include="include\Utility\Vector2d.h" />
     <ClInclude Include="lib\CImg.h" />
   </ItemGroup>

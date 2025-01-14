@@ -3,8 +3,6 @@
 #include "Scene.h"
 class SelectDungeonScene : public Scene{
 private:
-	string name;
-
 	void SelectWeald();
 	void SelectCove();
 	void SelectDarkestDungeon();

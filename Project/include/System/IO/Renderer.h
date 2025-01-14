@@ -17,13 +17,6 @@ private:
 	Image* background;
 	vector<Sprite*> drawSprite;
 
-	unordered_map<EAsciiArt, string> asciiArtPath =
-	{
-		{TitleAsciiArt, "drawable/Title.bmp"},
-		{MainAsciiArt, "drawable/Main.bmp" },
-		{SelectDungeonAsciiArt, "drawable/SelectDungeon.bmp" },
-	};
-
 private:
 	void SetConsoleWindowSize(int width, int height);
 	void DisableConsoleResize();

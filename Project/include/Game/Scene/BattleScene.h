@@ -1,9 +1,7 @@
 #pragma once
-#include "Scene.h"
+#include "DungeonScene.h"
 
-class DungeonInfoScene : public Scene {
-private:
-	void InitBackground();
+class BattleScene : public DungeonScene {
 public:
 	void Enter() override;
 	void Update() override;
