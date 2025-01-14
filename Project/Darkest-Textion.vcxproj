@@ -136,6 +136,13 @@
     <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="src\System\IO\Image.cpp" />
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\ArtifactDecorator.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\ExpStone.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\HealthStone.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\KnightsCrest.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\RareArtifact.cpp" />
+    <ClCompile Include="src\Game\Item\Artifact\SnakeOil.cpp" />
     <ClCompile Include="src\Game\Scene\MainShopScene.cpp" />
     <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
     <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp" />
@@ -143,11 +150,11 @@
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\System\IO\Renderer.cpp" />
     <ClCompile Include="include\System\IO\Renderer.h" />
+    <ClCompile Include="src\Game\Scene\ShopScene.cpp" />
     <ClCompile Include="src\System\IO\InputEvent.cpp" />
     <ClCompile Include="src\Game\Character\Character.cpp" />
     <ClCompile Include="src\Game\Character\Player\Player.cpp" />
     <ClCompile Include="src\Game\GameManager.cpp" />
-    <ClCompile Include="src\Game\Item\Artifact\SpeedStone.cpp" />
     <ClCompile Include="src\Game\Item\Consumable\DamageBoost.cpp" />
     <ClCompile Include="src\Game\Item\Consumable\HealthPotion.cpp" />
     <ClCompile Include="src\Game\Item\Consumable\Laudanum.cpp" />
@@ -164,7 +171,14 @@
     <ClInclude Include="include\Game\Encounter\Encounter.h" />
     <ClInclude Include="include\Game\Game.h" />
     <ClInclude Include="include\Game\GameManager.h" />
+    <ClInclude Include="include\Game\Item\Artifact\AncestalaArtifact.h" />
     <ClInclude Include="include\Game\Item\Artifact\Artifact.h" />
+    <ClInclude Include="include\Game\Item\Artifact\ArtifactDecorator.h" />
+    <ClInclude Include="include\Game\Item\Artifact\ExpStone.h" />
+    <ClInclude Include="include\Game\Item\Artifact\HealthStone.h" />
+    <ClInclude Include="include\Game\Item\Artifact\KnightsCrest.h" />
+    <ClInclude Include="include\Game\Item\Artifact\RareArtifact.h" />
+    <ClInclude Include="include\Game\Item\Artifact\SnakeOil.h" />
     <ClInclude Include="include\Game\Item\Artifact\SpeedStone.h" />
     <ClInclude Include="include\Game\Item\Consumable\Consumable.h" />
     <ClInclude Include="include\Game\Item\Consumable\DamageBoost.h" />
@@ -189,6 +203,7 @@
     <ClInclude Include="include\Utility\Global\Global.h" />
     <ClInclude Include="include\Utility\Global\ProjectEnum.h" />
     <ClInclude Include="include\Utility\Vector2d.h" />
+    <ClInclude Include="lib\CImg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

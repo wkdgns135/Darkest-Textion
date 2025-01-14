@@ -21,9 +21,6 @@
     <ClCompile Include="src\Game\Character\Character.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Item\Artifact\SpeedStone.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Item\Consumable\DamageBoost.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -81,7 +78,31 @@
     <ClCompile Include="src\Game\Scene\MainShopScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\System\IO\Image.cpp">
+    <ClCompile Include="src\System\IO\Image.cpp">      
+    <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\ArtifactDecorator.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\ExpStone.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\HealthStone.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\KnightsCrest.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\RareArtifact.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Item\Artifact\SnakeOil.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\ShopScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -177,6 +198,30 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Utility\Vector2d.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\AncestalaArtifact.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\ArtifactDecorator.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\ExpStone.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\HealthStone.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\KnightsCrest.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\RareArtifact.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Item\Artifact\SnakeOil.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\CImg.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

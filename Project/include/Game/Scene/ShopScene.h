@@ -1,5 +1,16 @@
-#include <iostream>
+#pragma once
+#include "Scene.h"
+#include "Shop/Shop.h"
 
-using namespace std;
 
-//여기서 입출력
+class ShopScene : public Scene {
+private:
+	unique_ptr<Shop> shop;
+
+	void ShowPurchaseInterface();
+	void ShowSellInterface();
+public:
+	void Enter() override;
+	void Update() override;
+	void Exit() override;
+};

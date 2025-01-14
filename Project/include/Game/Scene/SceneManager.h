@@ -8,6 +8,8 @@
 #include "DungeonInfoScene.h"
 #include "NewPlayerScene.h"
 
+#include "ShopScene.h"
+
 using namespace std;
 
 class SceneManager : public Singleton<SceneManager> {

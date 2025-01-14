@@ -6,6 +6,7 @@
 #include "Character/Character.h"
 #include "Item/Item.h"
 #include "Inventory.h"
+#include "Character/Monster/Monster.h"
 
 
 class Player : Character {
@@ -19,6 +20,8 @@ private:
 	int gold;
 	int stress;
 	map<string,Inventory> inventory;
+	map<string, Inventory> equipInventory;
+	Monster* mob;
 
 public:
 	Player(string name);
@@ -38,9 +41,13 @@ public:
 	inline void AddDamage(int damage) { this->damage += damage; }
 	inline void AddExp(int exp) { this->exp += exp+additionalExp; };
 	inline void AddStress(int stress) {this->stress += stress+additionalStress;}
+	inline void SetMonster(Monster* mob) { this->mob = mob; }
 	void AddGold(int gold);
 	void AddItem(Item* item,int num);
 	void UseItem(string name);
+	void DeleteItem(string name);
+	void EquipItem(string name);
+	void UnEquipItem(string name);
 	void LevelUp();
 	bool IsDie();
 };
