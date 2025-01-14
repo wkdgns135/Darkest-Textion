@@ -11,6 +11,7 @@ private:
 	Item* item;
 	int count;
 public:
+	Inventory() {};
 	Inventory(Item* item, int count) : item(item), count(count) {}
 	inline Item* GetItem() const { return item; }
 	inline int GetCount() const { return count; }

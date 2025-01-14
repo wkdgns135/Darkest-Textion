@@ -1,4 +1,3 @@
-#include "IO/OutputManager.h"
 #include "Scene/SceneManager.h"
 #include "Shop/Shop.h"
 #include "Global/ProjectEnum.h"
@@ -13,7 +12,7 @@ void ShopScene::Enter()
 	//OutputManager::GetInstance().PrintAsciiArt(MainAsciiArt);
 	//AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
 	//AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<TitleScene>(); });
-	OutputManager::GetInstance().SetConsoleFontForText();
+	renderer->SetConsoleFontForText();
 	cout << "상점에 입장하셨습니다.\n 1. 상점 물건 확인\n 2. 구매\n 3. 인벤토리 확인\n 4. 판매\n";
 	AddInputEvent(EKeyEvent::Key_1, [this]() {this->shop->ShowItemList(); });
 	AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface();; });

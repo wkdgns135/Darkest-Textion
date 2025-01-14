@@ -2,7 +2,6 @@
 #include "IO/Renderer.h"
 #include "Vector2d.h"
 
-using namespace std;
 using namespace cimg_library;
 
 Renderer::Renderer()

@@ -19,7 +19,7 @@ private:
 	int additionalStress;
 	int gold;
 	int stress;
-	map<string,Inventory> inventory;
+	map<string, Inventory> inventory;
 	map<string, Inventory> equipInventory;
 	Monster* mob;
 

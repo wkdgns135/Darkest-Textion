@@ -1,8 +1,8 @@
 #pragma once
 #include "DesignPattern/Singleton.h"
-#include "Character/Player/Player.h"
 #include "Global/ProjectEnum.h"
 
+class Player;
 class GameManager : public Singleton<GameManager> {
 private:
 	Player* player;

@@ -1,9 +1,11 @@
 #pragma once
+#include <iostream>
+#include <random>
 #include "Character/Character.h"
 #include "Item/Item.h"
 #include "GameManager.h"
-#include <iostream>
-#include <random>
+
+class Player;
 
 class Monster abstract : public Character
 {
