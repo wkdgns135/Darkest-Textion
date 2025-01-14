@@ -1,6 +1,6 @@
 #include "Item/Artifact/AncestalaArtifact.h"
 
-AncestalaArtifact::AncestalaArtifact(Artifact* artifact) : ArtifactDecorator(artifact)
+AncestalaArtifact::AncestalaArtifact(unique_ptr<Artifact> artifact) : ArtifactDecorator(move(artifact))
 {
 	wrappee->SetRank(EArtifactRank::ANCESTAL);
 }

@@ -1,11 +1,13 @@
 #pragma once
 #include "Artifact.h"
+#include <memory>
 
 class ArtifactDecorator : public Artifact
 {
 protected:
-	Artifact* wrappee;
+	unique_ptr<Artifact> wrappee;
 public:
-	ArtifactDecorator(Artifact* artifact);
-	inline virtual ~ArtifactDecorator() { delete wrappee; };
+	ArtifactDecorator(unique_ptr<Artifact> artifact);
+	ArtifactDecorator(ArtifactDecorator& artifactDecorator);
+	//inline virtual ~ArtifactDecorator() { delete wrappee; };
 };

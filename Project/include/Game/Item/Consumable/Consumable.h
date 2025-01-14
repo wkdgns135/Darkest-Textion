@@ -1,3 +1,4 @@
+#pragma once
 #include "Item/Item.h"
 #include "Character/Player/Player.h"
 

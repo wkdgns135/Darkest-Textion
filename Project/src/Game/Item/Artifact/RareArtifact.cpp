@@ -2,7 +2,7 @@
 #include "Global/ProjectEnum.h"
 
 
-RareArtifact::RareArtifact(Artifact* artifact) : ArtifactDecorator(artifact)
+RareArtifact::RareArtifact(unique_ptr<Artifact> artifact) : ArtifactDecorator(move(artifact))
 {
 	wrappee->SetRank(EArtifactRank::RARE);
 }
