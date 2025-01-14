@@ -1,5 +1,10 @@
 #include "Item/Artifact/ArtifactDecorator.h"
 
-ArtifactDecorator::ArtifactDecorator(Artifact* artifact) {
-	wrappee = artifact;
+ArtifactDecorator::ArtifactDecorator(unique_ptr<Artifact> artifact) {
+	wrappee = move(artifact);
+}
+
+ArtifactDecorator::ArtifactDecorator(ArtifactDecorator& artifactDecorator)
+{
+	wrappee = move(artifactDecorator.wrappee);
 }
