@@ -6,8 +6,9 @@
 #include "Character/Character.h"
 #include "Item/Item.h"
 #include "Inventory.h"
-#include "Character/Monster/Monster.h"
+//#include "Character/Monster/Monster.h"
 
+class Monster;
 
 class Player : Character {
 private:

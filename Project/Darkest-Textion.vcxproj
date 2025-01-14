@@ -133,7 +133,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\BossMonster.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\DarkestMonsters.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\DropItemObj.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\ForestMonsters.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\Monster.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\MonsterActionHandle.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\MonsterAttack.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\MonsterHit.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\MonsterSpawnHandle.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\SeasideMonsters.cpp" />
+    <ClCompile Include="src\Game\Character\Monster\TestMain.cpp" />
     <ClCompile Include="src\System\IO\Image.cpp" />
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
     <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp" />
@@ -166,6 +176,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game\Character\Character.h" />
+    <ClInclude Include="include\Game\Character\Monster\BossMonster.h" />
+    <ClInclude Include="include\Game\Character\Monster\DarkestMonsters.h" />
+    <ClInclude Include="include\Game\Character\Monster\DropItemObj.h" />
+    <ClInclude Include="include\Game\Character\Monster\ForestMonsters.h" />
+    <ClInclude Include="include\Game\Character\Monster\Monster.h" />
+    <ClInclude Include="include\Game\Character\Monster\MonsterActionHandle.h" />
+    <ClInclude Include="include\Game\Character\Monster\MonsterAttack.h" />
+    <ClInclude Include="include\Game\Character\Monster\MonsterAttackInfo.h" />
+    <ClInclude Include="include\Game\Character\Monster\MonsterHit.h" />
+    <ClInclude Include="include\Game\Character\Monster\MonsterSpawnHandle.h" />
+    <ClInclude Include="include\Game\Character\Monster\SeasideMonsters.h" />
     <ClInclude Include="include\Game\Character\Player\Inventory.h" />
     <ClInclude Include="include\Game\Character\Player\Player.h" />
     <ClInclude Include="include\Game\Encounter\Encounter.h" />

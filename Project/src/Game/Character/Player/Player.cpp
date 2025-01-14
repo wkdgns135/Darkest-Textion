@@ -5,6 +5,7 @@
 #include "Item/Item.h"
 #include "Item/Consumable/Consumable.h";
 #include "Item/Artifact/Artifact.h";
+#include "Character/Monster/Monster.h"
 
 using namespace std;
 
