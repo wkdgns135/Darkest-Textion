@@ -49,6 +49,9 @@ void Monster::InitializeByDungeonLevel()
 	hitRate = 70;
 	avoidRate = 0;
 	damageRate = 0.7f;
+	speed = 10;
+	isSturn = false;
+	turnOfSturn = 0;
 }
 
 Item* Monster::DropItem()

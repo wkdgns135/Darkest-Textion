@@ -111,24 +111,31 @@ void MonsterAttack::AttackToPlayer(int skillNum)
 	if (skillInfo1[0].GetCoolDown() > 0) skillInfo1[0].DecreaseCoolDown();
 	if (skillInfo2[0].GetCoolDown() > 0) skillInfo2[0].DecreaseCoolDown();
 	
-	switch (skillNum)
+
+	if (!monster->GetBoolSturn())
 	{
-	case 0:
-		NormalAttack();
-		break;
+		switch (skillNum)
+		{
+		case 0:
+			NormalAttack();
+			break;
 
-	case 1:
-		FirstSkillAttack();
-		break;
+		case 1:
+			FirstSkillAttack();
+			break;
 
-	case 2:
-		SecondSkillAttack();
-		break;
+		case 2:
+			SecondSkillAttack();
+			break;
 
-	case 3:
-		FinalSkillAttack();
-		break;
+		case 3:
+			FinalSkillAttack();
+			break;
+		}
 	}
+	
+	if (monster->GetTurnOfSturn() > 0) monster->DecreaseTurnOfSturn();
+	if (monster->GetBoolSturn() && monster->GetTurnOfSturn() == 0) monster->SetBoolSturn(false);
 }
 
 void MonsterAttack::NormalAttack()

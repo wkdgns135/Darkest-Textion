@@ -30,14 +30,21 @@ public:
     inline void SetDamageRate(float value) { damageRate = value; }
     inline void SetCurrentHealth(int value) { currentHealth = value; }
     inline void SetCurrentSkillName(string value) { skillName = value; }
+    inline void SetStateSturnToMonster(int turn) { isSturn = true; turnOfSturn = turn; }
+    inline void SetBoolSturn(bool value) { isSturn = value; }
+    inline void SetSpeed(float value) { speed = value; }
+    inline void DecreaseTurnOfSturn() { --turnOfSturn; }
     inline int GetDamage() { return damage; }
     inline int GetRealDamage() { return realDamage; }
     inline int GetAvoidRate() { return avoidRate; }
     inline int GetHitRate() { return hitRate; }
-    inline float GetDamageRate() { return damageRate; }
+    inline int GetTurnOfSturn() { return turnOfSturn; }
     inline int GetMonsterType() { return monsterType; }
     inline int GetCurrentHealth() { return currentHealth; }
     inline int GetMaxHealth() { return health; }
+    inline bool GetBoolSturn() { return isSturn; }
+    inline float GetDamageRate() { return damageRate; }
+    inline float GetSpeed() { return speed; }
     inline string GetCurrentSkillName() { return skillName; }
 
 protected:
@@ -49,11 +56,15 @@ protected:
     int avoidRate;
     int hitRate;
     float damageRate;
+    float speed;
 
     int minDropValue;
     int artifactRate;
     int maxItemRank;
     int maxItemCount;
+
+    bool isSturn;
+    int turnOfSturn;
 
     Player* player;
     DropItemObj* dropItemObj;
