@@ -7,8 +7,7 @@ using namespace std;
 
 void TitleScene::Enter()
 {
-	OutputManager outputManager = OutputManager::GetInstance();
-	outputManager.PrintAsciiArt(TitleAsciiArt);
+	renderer->AddBackground("drawable/Title.bmp");
 
 	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
 	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<NewPlayerScene>(); });
@@ -19,6 +18,7 @@ void TitleScene::Enter()
 
 void TitleScene::Update()
 {
+
 }
 
 void TitleScene::Exit()

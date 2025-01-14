@@ -4,11 +4,14 @@
 Scene::Scene()
 {
 	inputEvent = make_unique<InputEvent>();
+	renderer = make_unique<Renderer>();
 }
 
 void Scene::RootUpdate()
 {
 	while (isActive) {
+		renderer->ClearBuffer();
+		renderer->Render();
 		inputEvent->ProcessEvents();
 		Update();
 		Sleep(50); // Frame

@@ -5,4 +5,4 @@
 #include "ProjectEnum.h"
 #include "GameManager.h"
 #include "Scene/SceneManager.h"
-#include "IO/OutputManager.h"
+#include "IO/Renderer.h"
