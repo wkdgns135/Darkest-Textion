@@ -4,34 +4,34 @@
 #include "Character/Monster/MonsterActionHandle.h"
 
 
-class BossMonsterHeart : public Monster
+class ForestMonsterFungal : public Monster
 {
 
 public:
-    BossMonsterHeart();
-    ~BossMonsterHeart() override;
-    
-private:
-    void InitializeByDungeonLevel() override;
-    void SetAttackInfo() override;
-};
-
-class BossMonsterSiren : public Monster
-{
-public:
-    BossMonsterSiren();
-    ~BossMonsterSiren() override;
+    ForestMonsterFungal();
+    ~ForestMonsterFungal() override;
 
 private:
     void InitializeByDungeonLevel() override;
     void SetAttackInfo() override;
 };
 
-class BossMonsterHag : public Monster
+class ForestMonsterGiant : public Monster
 {
 public:
-    BossMonsterHag();
-    ~BossMonsterHag() override;
+    ForestMonsterGiant();
+    ~ForestMonsterGiant() override;
+
+private:
+    void InitializeByDungeonLevel() override;
+    void SetAttackInfo() override;
+};
+
+class ForestMonsterCrone : public Monster
+{
+public:
+    ForestMonsterCrone();
+    ~ForestMonsterCrone() override;
 
 private:
     void InitializeByDungeonLevel() override;

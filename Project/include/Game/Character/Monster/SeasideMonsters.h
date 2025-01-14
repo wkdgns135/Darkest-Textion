@@ -3,35 +3,34 @@
 #include "Character/Monster/Monster.h"
 #include "Character/Monster/MonsterActionHandle.h"
 
-
-class BossMonsterHeart : public Monster
+class SeasideMonsterPelagic : public Monster
 {
 
 public:
-    BossMonsterHeart();
-    ~BossMonsterHeart() override;
-    
-private:
-    void InitializeByDungeonLevel() override;
-    void SetAttackInfo() override;
-};
-
-class BossMonsterSiren : public Monster
-{
-public:
-    BossMonsterSiren();
-    ~BossMonsterSiren() override;
+    SeasideMonsterPelagic();
+    ~SeasideMonsterPelagic() override;
 
 private:
     void InitializeByDungeonLevel() override;
     void SetAttackInfo() override;
 };
 
-class BossMonsterHag : public Monster
+class SeasideMonsterStinger : public Monster
 {
 public:
-    BossMonsterHag();
-    ~BossMonsterHag() override;
+    SeasideMonsterStinger();
+    ~SeasideMonsterStinger() override;
+
+private:
+    void InitializeByDungeonLevel() override;
+    void SetAttackInfo() override;
+};
+
+class SeasideMonsterThrall : public Monster
+{
+public:
+    SeasideMonsterThrall();
+    ~SeasideMonsterThrall() override;
 
 private:
     void InitializeByDungeonLevel() override;
