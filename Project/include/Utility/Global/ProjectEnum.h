@@ -22,3 +22,9 @@ enum EAsciiArt {
 	MainAsciiArt,
 	SelectDungeonAsciiArt,
 };
+
+enum EDungeon {
+	Weald,
+	Cove,
+	DarkestDungeon,
+};

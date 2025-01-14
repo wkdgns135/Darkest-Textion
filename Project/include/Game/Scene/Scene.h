@@ -1,11 +1,17 @@
 #pragma once
 #include <memory>
 #include "IO/InputEvent.h"
+#include "IO/Image.h"
+#include "IO/Renderer.h"
 
 class Scene {
 private:
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
+	vector<Image*> drawTarget;
+
+protected:
+	unique_ptr<Renderer> renderer;
 
 public:
 	Scene();

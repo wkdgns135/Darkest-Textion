@@ -18,7 +18,7 @@ private:
 
 public:
     template <typename T>
-    void ChangeScene() {
+	void ChangeScene() {
 		if (currentScene) {
 			currentScene->RootExit();
 			currentScene->Exit();
