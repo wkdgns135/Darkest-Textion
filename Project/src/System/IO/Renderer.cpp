@@ -91,8 +91,6 @@ void Renderer::CenterConsoleWindow() {
 
 void Renderer::DrawBackground()
 {
-    if (!background)return;
-
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             if (x < 0 || x >= width || y < 0 || y >= height) {
@@ -147,8 +145,13 @@ void Renderer::ClearBuffer()
         buffer[i].Char.UnicodeChar = ' ';
         buffer[i].Attributes = 7;
     }
+}
 
-    DrawBackground();
+void Renderer::FillBuffer()
+{
+    if (background) {
+        DrawBackground();
+    }
 
     for (Sprite* sprite : drawSprite) {
         DrawImage(sprite->image, sprite->pos);

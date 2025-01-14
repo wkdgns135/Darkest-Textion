@@ -11,6 +11,7 @@ void Scene::RootUpdate()
 {
 	while (isActive) {
 		renderer->ClearBuffer();
+		renderer->FillBuffer();
 		renderer->Render();
 		inputEvent->ProcessEvents();
 		Update();

@@ -37,6 +37,7 @@ public:
 	void DrawImage(Image* image);
 	void DrawImage(Image* image, const Vector2d &pos);
 	void ClearBuffer();
+	void FillBuffer();
 	void Render();
 
 	inline void AddBackground(string path) { background = new Image(path, width, height); };
