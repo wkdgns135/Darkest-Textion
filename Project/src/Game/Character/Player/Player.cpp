@@ -140,6 +140,7 @@ void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
 		{
 			// 아이템의 효과 사용하기
 			equipInventory.insert({name,inventory[name]});
+			static_cast<Artifact*>(equipInventory[name].GetItem())->Attach(*this);
 			inventory.erase(name);
 		}
 		else
@@ -156,6 +157,7 @@ void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
 void Player::UnEquipItem(string name) //아이템을 장착 해제해서 다시 인벤토리로
 {
 	inventory.insert({ name,equipInventory[name] });
+	static_cast<Artifact*>(equipInventory[name].GetItem())->Detach(*this);
 	equipInventory.erase(name);
 }
 
