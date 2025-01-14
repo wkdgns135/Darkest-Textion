@@ -1,5 +1,4 @@
 #include "Scene/SceneManager.h"
-
 using namespace std;
 
 void MainScene::Enter()

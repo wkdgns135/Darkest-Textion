@@ -132,6 +132,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Character\Player\Inventory.cpp" />
+    <ClCompile Include="src\Game\Scene\MainShopScene.cpp" />
+    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
     <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp" />
     <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
@@ -162,6 +165,7 @@
     <ClInclude Include="include\Game\Character\Monster\Monster.h" />
     <ClInclude Include="include\Game\Character\Monster\Orc.h" />
     <ClInclude Include="include\Game\Character\Monster\Troll.h" />
+    <ClInclude Include="include\Game\Character\Player\Inventory.h" />
     <ClInclude Include="include\Game\Character\Player\Player.h" />
     <ClInclude Include="include\Game\Encounter\Encounter.h" />
     <ClInclude Include="include\Game\Game.h" />
@@ -176,6 +180,8 @@
     <ClInclude Include="include\Game\Scene\DungeonInfoScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonScene.h" />
     <ClInclude Include="include\Game\Scene\MainScene.h" />
+    <ClInclude Include="include\Game\Scene\MainShopScene.h" />
+    <ClInclude Include="include\Game\Scene\NewPlayerScene.h" />
     <ClInclude Include="include\Game\Scene\Scene.h" />
     <ClInclude Include="include\Game\Scene\SceneManager.h" />
     <ClInclude Include="include\Game\Scene\SelectDungeonScene.h" />

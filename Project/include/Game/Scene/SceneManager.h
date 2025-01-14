@@ -6,6 +6,7 @@
 #include "MainScene.h"
 #include "SelectDungeonScene.h"
 #include "DungeonInfoScene.h"
+#include "NewPlayerScene.h"
 
 using namespace std;
 
