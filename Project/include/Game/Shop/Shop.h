@@ -8,30 +8,34 @@
 #include "Item/Artifact/HealthStone.h"
 #include "Item/Artifact/ExpStone.h"
 
+#include <vector>
+#include <map>
+#include <memory>
+
 #pragma once
 
 using namespace std;
 
 class Shop
 {
-private:
-	Player* player;
-	SpeedStone speedstone;
-	SnakeOil snake0il;
-	KnightsCrest knightscrest;
-	HealthStone healthstone;
-	ExpStone expstone;
- 	map<string, Item> itemlist;
-	string prefix = "[ 상점 ] ";
+	private:
+		Player* player;
+		SpeedStone speedstone;
+		SnakeOil snake0il;
+		KnightsCrest knightscrest;
+		HealthStone healthstone;
+		ExpStone expstone;
+ 		map<string, Item> itemlist;
+		string prefix = "[ 상점 ] ";
 
-	//검사 함수
-	int GetInventorySize();
-	bool IsPlayerItemAvailable(int index);
+		//검사 함수
+		int GetInventorySize();
+		bool IsPlayerItemAvailable(int index);
 
-public:
-	Shop(Player* player);
-	void PurchaseItem(int index, int gold, int count);
-	void SellItem(int index, int count);
-	void ShowItemList();
+	public:
+		Shop(Player* player);
+		void PurchaseItem(int index, int gold, int count);
+		void SellItem(int index, int count);
+		void ShowItemList();
 
 };

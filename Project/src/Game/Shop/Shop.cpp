@@ -27,19 +27,19 @@ Shop::Shop(Player* player) : player(player) //아이템 맵 선언 초기화
 
 void Shop::PurchaseItem(int index, int gold, int count) //아이템 구매
 {
-	if (index < 1 || index >= static_cast<int>(itemlist.size())) // 아이템 배열 번호 식별
+	if (index < 1 || index >= static_cast<int>(itemlist.size())) // 아이템의 해당 번호가 있는지 0부터 확인
 	{
 		cout << prefix << "해당 아이템 번호가 존재하지 않습니다." << endl;
 		return;
 	}
-	if (GetInventorySize() >= 10) //아이템 10개 이상이면 추가안됨
+	if (GetInventorySize() + count > 10) //인벤토리 아이템 + 구매할 아이템 10개 이상이면 추가안됨
 	{
 		cout << prefix << "인벤토리가 가득 찼습니다." << endl;
 		return;
 	}
 
 	// 구매할 금액 계산
-	auto it = itemlist.begin(); //리스트 첫번쨰 칸
+	auto it = itemlist.begin(); //리스트 첫번째 칸
 	advance(it, index); //index만큼 뒤로 이동
 	int totalprice = it->second.GetPrice() * count; //해당 값의 가격 + 수량
 
@@ -54,14 +54,9 @@ void Shop::PurchaseItem(int index, int gold, int count) //아이템 구매
 
 void Shop::SellItem(int index, int count) //아이템 판매
 {
-	if (index < 1 || index > itemlist.size())  //아이템 배열 식별
+	if (index < 1 || index >= static_cast<int>(itemlist.size()))  // 아이템의 해당 번호가 있는지 0부터 확인
 	{
 		cout << "해당 아이템 번호가 존재하지 않습니다." << endl;
-		return;
-	}
-	if (GetInventorySize() >= 10)  //아이템 10개 이상이면 추가안됨
-	{
-		cout << "인벤토리가 가득 찼습니다." << endl;
 		return;
 	}
 	if (!IsItemAvailable(index)) //플레이어 아이템 존재 여부
@@ -69,10 +64,14 @@ void Shop::SellItem(int index, int count) //아이템 판매
 		cout << "해당 아이템을 소지하고 있지 않습니다." << endl;
 		return;
 	}
-	int itemPrice = itemlist[index].GetPrice();
-	player->AddGold(itemPrice * count * 0.6); //수량에 맞게 골드 추가
+	// 판매할 아이템 가격 계산 (60% 반환)
+	auto it = itemlist.begin(); //리스트 첫번째 칸
+	advance(it, index); //index만큼 뒤로 이동
+	int totalPrice = static_cast<int>(it->second.GetPrice() * count * 0.6); //해당 값 + 수량의 60% 
 
-	for (int i = 0; i < count; ++i) { player->UseItem(index);  } // 수량에 맞게 아이템을 사용하는 방식으로 판매 처리;
+	player->AddGold(totalPrice); //판매 수량의 60% 골드 추가
+
+	for (int i = 0; i < count; ++i) { player->UseItem(it->second.GetName()); } // 수량에 맞게 아이템을 사용하는 방식으로 판매 처리;
 }
 
 // 아이템 보유 개수를 확인하는 헬퍼 함수 (리플렉션 없이 안전한 방식) 이라고 인터넷 찾아봄
@@ -101,18 +100,21 @@ bool Shop::IsPlayerItemAvailable(int index)
 	try
 	{
 		player->UseItem(index);  // 유효한 인덱스인지 검사
-		return true;
+		return true; //맞으면 true 반환
 	}
 	catch (...)
 	{
-		return false;
+		return false; //예외면 false 반환
 	}
 }
 
+// 아이템 목록 함수 번호까지 출력해서 알맞게 구매가능
 void Shop::ShowItemList()
 {
+	int idx = 0;
 	for (const auto& pair : itemlist)
 	{
-		cout << pair.first << ": " << pair.second.GetName() << ", 가격: " << pair.second.GetPrice() << endl;
+		cout << idx << ": " << pair.second.GetName() << ", 가격: " << pair.second.GetPrice() << " 골드" << endl;
+		++idx;
 	}
 }
