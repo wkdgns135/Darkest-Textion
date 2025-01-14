@@ -15,7 +15,7 @@ void ShopScene::Enter()
 	renderer->SetConsoleFontForText();
 	cout << "상점에 입장하셨습니다.\n 1. 상점 물건 확인\n 2. 구매\n 3. 인벤토리 확인\n 4. 판매\n";
 	AddInputEvent(EKeyEvent::Key_1, [this]() {this->shop->ShowItemList(); });
-	AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface();; });
+	AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface(); });
 	//AddInputEvent(EKeyEvent::Key_3, []() {	GameManager::GetInstance().GetPlayer()->ShowInventory(); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() {this->ShowSellInterface(); });
 
