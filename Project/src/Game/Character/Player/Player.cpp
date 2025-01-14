@@ -4,6 +4,8 @@
 #include "Character/Player/Player.h"
 #include "Item/Item.h"
 #include "Item/Consumable/Consumable.h";
+#include "Item/Artifact/Artifact.h";
+
 using namespace std;
 
 #pragma region 생성자
@@ -33,9 +35,21 @@ Player::Player(string name)
 #pragma endregion 생성자
 
 #pragma region GetSet
-void Player::AddItem(Item* item,int num)
+void Player::AddItem(Item* item, int num)
 {
-	// inventory map에 item.name 이 키값으로 존재하면 count값만 증가시키고 없으면 새로 추가해준다
+	if (inventory.size() < 10)
+	{
+		// inventory map에 item.name 이 키값으로 존재하면 count값만 증가시키고 없으면 새로 추가해준다
+		if (inventory.find(item->GetName()) != inventory.end()) //아이템의 이름으로 키가 존재할때
+		{
+			inventory[item->GetName()].AddCount(num);
+		}
+		else //키가 존재하지 않을때
+		{
+			Inventory inven(item, num);
+			inventory.insert({ item->GetName(),inven });
+		}
+	}
 }
 void Player::AddGold(int gold) 
 {
@@ -57,9 +71,10 @@ void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 	}
 }
 
-void Player::Attack() 	//캐릭터가 공격시 발생할 함수
+void Player::Attack()
 {
-
+	//몬스터를 받아와서 그몬스터의 Hit 함수를 호출
+	mob->Hit(damage);
 }
 
 bool Player::IsDie() //캐릭터 사망시 발생할 함수
@@ -96,7 +111,57 @@ void Player::LevelUp()
 
 void Player::UseItem(string name)
 {
-	
+	if (inventory.find(name) != inventory.end())
+	{
+		if (typeid(inventory[name].GetItem()) == typeid(Consumable)) //아이템이 사용가능한 아이템일때
+		{
+			static_cast<Consumable*>(inventory[name].GetItem())->Use(*this);
+			inventory[name].AddCount(-1);
+			if (inventory[name].GetCount() == 0)
+			{
+				DeleteItem(name);
+			}
+		}
+		else // 사용불가능한 아이템일때
+		{
+			cout << "Error : 사용불가능한 아이템 입니다";
+		}
+	}
+	else
+	{
+		cout << "Error : 해당 아이템이 존재하지 않습니다" << endl;
+	}
+}
+
+void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
+{
+	if (equipInventory.size() < 2) {
+		if (typeid(inventory[name].GetItem()) == typeid(Artifact))
+		{
+			// 아이템의 효과 사용하기
+			equipInventory.insert({name,inventory[name]});
+			inventory.erase(name);
+		}
+		else
+		{
+			cout << "Error : 장착 불가능한 아이템 입니다" << endl;
+		}
+	}
+	else
+	{
+		cout << "최대 장착 갯수를 초과하였습니다" << endl;
+	}
+}
+
+void Player::UnEquipItem(string name) //아이템을 장착 해제해서 다시 인벤토리로
+{
+	inventory.insert({ name,equipInventory[name] });
+	equipInventory.erase(name);
+}
+
+void Player::DeleteItem(string name)
+{
+	inventory.erase(name);
 }
 
 #pragma endregion 이벤트함수
