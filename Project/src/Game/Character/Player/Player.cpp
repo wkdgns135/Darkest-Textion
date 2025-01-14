@@ -32,6 +32,7 @@ Player::Player(string name)
 	this->exp = exp;
 	this->inventory = inventory;
 }*/
+
 #pragma endregion »ı¼ºÀÚ
 
 #pragma region GetSet
