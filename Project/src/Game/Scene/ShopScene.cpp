@@ -1,3 +1,4 @@
+#include <string>
 #include "Scene/SceneManager.h"
 #include "Shop/Shop.h"
 #include "Global/ProjectEnum.h"

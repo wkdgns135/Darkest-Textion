@@ -78,8 +78,8 @@
     <ClCompile Include="src\Game\Scene\MainShopScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\System\IO\Image.cpp">      
-    <Filter>소스 파일</Filter>
+    <ClCompile Include="src\System\IO\Image.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Item\Artifact\AncestalaArtifact.cpp">
       <Filter>소스 파일</Filter>
@@ -222,6 +222,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="lib\CImg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System\IO\Sprite.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

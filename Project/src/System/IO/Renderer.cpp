@@ -89,11 +89,6 @@ void Renderer::CenterConsoleWindow() {
     SetWindowPos(consoleWindow, HWND_TOP, posX, posY, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 }
 
-void Renderer::AddBackground(string path)
-{
-    background = new Image(path, width, height);
-}
-
 void Renderer::DrawBackground()
 {
     if (!background)return;
@@ -154,6 +149,10 @@ void Renderer::ClearBuffer()
     }
 
     DrawBackground();
+
+    for (Sprite* sprite : drawSprite) {
+        DrawImage(sprite->image, sprite->pos);
+    }
 }
 
 void Renderer::Render()

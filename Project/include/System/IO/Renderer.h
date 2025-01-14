@@ -4,6 +4,7 @@
 #include "DesignPattern/Singleton.h"
 #include "Global/ProjectEnum.h"
 #include "IO/Image.h"
+#include "IO/Sprite.h"
 #include "Vector2d.h"
 
 using namespace std;
@@ -14,6 +15,7 @@ private:
 	bool isDraw;
 	CHAR_INFO* buffer;
 	Image* background;
+	vector<Sprite*> drawSprite;
 
 	unordered_map<EAsciiArt, string> asciiArtPath =
 	{
@@ -31,10 +33,12 @@ public:
 	Renderer();
 	void SetConsoleFontForDraw();
 	void SetConsoleFontForText();
-	void AddBackground(string path);
 	void DrawBackground();
 	void DrawImage(Image* image);
 	void DrawImage(Image* image, const Vector2d &pos);
 	void ClearBuffer();
 	void Render();
+
+	inline void AddBackground(string path) { background = new Image(path, width, height); };
+	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); };
 };

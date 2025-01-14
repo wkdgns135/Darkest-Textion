@@ -198,6 +198,7 @@
     <ClInclude Include="include\Game\Shop\Shop.h" />
     <ClInclude Include="include\System\IO\Image.h" />
     <ClInclude Include="include\System\IO\InputEvent.h" />
+    <ClInclude Include="include\System\IO\Sprite.h" />
     <ClInclude Include="include\Utility\DesignPattern\Observer.h" />
     <ClInclude Include="include\Utility\DesignPattern\Singleton.h" />
     <ClInclude Include="include\Utility\Global\Global.h" />
