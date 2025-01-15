@@ -20,21 +20,22 @@ public:
 	void RootUpdate();
 	void RootExit();
 
-	// SceneÀÌ º¯°æµÇ°í 1¹ø È£Ãâ
+	// Sceneì´ ë³€ê²½ë˜ê³  1ë²ˆ í˜¸ì¶œ
 	virtual void Enter() = 0;
-	// Scene³»¿¡¼­ Áö¼ÓÀûÀ¸·Î È£ÃâµÇ´Â ÇÔ¼ö
+	// Sceneë‚´ì—ì„œ ì§€ì†ì ìœ¼ë¡œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 	virtual void Update() = 0;
-	// ´Ù¸¥ SceneÀ¸·Î ÀüÈ¯µÇ±â Àü¿¡ È£ÃâµÇ´Â ÇÔ¼ö
+	// ë‹¤ë¥¸ Sceneìœ¼ë¡œ ì „í™˜ë˜ê¸° ì „ì— í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜
 	virtual void Exit() = 0;
 
-	/*NOTE: Å° ÀÌº¥Æ® ÇÔ¼ö µî·Ï ¹æ¹ı
-	* Scene ³»ºÎ¿¡¼­ AddInputEvent¸¦ È£ÃâÇÏ¿© AddInputEvent(EKeyEvent, Callback, Complete) ÇüÅÂ·Î È£Ãâ
-	* Á¤Àû ÇÔ¼ö¸¦ Äİ¹éÀ¸·Î µî·Ï½ÃÅ°·Á¸é AddInputEvent(EKeyEvent, SomeStaticFunc1, SomeStaticFunc2);
-	* ¸â¹ö ÇÔ¼ö¸¦ Äİ¹éÀ¸·Î µî·Ï½ÃÅ°·Á¸é AddInputEvent(EKeyEvent, [this](){SomeMemberFunc();}, [this](){SomeMemberFunc2();});
+	/*NOTE: í‚¤ ì´ë²¤íŠ¸ í•¨ìˆ˜ ë“±ë¡ ë°©ë²•
+	* Scene ë‚´ë¶€ì—ì„œ AddInputEventë¥¼ í˜¸ì¶œí•˜ì—¬ AddInputEvent(EKeyEvent, Callback, Complete) í˜•íƒœë¡œ í˜¸ì¶œ
+	* ì •ì  í•¨ìˆ˜ë¥¼ ì½œë°±ìœ¼ë¡œ ë“±ë¡ì‹œí‚¤ë ¤ë©´ AddInputEvent(EKeyEvent, SomeStaticFunc1, SomeStaticFunc2);
+	* ë©¤ë²„ í•¨ìˆ˜ë¥¼ ì½œë°±ìœ¼ë¡œ ë“±ë¡ì‹œí‚¤ë ¤ë©´ AddInputEvent(EKeyEvent, [this](){SomeMemberFunc();}, [this](){SomeMemberFunc2();});
 	*/
 	template <typename Func>
 	void AddInputEvent(const EKeyEvent& key, Func&& Callback, function<void()> Complete = nullptr) {
 		inputEvent->AddEvent(key, function<void()>(forward<Func>(Callback)), move(Complete));
 	}
-	inline void ClearInputEvent() { inputEvent->ClearEvent(); };
+  
+	inline void ClearEvent() { inputEvent->ClearEvent(); };
 };

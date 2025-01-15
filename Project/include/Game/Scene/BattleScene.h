@@ -15,16 +15,25 @@ private :
 	BattleState battleState;
 
 	Sprite* monsterAttack;
+	Sprite* monsterTurn;
+
+	Sprite* playerAttack;
+	Sprite* playerTurn;
+	Sprite* playerSkill;
 
 	void ImportMonsterSprite();
 	void ImportPlayerSprite();
 	void ImportUiSprite();
 
+	void EnableInputEvent();
+
 	void MonsterTurn();
 	void PlayerTurn();
-	void InitInputEvent();
-	void PlayerAttack();
-
+	void PlayerAttack(int skillIndex);
+	void PlayerAttackFinish(int skillIndex);
+	void MonsterAttackFinish();
+	void UpdateNumber();
+	
 public:
 	void Enter() override;
 	void Update() override;

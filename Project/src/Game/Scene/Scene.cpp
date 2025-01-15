@@ -1,6 +1,7 @@
 #include "Scene/Scene.h"
 #include <Windows.h>
 
+
 Scene::Scene()
 {
 	inputEvent = make_unique<InputEvent>();

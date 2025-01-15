@@ -18,6 +18,7 @@ void InputEvent::AddEvent(const EKeyEvent& key, function<void()>&& Callback, fun
 void InputEvent::ClearEvent()
 {
     events.clear();
+    keyStates.clear();
 }
 
 void InputEvent::ProcessEvents()
@@ -34,6 +35,7 @@ void InputEvent::ProcessEvents()
             SafeInvoke(Callback);
             if (Complete) SafeInvoke(Complete);
             keyStates[key] = true;
+            return;
         }
         else if (!isPressed && keyStates[key]) {
             // 키가 떼졌을 때

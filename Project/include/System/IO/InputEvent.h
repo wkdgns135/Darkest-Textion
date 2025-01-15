@@ -9,7 +9,9 @@ class InputEvent {
 private:
 	vector<tuple<EKeyEvent, function<void()> , function<void()>>> events;
 	unordered_map<EKeyEvent, bool> keyStates;
-	unordered_map<EKeyEvent, char> keyDict = { {Key_1, '1'}, {Key_2, '2'}, {Key_3, '3'} ,{Key_ESC, 0x1B} };
+	unordered_map<EKeyEvent, char> keyDict = {
+		{Key_1, '1'}, {Key_2, '2'}, {Key_3, '3'} ,{Key_ESC, 0x1B}, 
+		{Key_Q, 'Q'}, {Key_W, 'W'} , {Key_E, 'E'}, {Key_R, 'R'} };
 	void SafeInvoke(function<void()> Func);
 
 public:

@@ -13,7 +13,8 @@ private:
 
 public:
     Image(const string path, int w, int h);
-    inline int GetWidth() { return this->width; }
+    ~Image();
+    inline int GetWidth() const { return this->width; }
     inline int GetHeight() { return this->height; }
     inline TCHAR GetPixel(int x, int y) { return this->data[y * this->width + x]; }
     inline bool GetMask(int x, int y) { return this->mask[y * this->width + x]; }
