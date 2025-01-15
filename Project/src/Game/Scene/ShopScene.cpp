@@ -15,7 +15,9 @@
 using namespace std;
 
 
-void PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
+int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
+	int addCount = 0;
+	
 	//문자열로 변환
 	string strNum = to_string(number);
 
@@ -34,8 +36,10 @@ void PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, V
 		Vector2d numLoc = { initLoc.x + numWidth * i, initLoc.y };
 		Sprite* sprite = new Sprite(numImage, numLoc, numWidth, numHeight);
 		renderer->AddSprite(sprite);
+		addCount++;
 		i++;
 	}
+	return addCount;
 }
 
 ShopScene::ShopScene()
