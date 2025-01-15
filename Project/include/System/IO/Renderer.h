@@ -33,4 +33,5 @@ public:
 	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); }; // ĳ���ͳ� ����Ʈ�� ���� ������ ��������Ʈ�� �߰��մϴ�.
 	inline void AddFixSprite(Sprite* sprite) { fixSprite.push_back(sprite); }; // UI�� ���� ������ ��������Ʈ�� �߰��մϴ�.
 	inline void ClearSprite() { drawSprite.clear(); };
+	inline void RemoveSprite() { drawSprite.pop_back();}
 };

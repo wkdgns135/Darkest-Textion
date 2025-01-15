@@ -15,37 +15,10 @@
 using namespace std;
 
 
-int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
-	int addCount = 0;
-	
-	//문자열로 변환
-	string strNum = to_string(number);
-
-	//sprite 추가
-	string imagePath = "drawable/number/*.bmp";
-	int insertPoint = imagePath.find_first_of("*");
-	char a = 'd';
-	const char* b = &a;
-	int i = 0;
-	for (char e : strNum)
-	{
-		string num = to_string(e - '0');
-		string numImage = imagePath.replace(insertPoint, 1, num);
-		int numWidth = size.x;
-		int numHeight = size.y;
-		Vector2d numLoc = { initLoc.x + numWidth * i, initLoc.y };
-		Sprite* sprite = new Sprite(numImage, numLoc, numWidth, numHeight);
-		renderer->AddSprite(sprite);
-		addCount++;
-		i++;
-	}
-	return addCount;
-}
 
 ShopScene::ShopScene()
 {
-	inventorySpriteCount = 0;
-	inventoryFlag = false;
+	cursor = 0;
 }
 
 void ShopScene::Enter()
@@ -56,36 +29,14 @@ void ShopScene::Enter()
 	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
-	DisplayShopItems();
 
 	//goldPannel
-	Player* player = GameManager::GetInstance().GetPlayer();
-	string goldPannel = "drawable/Item/Gold.bmp";
-	//string goldPannel = "drawable/number/1.bmp";
-	Vector2d goldPannelLoc = { 20, 250 };
-	int goldPannelWidth = 120;
-	int goldPannelHeight = 40;
-	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
-	renderer->AddSprite(sprite);
-
-	//HERE : player 연결 시 바꾸기
-	//PrintNumber(renderer, player->GetGold(), { goldPannelLoc.x + 55, goldPannelLoc.y + 5 });
-	PrintNumber(renderer, 12354, {goldPannelLoc.x + 55, goldPannelLoc.y + 5});
+	ShowGoldPannel();
 
 
-	//bind Input
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->InventoryTrigger(); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface(); });
-	////AddInputEvent(EKeyEvent::Key_3, []() {	GameManager::GetInstance().GetPlayer()->ShowInventory(); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() {this->ShowSellInterface(); });
+	SetPurchaseMode();
 
-	//item Input
-	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->PurchaseItem(1, 1); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->PurchaseItem(2, 1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->PurchaseItem(3, 1); });
-	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->SellItem(1, 1); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->SellItem(2, 1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->SellItem(3, 1); });
+
 }
 
 void ShopScene::Update()
@@ -98,7 +49,7 @@ void ShopScene::Exit()
 
 }
 
-void ShopScene::OpenInventory() 
+void ShopScene::ShowInventory() 
 {
 	//Render Inventory frame
 	string invenImage = "drawable/background/Inventory.bmp";
@@ -107,7 +58,6 @@ void ShopScene::OpenInventory()
 	int invenHeight = 150;
 	Sprite* sprite = new Sprite(invenImage, invenLoc, invenWidth, invenHeight);
 	renderer->AddSprite(sprite);
-	inventorySpriteCount++;
 
 
 	//Player* player = GameManager::GetInstance().GetPlayer();
@@ -140,6 +90,7 @@ void ShopScene::OpenInventory()
 		{"10", Inventory(laudanum,3)},
 	};
 
+	cursorLoc.clear();
 
 	//Render Inventory Item
 	int i = 0;
@@ -154,47 +105,104 @@ void ShopScene::OpenInventory()
 		Vector2d itemLoc = { itemInitalLoc.x + itemWidth*(i%8) + xPadding*2, itemInitalLoc.y + (i/8 > 0 ? itemHeight + yPadding*2 : 0)};
 		Sprite* sprite = new Sprite(itemImage, itemLoc, itemWidth, itemHeight);
 		renderer->AddSprite(sprite);
-		inventorySpriteCount += PrintNumber(renderer, item.second.GetCount(), { itemLoc.x + 2, itemLoc.y + 2 }, { 7, 15 });
-		inventorySpriteCount++;
+		cursorLoc.push_back(itemLoc);
+		renderer->DrawNumber(item.second.GetCount(), { itemLoc.x + 2, itemLoc.y }, 10, 30);
 		i++;
 	}
 }
 
-void ShopScene::CloseInventory() {
-	for (int i = 0; i < inventorySpriteCount; i++)
-	{
-		renderer->ClearSprite();
-	}
-	inventorySpriteCount = 0;
+
+void ShopScene::ShowGoldPannel()
+{
+	Player* player = GameManager::GetInstance().GetPlayer();
+	string goldPannel = "drawable/Item/Gold.bmp";
+	Vector2d goldPannelLoc = { 20, 250 };
+	int goldPannelWidth = 120;
+	int goldPannelHeight = 40;
+	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
+	renderer->AddSprite(sprite);
+
+	renderer->DrawNumber(1234/*player->GetGold()*/, {goldPannelLoc.x + 55, goldPannelLoc.y + 5}, 20, 35);
 }
 
-void ShopScene::InventoryTrigger()
+
+
+
+
+void ShopScene::SetPurchaseMode() 
 {
-	if (inventoryFlag)
+	ClearInputEvent();
+
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+
+
+	cursorLoc = { { 260, 0 }, { 299, 0 }, { 338, 0 } };
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->PurchaseItem(cursor, 1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetSellMode(); });
+	
+
+}
+
+void ShopScene::SetSellMode()
+{
+	ClearInputEvent();
+
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+	ShowInventory();
+
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->SellItem(cursor, 1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetPurchaseMode(); });
+
+}
+
+
+void ShopScene::MoveCursor(int direction)
+{
+	if (direction > 0)
 	{
-		CloseInventory();
+		if (cursor >= cursorLoc.size() - 1) return;
+		else cursor++;
 	}
 	else
 	{
-		OpenInventory();
+		if (cursor <= 0) return;
+		else cursor--;
 	}
-	inventoryFlag = (inventoryFlag + 1) % 2;
+	renderer->RemoveSprite();
+	ShowCursor();
+
 }
 
-// 새로운 함수 추가: 상점 아이템들을 화면에 표시
+void ShopScene::ShowCursor()
+{
+	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
+	renderer->AddSprite(sprite);
+}
+
 void ShopScene::DisplayShopItems()
 {
-	// 아이템 이미지 경로 정의
 	string healthPotionPath = "drawable/Item/HealthPotion.bmp";
 	string laudanumPath = "drawable/Item/Laudanum.bmp";
 	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
-
-	// 각 아이템의 위치 정의 (우측 상단)
+	
 	Vector2d healthPotionPos = { 260, 0 };
 	Vector2d laudanumPos = { 299, 0 };
 	Vector2d damageBoostPos = { 338, 0 };
 
-	// 스프라이트 생성 및 렌더러에 추가
 	Sprite* healthPotionSprite = new Sprite(healthPotionPath, healthPotionPos, 34, 67);
 	Sprite* laudanumSprite = new Sprite(laudanumPath, laudanumPos, 34, 67);
 	Sprite* damageBoostSprite = new Sprite(damageBoostPath, damageBoostPos, 34, 67);
@@ -203,12 +211,14 @@ void ShopScene::DisplayShopItems()
 	renderer->AddSprite(laudanumSprite);
 	renderer->AddSprite(damageBoostSprite);
 
-	// 아이템의 가격 가져오기
 	Item* healthPotion = new HealthPotion();
 	Item* damageboost = new DamageBoost();
 	Item* laudanum = new Laudanum();
 
-	PrintNumber(renderer, healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 });
-	PrintNumber(renderer, damageboost->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 });
-	PrintNumber(renderer, laudanum->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 });
+	
+
+
+	renderer->DrawNumber(healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 }, 10, 30);
+	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 10, 30);
+	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 10, 30);
 }
