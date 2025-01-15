@@ -9,9 +9,6 @@ private:
 	int inventorySpriteCount;
 	bool inventoryFlag;
 
-
-	void ShowPurchaseInterface();
-	void ShowSellInterface();
 	void OpenInventory();
 	void CloseInventory();
 public:
