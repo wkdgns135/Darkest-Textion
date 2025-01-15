@@ -1,6 +1,5 @@
 ﻿#include <Windows.h>
 #include "IO/Renderer.h"
-#include "Vector2d.h"
 
 using namespace cimg_library;
 
@@ -147,14 +146,14 @@ void Renderer::ClearBuffer()
     }
 }
 
-void Renderer::FillBuffer()
+void Renderer::FillBuffer(float deltaTime)
 {
     if (background) {
         DrawBackground();
     }
 
     for (Sprite* sprite : drawSprite) {
-        DrawImage(sprite->image, sprite->pos);
+        DrawImage(sprite->GetImage(deltaTime), sprite->pos);
     }
 }
 

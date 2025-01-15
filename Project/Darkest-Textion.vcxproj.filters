@@ -57,9 +57,6 @@
     <ClCompile Include="src\Game\Character\Player\Inventory.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\System\IO\Renderer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Game.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -67,12 +64,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="include\System\IO\Renderer.h">
-      <Filter>헤더 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Scene\MainShopScene.cpp">
@@ -102,13 +93,25 @@
     <ClCompile Include="src\Game\Item\Artifact\SnakeOil.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Scene\ShopScene.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\Scene\DungeonScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Scene\BattleScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\IO\Animation.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\IO\Sprite.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\System\IO\Renderer.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\IntroScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -156,9 +159,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Scene\SelectDungeonScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Game\Scene\ShopScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Scene\TitleScene.h">
@@ -237,6 +237,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Scene\BattleScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System\IO\Animation.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\System\IO\Renderer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\IntroScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

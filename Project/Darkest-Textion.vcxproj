@@ -134,6 +134,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Scene\IntroScene.cpp" />
+    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
+    <ClCompile Include="src\System\IO\Renderer.cpp" />
+    <ClCompile Include="src\System\IO\Sprite.cpp" />
+    <ClCompile Include="src\System\IO\Animation.cpp" />
     <ClCompile Include="src\Game\Scene\BattleScene.cpp" />
     <ClCompile Include="src\Game\Scene\DungeonScene.cpp" />
     <ClCompile Include="src\System\IO\Image.cpp" />
@@ -146,13 +151,9 @@
     <ClCompile Include="src\Game\Item\Artifact\RareArtifact.cpp" />
     <ClCompile Include="src\Game\Item\Artifact\SnakeOil.cpp" />
     <ClCompile Include="src\Game\Scene\MainShopScene.cpp" />
-    <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
     <ClCompile Include="src\Game\Scene\DungeonInfoScene.cpp" />
     <ClCompile Include="src\Game\Scene\SelectDungeonScene.cpp" />
     <ClCompile Include="src\Game\Game.cpp" />
-    <ClCompile Include="src\System\IO\Renderer.cpp" />
-    <ClCompile Include="include\System\IO\Renderer.h" />
-    <ClCompile Include="src\Game\Scene\ShopScene.cpp" />
     <ClCompile Include="src\System\IO\InputEvent.cpp" />
     <ClCompile Include="src\Game\Character\Character.cpp" />
     <ClCompile Include="src\Game\Character\Player\Player.cpp" />
@@ -190,17 +191,19 @@
     <ClInclude Include="include\Game\Scene\BattleScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonInfoScene.h" />
     <ClInclude Include="include\Game\Scene\DungeonScene.h" />
+    <ClInclude Include="include\Game\Scene\IntroScene.h" />
     <ClInclude Include="include\Game\Scene\MainScene.h" />
     <ClInclude Include="include\Game\Scene\MainShopScene.h" />
     <ClInclude Include="include\Game\Scene\NewPlayerScene.h" />
     <ClInclude Include="include\Game\Scene\Scene.h" />
     <ClInclude Include="include\Game\Scene\SceneManager.h" />
     <ClInclude Include="include\Game\Scene\SelectDungeonScene.h" />
-    <ClInclude Include="include\Game\Scene\ShopScene.h" />
     <ClInclude Include="include\Game\Scene\TitleScene.h" />
     <ClInclude Include="include\Game\Shop\Shop.h" />
+    <ClInclude Include="include\System\IO\Animation.h" />
     <ClInclude Include="include\System\IO\Image.h" />
     <ClInclude Include="include\System\IO\InputEvent.h" />
+    <ClInclude Include="include\System\IO\Renderer.h" />
     <ClInclude Include="include\System\IO\Sprite.h" />
     <ClInclude Include="include\Utility\DesignPattern\Observer.h" />
     <ClInclude Include="include\Utility\DesignPattern\Singleton.h" />

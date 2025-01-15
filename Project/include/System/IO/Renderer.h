@@ -1,12 +1,6 @@
 #pragma once
-#include <unordered_map>
 #include <string>
-#include "DesignPattern/Singleton.h"
-#include "Global/ProjectEnum.h"
-#include "IO/Image.h"
 #include "IO/Sprite.h"
-#include "Vector2d.h"
-
 using namespace std;
 
 class Renderer {
@@ -30,7 +24,7 @@ public:
 	void DrawImage(Image* image);
 	void DrawImage(Image* image, const Vector2d &pos);
 	void ClearBuffer();
-	void FillBuffer();
+	void FillBuffer(float deltaTime);
 	void Render();
 
 	inline void AddBackground(string path) { background = new Image(path, width, height); };
