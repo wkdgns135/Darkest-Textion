@@ -53,9 +53,11 @@ void ShopScene::Enter()
 	shop = make_unique<Shop>();
 	shop->InitializeOnlyConsumable();
 
-
+	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
+	//goldPannel
+	Player* player = GameManager::GetInstance().GetPlayer();
 	string goldPannel = "drawable/Item/Gold.bmp";
 	//string goldPannel = "drawable/number/1.bmp";
 	Vector2d goldPannelLoc = { 20, 250 };
@@ -64,9 +66,12 @@ void ShopScene::Enter()
 	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
 	renderer->AddSprite(sprite);
 
-	PrintNumber(renderer, 40, { goldPannelLoc.x + 55, goldPannelLoc .y + 5});
+	//HERE : player 연결 시 바꾸기
+	//PrintNumber(renderer, player->GetGold(), { goldPannelLoc.x + 55, goldPannelLoc.y + 5 });
+	PrintNumber(renderer, 12354, {goldPannelLoc.x + 55, goldPannelLoc.y + 5});
 
 
+	//bind Input
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->InventoryTrigger(); });
 	//AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface(); });
 	////AddInputEvent(EKeyEvent::Key_3, []() {	GameManager::GetInstance().GetPlayer()->ShowInventory(); });
@@ -140,6 +145,7 @@ void ShopScene::OpenInventory()
 		Vector2d itemLoc = { itemInitalLoc.x + itemWidth*(i%8) + xPadding*2, itemInitalLoc.y + (i/8 > 0 ? itemHeight + yPadding*2 : 0)};
 		Sprite* sprite = new Sprite(itemImage, itemLoc, itemWidth, itemHeight);
 		renderer->AddSprite(sprite);
+		inventorySpriteCount += PrintNumber(renderer, item.second.GetCount(), { itemLoc.x + 2, itemLoc.y + 2 }, { 7, 15 });
 		inventorySpriteCount++;
 		i++;
 	}
@@ -165,4 +171,6 @@ void ShopScene::InventoryTrigger()
 	}
 	inventoryFlag = (inventoryFlag + 1) % 2;
 }
+
+
 
