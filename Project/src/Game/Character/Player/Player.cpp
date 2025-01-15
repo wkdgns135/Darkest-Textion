@@ -1,21 +1,31 @@
 #include <iostream>
 #include <string>
 #include <typeinfo>
+#include <cstdlib>
+#include <ctime>
 #include "Character/Player/Player.h"
 #include "Item/Item.h"
 #include "Item/Consumable/Consumable.h";
 #include "Item/Artifact/Artifact.h";
+
 
 using namespace std;
 
 #pragma region 생성자
 Player::Player(string name)
 {
+	mob = nullptr;
 	this->name = name;
+	additionalExp = 0;
+	additionalStress = 0;
 	level = 1;
 	health = currentHealth = 200;
+	criticalProbability = 10;
+	criticalDamage = 1.5f;
+	evasion = 10;
 	gold = 0;
 	damage = 30;
+	speed = 5;
 	exp = 0;
 	stress = 0;
 }
@@ -67,8 +77,15 @@ void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 {
 	if (IsDie())
 	{
-		currentHealth -= damage;
-		IsDie();
+		if (RandomProbability(10))
+		{
+			cout << "회피 성공!!" << endl;
+		}
+		else 
+		{
+			currentHealth -= damage;
+			IsDie();
+		}
 	}
 }
 
@@ -165,6 +182,70 @@ void Player::UnEquipItem(string name) //아이템을 장착 해제해서 다시 인벤토리로
 void Player::DeleteItem(string name)
 {
 	inventory.erase(name);
+}
+
+bool Player::RandomProbability(int num)
+{
+	srand((unsigned int)time(NULL));
+	int rnd = rand() % 100;
+
+	if (rnd < num)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+void Player::Skill1()
+{
+	if (RandomProbability(50))
+	{
+		//Todo : 몬스터의 스턴 함수를 불러온다
+	}
+	else 
+	{
+		cout << "공격에 실패했다!!" << endl;
+	}
+}
+void Player::Skill2()
+{
+	srand((unsigned int)time(NULL));
+	int rnd = rand() % 100;
+
+	currentHealth += rnd;
+	if (currentHealth > health)
+	{
+		currentHealth = health;
+	}
+}
+void Player::Skill3()
+{
+	mob->Hit(FinalDamage() * 2);
+}
+void Player::Skill4()
+{
+	srand((unsigned int)time(NULL));
+	int rnd = rand() % 100;
+	int damagernd = rnd * 0.1;
+
+	mob->Hit(FinalDamage() * damagernd);
+}
+
+int Player::FinalDamage()
+{
+	int finalDamage;
+	if (RandomProbability(criticalProbability))
+	{
+		cout << "치명타 발동" << endl;
+		finalDamage = damage * criticalDamage;
+	}
+	else
+	{
+		finalDamage = damage;
+	}
+	return finalDamage;
 }
 
 #pragma endregion 이벤트함수
