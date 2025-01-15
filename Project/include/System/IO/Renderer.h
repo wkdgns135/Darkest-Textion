@@ -30,7 +30,7 @@ public:
 	void Render();
 
 	inline void AddBackground(string path) { background = new Image(path, width, height); };
-	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); }; // Ä³¸¯ÅÍ³ª ÀÌÆåÆ®¿Í °°ÀÌ µ¿ÀûÀÎ ½ºÇÁ¶óÀÌÆ®¸¦ Ãß°¡ÇÕ´Ï´Ù.
-	inline void AddFixSprite(Sprite* sprite) { fixSprite.push_back(sprite); }; // UI¿Í °°ÀÌ Á¤ÀûÀÎ ½ºÇÁ¶óÀÌÆ®¸¦ Ãß°¡ÇÕ´Ï´Ù.
+	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); }; // Ä³ï¿½ï¿½ï¿½Í³ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
+	inline void AddFixSprite(Sprite* sprite) { fixSprite.push_back(sprite); }; // UIï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ß°ï¿½ï¿½Õ´Ï´ï¿½.
 	inline void ClearSprite() { drawSprite.clear(); };
 };
