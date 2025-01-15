@@ -1,5 +1,6 @@
 ﻿#include "Item/Artifact/HealthStone.h"
 #include "Character/Player/Player.h"
+#include "IO/Image.h"
 
 HealthStone::HealthStone()
 {
@@ -7,6 +8,7 @@ HealthStone::HealthStone()
 	price = 100;
 	rank = EArtifactRank::COMMON;
 	amount = 1;
+	imagePath = "drawable/Item/HealthStone.bmp";
 }
 
 void HealthStone::Attach(Player& player)

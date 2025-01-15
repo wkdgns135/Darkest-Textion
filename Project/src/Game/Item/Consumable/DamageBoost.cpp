@@ -6,6 +6,7 @@ DamageBoost::DamageBoost()
 	price = 5;
 	amount = 5;
 	duration = 5.f;
+	imagePath = "drawable/Item/DamageBoost.bmp";
 }
 
 void DamageBoost::Use(Player& player)
