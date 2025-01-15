@@ -37,6 +37,7 @@ public:
 
 	inline string GetName() const { return name; }
 	inline int GetHealth() const { return health; }
+	inline int GetCurrentHealth() const { return currentHealth; }
 	inline int GetDamage() const { return damage; }
 	inline int GetLevel() const { return level; }
 	inline int GetGold() const { return gold; }

@@ -24,6 +24,9 @@ void DungeonScene::InitBackground()
 void DungeonScene::Enter()
 {
 	InitBackground();
+	Sprite* nextRoom = new Sprite("drawable/Ui/NextRoom", { 0, 150 }, 100, 100);
+	Sprite* retreat = new Sprite("drawable/Ui/NextRoom", { 0, 150 }, 100, 100);
+
 }
 
 void DungeonScene::Update()
