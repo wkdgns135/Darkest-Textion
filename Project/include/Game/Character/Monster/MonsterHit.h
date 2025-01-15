@@ -11,6 +11,7 @@ public :
 	
 	void SetMonster(Monster* value) { monster = value; }
 	void HitByPlayer(int value, int damage, int randValue);
+	void HitByTick(int damage);
 	void SetReflectionTrigger(bool value) { isReflection = value; }
 
 private:

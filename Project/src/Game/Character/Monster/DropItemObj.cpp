@@ -12,9 +12,9 @@ Consumable* DropItemObj::GetConsumableItem(int index)
 {
 	int value = 100 / kindOfConsumable;
 
-	if (index <= value * 1) { return GetDamageBoost(); } //return 0 of Consumable Item List
-	else if (index <= value * 2) { return GetHealthPotion(); } //return 1 of Consumable Item List
-	else { return GetLaudanum(); } //return 2 of Consumable Item List
+	if (index <= value * 1) return GetDamageBoost();
+	else if (index <= value * 2) return GetHealthPotion();
+	else return GetLaudanum();
 
 	return nullptr;
 }

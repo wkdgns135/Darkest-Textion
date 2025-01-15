@@ -11,6 +11,8 @@ public:
 
 	void AttackToPlayer(int skillNum);
 	void SetMonsterType(Monster* value);
+	inline void SetRandomCritical(int value) { randomCritical = value; }
+	inline void SetRandomHit(int value) { randomHit = value; }
 
 	inline bool GetReflectionTrigger() { return isReflection; }
 	void SetAttackInfo(vector<vector<MonsterAttackInfo>> info);
@@ -29,6 +31,8 @@ private:
 	bool isReflection;
 	bool isDecreaseContinue;
 
+	int randomCritical;
+	int randomHit;
 	int originRealDamage;
 	int originHitRate;
 	int originAvoidRate;

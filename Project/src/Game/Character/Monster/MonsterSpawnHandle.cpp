@@ -60,14 +60,9 @@ Monster* MonsterSpawnHandle::GetRandomForestMonster()
 
 	switch (randValue)
 	{
-	case 0: return new ForestMonsterFungal();
-		break;
-
-	case 1: return new ForestMonsterGiant();
-		break;
-
-	case 2: return new ForestMonsterCrone();
-		break;
+	case 0: return new ForestMonsterFungal(); break;
+	case 1: return new ForestMonsterGiant(); break;
+	case 2: return new ForestMonsterCrone(); break;
 	}
 
 	return nullptr;
@@ -79,14 +74,9 @@ Monster* MonsterSpawnHandle::GetRandomSeasideMonster()
 
 	switch (randValue)
 	{
-	case 0: return new SeasideMonsterPelagic();
-		break;
-
-	case 1: return new SeasideMonsterStinger();
-		break;
-
-	case 2: return new SeasideMonsterThrall();
-		break;
+	case 0: return new SeasideMonsterPelagic(); break;
+	case 1: return new SeasideMonsterStinger(); break;
+	case 2: return new SeasideMonsterThrall(); break;
 	}
 
 	return nullptr;
@@ -98,20 +88,11 @@ Monster* MonsterSpawnHandle::GetRandomDarkestMonster()
 
 	switch (randValue)
 	{
-	case 0: return new DarkestMonsterWitch();
-		break;
-
-	case 1: return new DarkestMonsterHound();
-		break;
-
-	case 2: return new DarkestMonsterTemplar();
-		break;
-
-	case 3: return new DarkestMonsterCyst();
-		break;
-
-	case 4: return new DarkestMonsterHorror();
-		break;
+	case 0: return new DarkestMonsterWitch(); break;
+	case 1: return new DarkestMonsterHound(); break;
+	case 2: return new DarkestMonsterTemplar(); break;
+	case 3: return new DarkestMonsterCyst(); break;
+	case 4: return new DarkestMonsterHorror(); break;
 	}
 
 	return nullptr;
