@@ -6,7 +6,10 @@ enum EKeyEvent {
 	Key_3,
 	Key_4,
 	Key_ESC,
-	Key_A,
+	Key_Q,
+	Key_W,
+	Key_E,
+	Key_R,
 	Key_I,
 };
 

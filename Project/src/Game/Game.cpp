@@ -9,4 +9,5 @@ Game::Game()
 void Game::Start()
 {
 	sceneManager->ChangeScene<TitleScene>();
+	//sceneManager->ChangeScene<ShopScene>();
 }

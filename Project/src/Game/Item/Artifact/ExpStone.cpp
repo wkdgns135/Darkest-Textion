@@ -7,6 +7,7 @@ ExpStone::ExpStone()
 	price = 100;
 	rank = EArtifactRank::COMMON;
 	amount = 1;
+	imagePath = "drawable/Item/ExpStone.bmp";
 }
 
 void ExpStone::Attach(Player& player)

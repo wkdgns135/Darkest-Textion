@@ -1,61 +1,139 @@
 #include "GameManager.h"
 #include "Scene/BattleScene.h"
 #include "Character/Monster/MonsterSpawnHandle.h"
+#include "Scene/SceneManager.h"
 
 void BattleScene::ImportMonsterSprite()
 {
-	monsterAttack = new Sprite({ 250, 150 }, 100, 100);
-	monsterAttack->AddAnimation({
-		"drawable/SpriteSheet/Attack_0.bmp",
-		"drawable/SpriteSheet/Attack_1.bmp",
-		"drawable/SpriteSheet/Attack_2.bmp",
-		"drawable/SpriteSheet/Attack_3.bmp",
-		"drawable/SpriteSheet/Attack_4.bmp",
-		"drawable/SpriteSheet/Attack_5.bmp"
-		}, 0.1f);
+	monsterAttack = new Sprite({ 100, 50 }, 200, 200);
 
-	Sprite* monsterHp = new Sprite("drawable/Ui/MonsterHpText.bmp", {320, 0}, 100, 50);
-	renderer->AddFixSprite(monsterHp);
-	renderer->DrawNumber(monster->GetMaxHealth(), { 410, 0 }, 50, 50);
+	vector<string> sheetPath;
+	for (char i = '0'; i < '6'; i++) {
+		string path = "drawable/SpriteSheet/MonsterAttack_";
+		path += i;
+		path += ".bmp";
+		sheetPath.push_back(path);
+	}
+	monsterAttack->AddAnimation(sheetPath, 0.1f);
+
+	string monsterPath = "drawable/Monster/" + monster->GetName() + ".bmp";
+	Sprite* monsterSprite = new Sprite(monsterPath, {150, 0}, 200, 200);
+	renderer->AddFixSprite(monsterSprite);
 }
 
 void BattleScene::ImportPlayerSprite()
 {
-	Sprite *playerSkill = new Sprite("drawable/PlayerSkill.bmp", { 10, 250 }, 350, 50);
-	renderer->AddFixSprite(playerSkill);
+	playerAttack = new Sprite({ 150, 25 }, 150, 150);
+
+	vector<string> sheetPath;
+	for (char i = '0'; i < '6'; i++) {
+		string path = "drawable/SpriteSheet/Attack_";
+		path += i;
+		path += ".bmp";
+		sheetPath.push_back(path);
+	}
+	playerAttack->AddAnimation(sheetPath, 0.1f);
 }
 
 void BattleScene::ImportUiSprite()
 {
-	
+	// 동적인 스프라이트 생성
+	playerSkill = new Sprite("drawable/Ui/PlayerSkill.bmp", { 10, 240 }, 325, 60);
+	monsterTurn = new Sprite("drawable/Ui/MonsterTurn.bmp", { 0, 0 }, 100, 50);
+	playerTurn = new Sprite("drawable/Ui/PlayerTurn.bmp", { 0, 0 }, 100, 50);
+
+	// 정적인 스프라이트 생성
+	Sprite* Hp = new Sprite("drawable/Ui/HP.bmp", { 0, 200 }, 50, 50);
+	Sprite* Dmg = new Sprite("drawable/Ui/Dmg.bmp", { 100, 200 }, 50, 50);
+	Sprite* Str = new Sprite("drawable/Ui/STR.bmp", { 200, 200 }, 50, 50);
+	Sprite* monsterHp = new Sprite("drawable/Ui/MonsterHpText.bmp", { 320, 0 }, 100, 50);
+
+
+	renderer->AddFixSprite(Hp);
+	renderer->AddFixSprite(Dmg);
+	renderer->AddFixSprite(Str);
+	renderer->AddFixSprite(monsterHp);
 }
 
 void BattleScene::MonsterTurn()
-{
-	monster->Attack();
-	battleState = EMonsterAttack;
-	monsterAttack->animation->PlayOnce([this]() {this->PlayerTurn(); });
+{	
+	renderer->ClearSprite();
+	renderer->AddSprite(monsterAttack);
+	renderer->AddSprite(monsterTurn);
+	UpdateNumber();
 
+	monsterAttack->animation->PlayOnce([this]() {MonsterAttackFinish(); });
 }
 
 void BattleScene::PlayerTurn()
 {
-	InitInputEvent();
-	battleState = EStandbyInput;
+	EnableInputEvent();
+	renderer->ClearSprite();
+	renderer->AddSprite(playerSkill);
+	renderer->AddSprite(playerTurn);
+	UpdateNumber();
 }
 
-void BattleScene::InitInputEvent()
+void BattleScene::EnableInputEvent()
 {
-	AddInputEvent(Key_A, [this]() {PlayerAttack(); });
+	AddInputEvent(Key_Q, [this]() {this->PlayerAttack(1); });
+	AddInputEvent(Key_W, [this]() {this->PlayerAttack(2); });
+	AddInputEvent(Key_E, [this]() {this->PlayerAttack(3); });
+	AddInputEvent(Key_R, [this]() {this->PlayerAttack(4); });
 }
 
-void BattleScene::PlayerAttack()
+void BattleScene::PlayerAttack(int skillIndex)
 {
+	ClearEvent();
 	player->SetMonster(monster);
-	player->Attack();
-	battleState = EPlayerAttack;
-	
-	//TODO: 플레이어 공격 이펙트 애니메이션 재생 재생이 끝나면 몬스터 턴으로 전환
+	renderer->AddSprite(playerAttack);
+	playerAttack->animation->PlayOnce([this, skillIndex]() {PlayerAttackFinish(skillIndex); });
+}
+
+void BattleScene::PlayerAttackFinish(int skillIndex)
+{
+	switch (skillIndex)
+	{
+		case 1: player->Skill1(); break;
+		case 2: player->Skill2(); break;
+		case 3: player->Skill3(); break;
+		case 4: player->Skill4(); break;
+		default:break;
+	}
+
+	if (monster->GetCurrentHealth() <= 0) {
+		monster->Die();
+		SceneManager::GetInstance().ChangeScene<DungeonScene>();
+	}else this->MonsterTurn();
+}
+
+void BattleScene::MonsterAttackFinish()
+{
+	monster->Attack();
+	if (player->GetCurrentHealth() <= 0) {
+		//TODO: 나중에 게임 오버 씬 추가해서 넘어가도록
+		SceneManager::GetInstance().ChangeScene<TitleScene>();
+	}
+	else {
+		if (player->GetStress() >= 100) {
+			//TODO: 스트레스 100 이상시 붕괴 효과
+		}
+		else if (player->GetStress() >= 200) {
+			//TODO: 나중에 게임 오버 씬 추가해서 넘어가도록
+			SceneManager::GetInstance().ChangeScene<TitleScene>();
+		}
+		else {
+			this->PlayerTurn();
+		}
+	}
+}
+
+void BattleScene::UpdateNumber()
+{
+	renderer->DrawNumber(player->GetCurrentHealth(), { 50, 200 }, 25, 50);
+	renderer->DrawNumber(player->GetDamage(), { 150, 200 }, 25, 50);
+	renderer->DrawNumber(player->GetStress(), { 250, 200 }, 25, 50);
+	renderer->DrawNumber(monster->GetCurrentHealth(), { 410, 0 }, 50, 50);
 }
 
 void BattleScene::Enter()
@@ -67,19 +145,19 @@ void BattleScene::Enter()
 	MonsterSpawnHandle monsterSpawner;
 	monster = monsterSpawner.GetSpawnMonsterByDungeonLevel(gameManager.GetCurrentDungeon());
 
+	ImportUiSprite();
 	ImportMonsterSprite();
 	ImportPlayerSprite();
-	ImportUiSprite();
 
-	//if (player->GetSpeed() < monster->GetSpeed()) {
-	//	battleState = EMonsterAttack;
-	//	MonsterTurn();
-	//}
-	//else {
-	//	battleState = EPlayerAttack;
-	//	PlayerTurn();
-	//}
-	MonsterTurn();
+	if (player->GetSpeed() < monster->GetSpeed()) {
+		battleState = EMonsterAttack;
+		MonsterTurn();
+	}
+	else {
+		battleState = EPlayerAttack;
+		PlayerTurn();
+	}
+	
 }
 
 void BattleScene::Update()
@@ -92,4 +170,6 @@ void BattleScene::Exit()
 	DungeonScene::Exit();
 
 	delete monsterAttack;
+	delete playerTurn;
+	delete monsterTurn;
 }

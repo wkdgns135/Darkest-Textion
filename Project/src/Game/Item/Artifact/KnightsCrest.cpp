@@ -7,6 +7,7 @@ KnightsCrest::KnightsCrest()
 	price = 100;
 	rank = EArtifactRank::COMMON;
 	amount = 10;
+	imagePath = "drawable/Item/KnightsCrest.bmp";
 }
 
 void KnightsCrest::Attach(Player& player)

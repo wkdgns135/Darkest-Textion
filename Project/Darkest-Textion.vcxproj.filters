@@ -42,9 +42,6 @@
     <ClCompile Include="src\Game\Scene\TitleScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game\Shop\Shop.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="src\Game\GameManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -145,6 +142,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="src\Game\Scene\TreasureScene.cpp">
+          <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Shop\Shop.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game\Scene\ShopScene.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
@@ -195,9 +198,6 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Scene\TitleScene.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="include\Game\Shop\Shop.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\GameManager.h">
@@ -317,5 +317,73 @@
     <ClInclude Include="include\Game\Scene\TreasureScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="include\Game\Shop\Shop.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\ShopScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="drawable\background\Inventory.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\background\ShopBackground.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\background\ShopBackground2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\DamageBoost.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\ExpStone.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\HealthPotion.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\HealthStone.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\KnightsCrest.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\Laudanum.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\Item\SnakeOil.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\0.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\1.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\2.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\3.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\4.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\5.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\6.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\7.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\8.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="drawable\number\9.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

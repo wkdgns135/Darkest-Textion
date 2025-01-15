@@ -8,7 +8,7 @@
 #include "Item/Consumable/Consumable.h";
 #include "Item/Artifact/Artifact.h";
 #include "Character/Monster/Monster.h"
-
+#include "Utility.h"
 
 using namespace std;
 
@@ -78,7 +78,7 @@ void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 {
 	if (IsDie())
 	{
-		if (RandomProbability(10))
+		if (GetRandomValue(0, 100) <= 10)
 		{
 			cout << "회피 성공!!" << endl;
 		}
@@ -202,7 +202,7 @@ void Player::Skill1()
 	if (RandomProbability(50))
 	{
 		//Todo : 몬스터의 스턴 함수를 불러온다
-		mob->SetStateSturnToMonster(3);
+		mob->SetStateSturnToMonster(1);
 		mob->Hit(FinalDamage());
 	}
 	else 
