@@ -6,26 +6,20 @@
 class ShopScene : public Scene {
 private:
 	unique_ptr<Shop> shop;
-
-	int cursor;
 	vector<Vector2d> cursorLoc;
-	bool inventoryFlag;
+	int cursor;
 
-	void ShowGoldPannel();
-
-	void Sell();
-	void Purchase();
 	void SetPurchaseMode();
 	void SetSellMode();
-	void MoveCursor(int direction);
-	void MoveCursorRight();
-public:
-	ShopScene();
+
+	void DisplayShopItems();
+	void ShowGoldPannel();
 	void ShowInventory();
 	void ShowCursor();
-	void CloseInventory();
+	void MoveCursor(int direction);
+public:
+	ShopScene();
 	void Enter() override;
 	void Update() override;
 	void Exit() override;
-	void InventoryTrigger();
 };

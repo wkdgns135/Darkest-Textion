@@ -15,37 +15,10 @@
 using namespace std;
 
 
-int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
-	int addCount = 0;
-	
-	//���ڿ��� ��ȯ
-	string strNum = to_string(number);
-
-	//sprite �߰�
-	string imagePath = "drawable/number/*.bmp";
-	int insertPoint = imagePath.find_first_of("*");
-	char a = 'd';
-	const char* b = &a;
-	int i = 0;
-	for (char e : strNum)
-	{
-		string num = to_string(e - '0');
-		string numImage = imagePath.replace(insertPoint, 1, num);
-		int numWidth = size.x;
-		int numHeight = size.y;
-		Vector2d numLoc = { initLoc.x + numWidth * i, initLoc.y };
-		Sprite* sprite = new Sprite(numImage, numLoc, numWidth, numHeight);
-		renderer->AddSprite(sprite);
-		addCount++;
-		i++;
-	}
-	return addCount;
-}
 
 ShopScene::ShopScene()
 {
 	cursor = 0;
-	inventoryFlag = false;
 }
 
 void ShopScene::Enter()
@@ -56,23 +29,14 @@ void ShopScene::Enter()
 	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
-	DisplayShopItems();
 
 	//goldPannel
 	ShowGoldPannel();
 
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->InventoryTrigger(); });
 
 	SetPurchaseMode();
 
 
-	//item Input
-	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->PurchaseItem(1, 1); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->PurchaseItem(2, 1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->PurchaseItem(3, 1); });
-	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->SellItem(1, 1); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->SellItem(2, 1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->SellItem(3, 1); });
 }
 
 void ShopScene::Update()
@@ -147,10 +111,6 @@ void ShopScene::ShowInventory()
 	}
 }
 
-void ShopScene::CloseInventory() {
-	renderer->ClearSprite();
-	ShowGoldPannel();
-}
 
 void ShopScene::ShowGoldPannel()
 {
@@ -162,31 +122,12 @@ void ShopScene::ShowGoldPannel()
 	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
 	renderer->AddSprite(sprite);
 
-	//HERE : player ���� �� �ٲٱ�
-	renderer->DrawNumber(12345, { goldPannelLoc.x + 55, goldPannelLoc.y + 5 }, 20, 35);
+	renderer->DrawNumber(1234/*player->GetGold()*/, {goldPannelLoc.x + 55, goldPannelLoc.y + 5}, 20, 35);
 }
 
 
-void ShopScene::InventoryTrigger()
-{
-	if (inventoryFlag)
-	{
-		CloseInventory();
-	}
-	else
-	{
-		ShowInventory();
-	}
-	inventoryFlag = (inventoryFlag + 1) % 2;
-}
 
-// ���ο� �Լ� �߰�: ���� �����۵��� ȭ�鿡 ǥ��
-void ShopScene::DisplayShopItems()
-{
-	// ������ �̹��� ��� ����
-	string healthPotionPath = "drawable/Item/HealthPotion.bmp";
-	string laudanumPath = "drawable/Item/Laudanum.bmp";
-	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
+
 
 void ShopScene::SetPurchaseMode() 
 {
@@ -194,14 +135,16 @@ void ShopScene::SetPurchaseMode()
 
 	renderer->ClearSprite();
 	ShowGoldPannel();
+	DisplayShopItems();
 
-	cursorLoc = { {50, 50}, {100, 50}, {150, 50} };
+
+	cursorLoc = { { 260, 0 }, { 299, 0 }, { 338, 0 } };
 	cursor = 0;
 	ShowCursor();
 
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
 	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->Purchase(3, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->PurchaseItem(cursor, 1); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetSellMode(); });
 	
 
@@ -213,6 +156,7 @@ void ShopScene::SetSellMode()
 
 	renderer->ClearSprite();
 	ShowGoldPannel();
+	DisplayShopItems();
 	ShowInventory();
 
 	cursor = 0;
@@ -220,7 +164,7 @@ void ShopScene::SetSellMode()
 
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
 	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->Purchase(1, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->SellItem(cursor, 1); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetPurchaseMode(); });
 
 }
@@ -247,12 +191,18 @@ void ShopScene::ShowCursor()
 {
 	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
 	renderer->AddSprite(sprite);
-	// �� �������� ��ġ ���� (���� ���)
+}
+
+void ShopScene::DisplayShopItems()
+{
+	string healthPotionPath = "drawable/Item/HealthPotion.bmp";
+	string laudanumPath = "drawable/Item/Laudanum.bmp";
+	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
+	
 	Vector2d healthPotionPos = { 260, 0 };
 	Vector2d laudanumPos = { 299, 0 };
 	Vector2d damageBoostPos = { 338, 0 };
 
-	// ��������Ʈ ���� �� �������� �߰�
 	Sprite* healthPotionSprite = new Sprite(healthPotionPath, healthPotionPos, 34, 67);
 	Sprite* laudanumSprite = new Sprite(laudanumPath, laudanumPos, 34, 67);
 	Sprite* damageBoostSprite = new Sprite(damageBoostPath, damageBoostPos, 34, 67);
@@ -261,12 +211,14 @@ void ShopScene::ShowCursor()
 	renderer->AddSprite(laudanumSprite);
 	renderer->AddSprite(damageBoostSprite);
 
-	// �������� ���� ��������
 	Item* healthPotion = new HealthPotion();
 	Item* damageboost = new DamageBoost();
 	Item* laudanum = new Laudanum();
 
-	PrintNumber(renderer, healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 });
-	PrintNumber(renderer, damageboost->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 });
-	PrintNumber(renderer, laudanum->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 });
+	
+
+
+	renderer->DrawNumber(healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 }, 10, 30);
+	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 10, 30);
+	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 10, 30);
 }
