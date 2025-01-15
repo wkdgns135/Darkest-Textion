@@ -18,6 +18,7 @@ void ForestMonsterFungal::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 10;
 
 	switch (rank)
 	{
@@ -38,12 +39,15 @@ void ForestMonsterFungal::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 10;
+
+	hitRate = 70 + rank * 10;
+	avoidRate = rank * 10;
+	criticalRate = 6 + rank * 3;
+	speed = rank * 1;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 3;
-	avoidRate += rank * 2;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -80,6 +84,7 @@ void ForestMonsterGiant::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 11;
 
 	switch (rank)
 	{
@@ -100,12 +105,15 @@ void ForestMonsterGiant::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 11;
+	
+	hitRate = 80 + rank * 10;
+	avoidRate = rank * 10;
+	criticalRate = 6 + rank * 6;
+	speed = rank * 1;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 4;
-	avoidRate += rank * 4;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -142,6 +150,7 @@ void ForestMonsterCrone::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 12;
 
 	switch (rank)
 	{
@@ -162,12 +171,15 @@ void ForestMonsterCrone::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 12;
+
+	hitRate = 80 + rank * 10;
+	avoidRate = 10 + rank * 15;
+	criticalRate = 6 + rank * 1;
+	speed = rank + 8;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
