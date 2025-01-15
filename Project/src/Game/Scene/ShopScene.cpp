@@ -131,7 +131,7 @@ void ShopScene::ShowGoldPannel()
 
 void ShopScene::SetPurchaseMode() 
 {
-	ClearInputEvent();
+	ClearEvent();
 
 	renderer->ClearSprite();
 	ShowGoldPannel();
@@ -152,7 +152,7 @@ void ShopScene::SetPurchaseMode()
 
 void ShopScene::SetSellMode()
 {
-	ClearInputEvent();
+	ClearEvent();
 
 	renderer->ClearSprite();
 	ShowGoldPannel();
