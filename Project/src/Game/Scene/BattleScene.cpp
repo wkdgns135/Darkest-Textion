@@ -4,7 +4,9 @@
 void BattleScene::Enter()
 {
 	DungeonScene::Enter();
-
+	
+	player = GameManager::GetInstance().GetPlayer();
+	monster = 
 }
 
 void BattleScene::Update()
