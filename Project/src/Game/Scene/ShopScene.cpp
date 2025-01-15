@@ -11,9 +11,36 @@
 #include "Item/Consumable/DamageBoost.h"
 #include "Item/Consumable/Laudanum.h"
 #include "Item/Artifact/RareArtifact.h"
-
+#include <string>
 using namespace std;
 
+
+int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
+	int addCount = 0;
+	
+	//문자열로 변환
+	string strNum = to_string(number);
+
+	//sprite 추가
+	string imagePath = "drawable/number/*.bmp";
+	int insertPoint = imagePath.find_first_of("*");
+	char a = 'd';
+	const char* b = &a;
+	int i = 0;
+	for (char e : strNum)
+	{
+		string num = to_string(e - '0');
+		string numImage = imagePath.replace(insertPoint, 1, num);
+		int numWidth = size.x;
+		int numHeight = size.y;
+		Vector2d numLoc = { initLoc.x + numWidth * i, initLoc.y };
+		Sprite* sprite = new Sprite(numImage, numLoc, numWidth, numHeight);
+		renderer->AddSprite(sprite);
+		addCount++;
+		i++;
+	}
+	return addCount;
+}
 
 ShopScene::ShopScene()
 {
@@ -28,14 +55,16 @@ void ShopScene::Enter()
 
 
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
+
 	string goldPannel = "drawable/Item/Gold.bmp";
+	//string goldPannel = "drawable/number/1.bmp";
 	Vector2d goldPannelLoc = { 20, 250 };
 	int goldPannelWidth = 120;
 	int goldPannelHeight = 40;
 	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
 	renderer->AddSprite(sprite);
 
-
+	PrintNumber(renderer, 40, { goldPannelLoc.x + 55, goldPannelLoc .y + 5});
 
 
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->InventoryTrigger(); });
@@ -52,31 +81,6 @@ void ShopScene::Update()
 
 void ShopScene::Exit()
 {
-
-}
-
-void ShopScene::ShowPurchaseInterface()
-{
-	int itemIdx;
-	int count;
-	Player* player = new Player("Tester");
-	cout << "구매할 물건번호: ";
-	cin >> itemIdx;
-	cout << "개수: ";
-	cin >> count;
-	shop->PurchaseItem(itemIdx, count);
-}
-
-void ShopScene::ShowSellInterface()
-{
-	int itemIdx;
-	int count;
-	Player* player = new Player("Tester");
-	cin.ignore(10);
-	cout << "판매할 물건번호: ";
-	cin >> itemIdx;
-	cout << "개수: ";
-	cin >> count;
 
 }
 
@@ -161,3 +165,4 @@ void ShopScene::InventoryTrigger()
 	}
 	inventoryFlag = (inventoryFlag + 1) % 2;
 }
+
