@@ -11,6 +11,7 @@ private:
 
 	void OpenInventory();
 	void CloseInventory();
+	void DisplayShopItems();
 public:
 	ShopScene();
 	void Enter() override;

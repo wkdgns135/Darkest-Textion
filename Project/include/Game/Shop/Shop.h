@@ -30,8 +30,8 @@ class Shop
 		Shop();
 		void InitalizeWithRandomItem();
 		void InitializeOnlyConsumable();
-		void PurchaseItem(int index, int count);
-		void SellItem(int index, int count);
+		bool PurchaseItem(int index, int count);
+		bool SellItem(int index, int count);
 		void ShowItemList();
 		inline Item* GetItem(int index) const { auto e = itemlist.find(index); return e->second; };
 

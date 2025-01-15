@@ -56,6 +56,8 @@ void ShopScene::Enter()
 	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
+	DisplayShopItems();
+
 	//goldPannel
 	Player* player = GameManager::GetInstance().GetPlayer();
 	string goldPannel = "drawable/Item/Gold.bmp";
@@ -77,6 +79,13 @@ void ShopScene::Enter()
 	////AddInputEvent(EKeyEvent::Key_3, []() {	GameManager::GetInstance().GetPlayer()->ShowInventory(); });
 	//AddInputEvent(EKeyEvent::Key_3, [this]() {this->ShowSellInterface(); });
 
+	//item Input
+	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->PurchaseItem(1, 1); });
+	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->PurchaseItem(2, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->PurchaseItem(3, 1); });
+	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->SellItem(1, 1); });
+	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->SellItem(2, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->SellItem(3, 1); });
 }
 
 void ShopScene::Update()
@@ -154,7 +163,7 @@ void ShopScene::OpenInventory()
 void ShopScene::CloseInventory() {
 	for (int i = 0; i < inventorySpriteCount; i++)
 	{
-		renderer->RemoveSprite();
+		renderer->ClearSprite();
 	}
 	inventorySpriteCount = 0;
 }
@@ -172,5 +181,34 @@ void ShopScene::InventoryTrigger()
 	inventoryFlag = (inventoryFlag + 1) % 2;
 }
 
+// 새로운 함수 추가: 상점 아이템들을 화면에 표시
+void ShopScene::DisplayShopItems()
+{
+	// 아이템 이미지 경로 정의
+	string healthPotionPath = "drawable/Item/HealthPotion.bmp";
+	string laudanumPath = "drawable/Item/Laudanum.bmp";
+	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
 
+	// 각 아이템의 위치 정의 (우측 상단)
+	Vector2d healthPotionPos = { 260, 0 };
+	Vector2d laudanumPos = { 299, 0 };
+	Vector2d damageBoostPos = { 338, 0 };
 
+	// 스프라이트 생성 및 렌더러에 추가
+	Sprite* healthPotionSprite = new Sprite(healthPotionPath, healthPotionPos, 34, 67);
+	Sprite* laudanumSprite = new Sprite(laudanumPath, laudanumPos, 34, 67);
+	Sprite* damageBoostSprite = new Sprite(damageBoostPath, damageBoostPos, 34, 67);
+
+	renderer->AddSprite(healthPotionSprite);
+	renderer->AddSprite(laudanumSprite);
+	renderer->AddSprite(damageBoostSprite);
+
+	// 아이템의 가격 가져오기
+	Item* healthPotion = new HealthPotion();
+	Item* damageboost = new DamageBoost();
+	Item* laudanum = new Laudanum();
+
+	PrintNumber(renderer, healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 });
+	PrintNumber(renderer, damageboost->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 });
+	PrintNumber(renderer, laudanum->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 });
+}
