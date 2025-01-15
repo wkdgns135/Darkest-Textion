@@ -6,13 +6,18 @@
 class ShopScene : public Scene {
 private:
 	unique_ptr<Shop> shop;
-	Sprite *holywater;
+	int inventorySpriteCount;
+	bool inventoryFlag;
+
 
 	void ShowPurchaseInterface();
 	void ShowSellInterface();
-	void ShowInventory() const;
+	void OpenInventory();
+	void CloseInventory();
 public:
+	ShopScene();
 	void Enter() override;
 	void Update() override;
 	void Exit() override;
+	void InventoryTrigger();
 };
