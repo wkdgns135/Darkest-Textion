@@ -18,10 +18,10 @@ using namespace std;
 int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Vector2d size = { 10, 30 }) {
 	int addCount = 0;
 	
-	//¹®ÀÚ¿­·Î º¯È¯
+	//ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 	string strNum = to_string(number);
 
-	//sprite Ãß°¡
+	//sprite ï¿½ß°ï¿½
 	string imagePath = "drawable/number/*.bmp";
 	int insertPoint = imagePath.find_first_of("*");
 	char a = 'd';
@@ -56,6 +56,8 @@ void ShopScene::Enter()
 	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
+	DisplayShopItems();
+
 	//goldPannel
 	ShowGoldPannel();
 
@@ -64,6 +66,13 @@ void ShopScene::Enter()
 	SetPurchaseMode();
 
 
+	//item Input
+	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->PurchaseItem(1, 1); });
+	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->PurchaseItem(2, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->PurchaseItem(3, 1); });
+	//AddInputEvent(EKeyEvent::Key_1, [this]() { shop->SellItem(1, 1); });
+	//AddInputEvent(EKeyEvent::Key_2, [this]() { shop->SellItem(2, 1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { shop->SellItem(3, 1); });
 }
 
 void ShopScene::Update()
@@ -153,7 +162,7 @@ void ShopScene::ShowGoldPannel()
 	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
 	renderer->AddSprite(sprite);
 
-	//HERE : player ¿¬°á ½Ã ¹Ù²Ù±â
+	//HERE : player ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ù²Ù±ï¿½
 	renderer->DrawNumber(12345, { goldPannelLoc.x + 55, goldPannelLoc.y + 5 }, 20, 35);
 }
 
@@ -171,6 +180,13 @@ void ShopScene::InventoryTrigger()
 	inventoryFlag = (inventoryFlag + 1) % 2;
 }
 
+// ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½Ô¼ï¿½ ï¿½ß°ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ È­ï¿½é¿¡ Ç¥ï¿½ï¿½
+void ShopScene::DisplayShopItems()
+{
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	string healthPotionPath = "drawable/Item/HealthPotion.bmp";
+	string laudanumPath = "drawable/Item/Laudanum.bmp";
+	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
 
 void ShopScene::SetPurchaseMode() 
 {
@@ -231,4 +247,26 @@ void ShopScene::ShowCursor()
 {
 	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
 	renderer->AddSprite(sprite);
+	// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+	Vector2d healthPotionPos = { 260, 0 };
+	Vector2d laudanumPos = { 299, 0 };
+	Vector2d damageBoostPos = { 338, 0 };
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+	Sprite* healthPotionSprite = new Sprite(healthPotionPath, healthPotionPos, 34, 67);
+	Sprite* laudanumSprite = new Sprite(laudanumPath, laudanumPos, 34, 67);
+	Sprite* damageBoostSprite = new Sprite(damageBoostPath, damageBoostPos, 34, 67);
+
+	renderer->AddSprite(healthPotionSprite);
+	renderer->AddSprite(laudanumSprite);
+	renderer->AddSprite(damageBoostSprite);
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	Item* healthPotion = new HealthPotion();
+	Item* damageboost = new DamageBoost();
+	Item* laudanum = new Laudanum();
+
+	PrintNumber(renderer, healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 });
+	PrintNumber(renderer, damageboost->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 });
+	PrintNumber(renderer, laudanum->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 });
 }
