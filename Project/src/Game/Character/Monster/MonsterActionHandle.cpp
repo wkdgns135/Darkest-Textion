@@ -15,9 +15,11 @@ MonsterActionHandle::~MonsterActionHandle()
 	monsterHit = nullptr;
 }
 
-void MonsterActionHandle::Attack(int value)
+void MonsterActionHandle::Attack(int skillNum, int critical, int hitValue)
 {
-	monsterAttack->AttackToPlayer(value);
+	monsterAttack->SetRandomHit(hitValue);
+	monsterAttack->SetRandomCritical(critical);
+	monsterAttack->AttackToPlayer(skillNum);
 }
 
 void MonsterActionHandle::Hit(int value, int damage, int randValue)

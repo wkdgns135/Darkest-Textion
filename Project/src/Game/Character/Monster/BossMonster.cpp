@@ -18,6 +18,7 @@ void BossMonsterHeart::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 5;
+	monsterType = 42;
 	name = "어둠의 심장(Heart of Darkness)";
 
 	Magnification();
@@ -26,13 +27,16 @@ void BossMonsterHeart::InitializeByDungeonLevel()
 	health *= 2.0f;
 	damage *= 2.0f;
 	currentHealth = health;
-	monsterType = 42;
-	minDropValue += rank * 10;
-	artifactRate += rank * 6;
-	maxItemRank += rank * 15;
-	hitRate += rank * 6;
-	avoidRate += rank * 4;
-	maxItemCount += rank / 2;
+
+	hitRate = 113;
+	avoidRate = 23;
+	criticalRate = 12;
+	speed = 10;
+
+	minDropValue = 50;
+	artifactRate = 30;
+	maxItemRank = 100;
+	maxItemCount = 4;
 }
 
 void BossMonsterHeart::SetAttackInfo()
@@ -41,7 +45,7 @@ void BossMonsterHeart::SetAttackInfo()
 	vector<MonsterAttackInfo> skill1 = { MonsterAttackInfo("용해", 3, 0, 1.5f), MonsterAttackInfo("용해", 3, 3, 1.5f, 2) }; //공격력 150% 만큼 노멀 공격, 공격력 150% 만큼 중독 공격. 쿨 3, 지속 2
 	vector<MonsterAttackInfo> skill2 = { MonsterAttackInfo("알지어다", 4, 0, 1.5f), MonsterAttackInfo("알지어다", 4, 1, 30) }; //공격력 150% 만큼 노멀 공격, 플레이어 스트레스 30 증가. 쿨 4, 지속 0
 	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("네 조물주에게 오라", 10, 0, player->GetHealth()) }; //즉사(죽음의 일격). 쿨 10 지속 0
-	//player->GetHealth()로 변경 필요 (skill3)
+
 	attackInfo.push_back(skill0);
 	attackInfo.push_back(skill1);
 	attackInfo.push_back(skill2);
@@ -71,6 +75,7 @@ void BossMonsterSiren::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 4;
+	monsterType = 41;
 	name = "유혹의 세이렌(Alluring Siren)";
 
 	Magnification();
@@ -79,13 +84,16 @@ void BossMonsterSiren::InitializeByDungeonLevel()
 	health *= 1.6f;
 	damage *= 1.6f;
 	currentHealth = health;
-	monsterType = 41;
-	minDropValue += rank * 10;
-	artifactRate += rank * 5;
-	maxItemRank += rank * 14;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
-	maxItemCount += rank / 2;
+
+	hitRate = 90;
+	avoidRate = 21;
+	criticalRate = 6;
+	speed = 6;
+
+	minDropValue = 40;
+	artifactRate = 25;
+	maxItemRank = 95;
+	maxItemCount = 3;
 }
 
 void BossMonsterSiren::SetAttackInfo()
@@ -124,6 +132,7 @@ void BossMonsterHag::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 3;
+	monsterType = 40;
 	name = "쭈그렁 마귀할멈(Wizened Hag)";
 
 	Magnification();
@@ -132,13 +141,16 @@ void BossMonsterHag::InitializeByDungeonLevel()
 	health *= 1.2f;
 	damage *= 1.2f;
 	currentHealth = health;
-	monsterType = 40;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
-	maxItemRank += rank * 13;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
-	maxItemCount += rank / 2;
+
+	hitRate = 95;
+	avoidRate = 5;
+	criticalRate = 6;
+	speed = 5;
+
+	minDropValue = 30;
+	artifactRate = 20;
+	maxItemRank = 90;
+	maxItemCount = 3;
 }
 
 void BossMonsterHag::SetAttackInfo()
@@ -147,7 +159,7 @@ void BossMonsterHag::SetAttackInfo()
 	vector<MonsterAttackInfo> skill1 = { MonsterAttackInfo("마무리 양념", 3, 0, 0.7f), MonsterAttackInfo("마무리 양념", 3, 1, 10) }; //공격력 70% 만큼 노멀 공격, 플레이어 스트레스 10 증가. 쿨 3, 지속 0
 	vector<MonsterAttackInfo> skill2 = { MonsterAttackInfo("스튜 맛보기", 5, 0, 0.5f), MonsterAttackInfo("스튜 맛보기", 5, 2, 0.1f, 0, 4), MonsterAttackInfo("스튜 맛보기", 5, 1, 10) }; //공격력 50% 만큼 노멀 공격, 현재 체력 10% 증가, 플레이어 스트레스 10 증가. 쿨 5, 지속 0
 	vector<MonsterAttackInfo> skill3 = { MonsterAttackInfo("솥 안에 들어가!", 10, 3, player->GetHealth() / damage, 5) }; //. 매 턴 플레이어 최대 체력의 8% 만큼 공격. 쿨 10 지속 5
-	//player->GetHealth()로 변경 필요 (skill 3)
+
 	attackInfo.push_back(skill0);
 	attackInfo.push_back(skill1);
 	attackInfo.push_back(skill2);

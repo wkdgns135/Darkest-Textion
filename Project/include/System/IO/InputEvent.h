@@ -14,5 +14,6 @@ private:
 
 public:
 	void AddEvent(const EKeyEvent& key, function<void()>&& Callback, function<void()>&& Complete = nullptr);
+	void ClearEvent();
 	void ProcessEvents();
 };

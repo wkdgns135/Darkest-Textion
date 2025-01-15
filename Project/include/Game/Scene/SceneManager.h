@@ -7,7 +7,9 @@
 #include "SelectDungeonScene.h"
 #include "DungeonInfoScene.h"
 #include "NewPlayerScene.h"
-
+#include "DungeonScene.h"
+#include "BattleScene.h"
+#include "IntroScene.h"
 #include "ShopScene.h"
 
 using namespace std;

@@ -63,7 +63,7 @@ void MonsterAttack::SetAttackInfo(vector<vector<MonsterAttackInfo>> info)
 			else
 			{
 				skillInfo3.push_back(attackInfoByMonster[i][j]);
-				skillInfo3[j].SetCoolDownZero();
+				skillInfo3[j].SetCoolDown(3);
 				skillInfo3[j].SetSkillCounterZero();
 			}
 		}
@@ -72,11 +72,7 @@ void MonsterAttack::SetAttackInfo(vector<vector<MonsterAttackInfo>> info)
 
 void MonsterAttack::AttackToPlayer(int skillNum)
 {
-	if (isDecreaseContinue)
-	{
-		//cout << "It is Tick Damage ";
-		DecreasePlayerHealth(decreaseValue, true);
-	}
+	if (isDecreaseContinue) player->Hit(monster->GetDamage() * decreaseValue);
 
 	for (int i = 0; i < skillInfo0.size(); i++)
 	{
@@ -111,35 +107,28 @@ void MonsterAttack::AttackToPlayer(int skillNum)
 	if (skillInfo1[0].GetCoolDown() > 0) skillInfo1[0].DecreaseCoolDown();
 	if (skillInfo2[0].GetCoolDown() > 0) skillInfo2[0].DecreaseCoolDown();
 	
-	switch (skillNum)
+
+	if (!monster->GetBoolSturn())
 	{
-	case 0:
-		NormalAttack();
-		break;
-
-	case 1:
-		FirstSkillAttack();
-		break;
-
-	case 2:
-		SecondSkillAttack();
-		break;
-
-	case 3:
-		FinalSkillAttack();
-		break;
+		switch (skillNum)
+		{
+		case 0: NormalAttack(); break;
+		case 1: FirstSkillAttack(); break;
+		case 2: SecondSkillAttack(); break;
+		case 3: FinalSkillAttack(); break;
+		}
 	}
+	
+	if (monster->GetTurnOfSturn() > 0) monster->DecreaseTurnOfSturn();
+	if (monster->GetBoolSturn() && monster->GetTurnOfSturn() == 0) monster->SetBoolSturn(false);
 }
 
 void MonsterAttack::NormalAttack()
 {
-	if (skillInfo0[0].GetCoolDown() > 0)
-	{
-		//cout << "Skill 0 is cooldown. Not Action." << endl;
-		return;
-	}
-	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo0[0].GetName() << endl;
+	if (skillInfo0[0].GetCoolDown() > 0) return;
+
 	monster->SetCurrentSkillName(skillInfo0[0].GetName());
+
 	for (int i = 0; i < skillInfo0.size(); i++)
 	{
 		skillInfo0[i].SetCoolDown(attackInfoByMonster[0][i].GetCoolDown());
@@ -153,11 +142,11 @@ void MonsterAttack::FirstSkillAttack()
 	if (skillInfo1[0].GetCoolDown() > 0)
 	{
 		NormalAttack();
-		//cout << "Skill 1 is cooldown. Change skill Num 0" << endl;
 		return;
 	}
-	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo1[0].GetName() << endl;
+
 	monster->SetCurrentSkillName(skillInfo1[0].GetName());
+
 	for (int i = 0; i < skillInfo1.size(); i++)
 	{
 		skillInfo1[i].SetCoolDown(attackInfoByMonster[1][i].GetCoolDown());
@@ -171,11 +160,11 @@ void MonsterAttack::SecondSkillAttack()
 	if (skillInfo2[0].GetCoolDown() > 0)
 	{
 		FirstSkillAttack();
-		//cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
 		return;
 	}
-	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo2[0].GetName() << endl;
+
 	monster->SetCurrentSkillName(skillInfo2[0].GetName());
+
 	for (int i = 0; i < skillInfo2.size(); i++)
 	{
 		skillInfo2[i].SetCoolDown(attackInfoByMonster[2][i].GetCoolDown());
@@ -189,11 +178,11 @@ void MonsterAttack::FinalSkillAttack()
 	if (skillInfo3[0].GetCoolDown() > 0)
 	{
 		SecondSkillAttack();
-		//cout << "Skill 2 is cooldown. Change skill Num 1" << endl;
 		return;
 	}
-	//cout << monster->GetName() << " Attack. Skill Name : " << skillInfo3[0].GetName() << endl;
+
 	monster->SetCurrentSkillName(skillInfo3[0].GetName());
+
 	for (int i = 0; i < skillInfo3.size(); i++)
 	{
 		skillInfo3[i].SetCoolDown(attackInfoByMonster[3][i].GetCoolDown());
@@ -230,20 +219,16 @@ void MonsterAttack::ActionBySkillType(MonsterAttackInfo& info, bool onOff) //fas
 
 void MonsterAttack::DecreasePlayerHealth(float value, bool onOff)
 {
-	if (onOff)
+	if (onOff && monster->GetHitRate() > randomHit)
 	{
-		player->Hit(originRealDamage * value);
-		//cout << monster->GetName() << " Attack To Player. Attack Damage = " << originRealDamage * value << endl;
+		if (monster->GetCriticalRate() > randomCritical) player->Hit(monster->GetRealDamage() * value);
+		else player->Hit(monster->GetRealDamage() * value * 1.5f);
 	}
 }
 
 void MonsterAttack::IncreasePlayerStress(float value, bool onOff)
 {
-	if (onOff)
-	{
-		player->AddStress(value);
-		//cout << monster->GetName() << " Attack To Player. Attack is Increase Stress. Stress = " << value << endl;
-	}
+	if (onOff && monster->GetHitRate() > randomHit) player->AddStress(value);
 }
 
 void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
@@ -251,51 +236,23 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 	switch (type)
 	{
 	case 0: //realDamage
-		if (onOff)
-		{
-			monster->SetRealDamage(originRealDamage * value);
-			//cout << monster->GetName() << " Increase RealDamaage. Post increase RealDamage = " << monster->GetRealDamage() << endl;
-		}
-		else
-		{
-			monster->SetRealDamage(originRealDamage);
-		}
+		if (onOff) monster->SetRealDamage(originRealDamage * value);
+		else monster->SetRealDamage(originRealDamage);
 		break;
 
 	case 1: //hitRate
-		if (onOff)
-		{
-			monster->SetHitRate(originHitRate + value);
-			//cout << monster->GetName() << " Increase HitRate. Post increase HitRate = " << monster->GetHitRate() << endl;
-		}
-		else
-		{
-			monster->SetHitRate(originHitRate);
-		}
+		if (onOff) monster->SetHitRate(originHitRate + value);
+		else monster->SetHitRate(originHitRate);
 		break;
 
 	case 2: //avoidRate
-		if (onOff)
-		{
-			monster->SetAvoidRate(originAvoidRate + value);
-			//cout << monster->GetName() << " Increase AvoidRate. Post increase AvoidRate = " << monster->GetAvoidRate() << endl;
-		}
-		else
-		{
-			monster->SetAvoidRate(originAvoidRate);
-		}
+		if (onOff) monster->SetAvoidRate(originAvoidRate + value);
+		else monster->SetAvoidRate(originAvoidRate);
 		break;
 
 	case 3: //damageRate
-		if (onOff)
-		{
-			monster->SetDamageRate(value);
-			//cout << monster->GetName() << " Increase DamageRate. Post increase DamageRate = " << monster->GetDamageRate() << endl;
-		}
-		else
-		{
-			monster->SetDamageRate(originDamageRate);
-		}
+		if (onOff) monster->SetDamageRate(value);
+		else monster->SetDamageRate(originDamageRate);
 		break;
 
 	case 4: //currentHealth
@@ -303,7 +260,6 @@ void MonsterAttack::IncreaseMonsterStat(int type, float value, bool onOff)
 		{
 			monster->SetCurrentHealth(monster->GetCurrentHealth() + monster->GetMaxHealth() * value);
 			if (monster->GetCurrentHealth() > monster->GetMaxHealth()) monster->SetCurrentHealth(monster->GetMaxHealth());
-			//cout << monster->GetName() << " Increase CurrentHealth. Post increase CurrentHealth = " << monster->GetCurrentHealth() << endl;
 		}
 	}
 }
@@ -314,7 +270,6 @@ void MonsterAttack::ContinueDecreasePlayerHealth(float value, bool onOff)
 	{
 		isDecreaseContinue = true;
 		decreaseValue = value;
-		//cout << monster->GetName() << " Active DecreaseContinue Skill. Skill Damage = " << monster->GetRealDamage() * value << endl;
 	}
 	else
 	{
@@ -325,13 +280,6 @@ void MonsterAttack::ContinueDecreasePlayerHealth(float value, bool onOff)
 
 void MonsterAttack::ReflecctionPlayerAttack(bool onOff)
 {
-	if (onOff)
-	{
-		isReflection = true;
-		//cout << monster->GetName() << " Active Reflection Skill." << endl;
-	}
-	else
-	{
-		isReflection = false;
-	}
+	if (onOff) isReflection = true;
+	else isReflection = false;
 }

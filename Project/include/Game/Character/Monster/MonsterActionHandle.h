@@ -11,7 +11,7 @@ public:
 	inline MonsterAttack* GetMonsterAttack() { return monsterAttack; }
 	inline MonsterHit* GetMonsterHit() { return monsterHit; }
 
-	void Attack(int value);
+	void Attack(int skillNum, int critical, int hit);
 	void Hit(int value, int damage, int randValue);
 
 private:

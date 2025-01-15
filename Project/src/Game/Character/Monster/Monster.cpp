@@ -12,7 +12,6 @@ Monster::Monster()
 	monsterActionHandle = new MonsterActionHandle(player);
 
 	playerLevel = player->GetLevel();
-	//playerLevel = 20; //Test
 }
 
 Monster::~Monster()
@@ -42,13 +41,20 @@ int Monster::GetRandomValue(int min, int max)
 void Monster::InitializeByDungeonLevel()
 {
 	skillName = "";
+	
+	hitRate = 70;
+	avoidRate = 0;
+	damageRate = 0.7f;
+	criticalRate = 0;
+	speed = 0;
+	
 	minDropValue = 0;
 	artifactRate = 0;
 	maxItemRank = 40;
 	maxItemCount = 1;
-	hitRate = 70;
-	avoidRate = 0;
-	damageRate = 0.7f;
+
+	isSturn = false;
+	turnOfSturn = 0;
 }
 
 Item* Monster::DropItem()
@@ -80,23 +86,16 @@ void Monster::Attack()
 	if (GetMonsterType() >= 40) maxValue = 3;
 
 	int skill = GetRandomValue(0, maxValue);
-	//cout << GetName() << " Active Skill Num = " << skill << endl;
-	monsterActionHandle->Attack(skill);
+	int criticalValue = GetRandomValue(0, 100);
+	int hitValue = GetRandomValue(0, 100);
+
+	monsterActionHandle->Attack(skill, criticalValue, hitValue);
 }
 
 void Monster::Die()
 {
-	for (int i = 0; i < maxItemCount; i++)
-	{
-		if (GetRandomValue(minDropValue, 100) >= 50)
-		{
-			player->AddItem(DropItem(), 1);
-			//cout << GetName() << " Item drop. Item name = " << DropItem()->GetName() << endl;
-		}
-	}
-
+	for (int i = 0; i < maxItemCount; i++) if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(DropItem(), 1);
 	player->AddGold(500 * rank);
-	//cout << GetName() << " Gold drop. drop value = 500" << endl;
 }
 
 void Monster::TestPrint()
