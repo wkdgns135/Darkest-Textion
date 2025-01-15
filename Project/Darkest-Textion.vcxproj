@@ -237,6 +237,7 @@
     <Image Include="..\..\..\Downloads\SnakeOil.bmp" />
     <Image Include="drawable\background\Inventory.bmp" />
     <Image Include="drawable\background\ShopBackground.bmp" />
+    <Image Include="drawable\background\ShopBackground2.bmp" />
     <Image Include="drawable\Item\DamageBoost.bmp" />
     <Image Include="drawable\Item\ExpStone.bmp" />
     <Image Include="drawable\Item\HealthPotion.bmp" />

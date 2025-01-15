@@ -42,4 +42,6 @@ public:
 
 	inline void AddBackground(string path) { background = new Image(path, width, height); };
 	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); };
+	//HERE : add remove method temporarily
+	inline void RemoveSprite() { drawSprite.pop_back(); isDraw = true; };
 };
