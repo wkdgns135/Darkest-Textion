@@ -1,26 +1,32 @@
+#include <iostream>
+#include <random>
+#include <vector>
 #include "Character/Monster/Monster.h"
+#include "Character/Monster/MonsterActionHandle.h"
+#include "Character/Player/Player.h"
 
-Monster::Monster(int dLevel)
+Monster::Monster()
 {
-	dungeonLevel = dLevel; 
 	player = GameManager::GetInstance().GetPlayer();
+	dropItemObj = new DropItemObj;
+	monsterActionHandle = new MonsterActionHandle(player);
+
 	playerLevel = player->GetLevel();
-	//playerLevel = 20; //Test
-
-	if (dungeonLevel >= 4) dungeonLevel %= 4;
-
-	coolDown1 = coolDown2 = coolDown3 = 0;
 }
 
 Monster::~Monster()
 {
-	player == nullptr;
+	delete dropItemObj;
+	delete monsterActionHandle;
+	player = nullptr;
+	dropItemObj = nullptr;
+	monsterActionHandle = nullptr;
 }
 
 void Monster::Magnification()
 {
-	health = GetRandomValue(20, 30) * playerLevel * (rank + 1);
-	damage = GetRandomValue(5, 10) * playerLevel * (rank + 1);
+	health = GetRandomValue(20, 30) * (playerLevel + (rank + 1));
+	damage = GetRandomValue(5, 10) * (playerLevel + (rank + 1));
 }
 
 int Monster::GetRandomValue(int min, int max)
@@ -34,12 +40,21 @@ int Monster::GetRandomValue(int min, int max)
 
 void Monster::InitializeByDungeonLevel()
 {
+	skillName = "";
+	
+	hitRate = 70;
+	avoidRate = 0;
+	damageRate = 0.7f;
+	criticalRate = 0;
+	speed = 0;
+	
 	minDropValue = 0;
 	artifactRate = 0;
 	maxItemRank = 40;
 	maxItemCount = 1;
-	hitRate = 70;
-	avoidRate = 0;
+
+	isSturn = false;
+	turnOfSturn = 0;
 }
 
 Item* Monster::DropItem()
@@ -47,127 +62,45 @@ Item* Monster::DropItem()
 	if (artifactRate >= GetRandomValue(0, 100))
 	{
 		int ItemRankValue = GetRandomValue(0, maxItemRank);
+		int ItemIndexValue = GetRandomValue(0, 100);
 
-		if (ItemRankValue <= 40)
-		{
-			//return COMMON
-		}
-		else if (ItemRankValue <= 70)
-		{
-			//return UNCOMMON
-		}
-		else if (ItemRankValue <= 85)
-		{
-			//return RARE
-		}
-		else if (ItemRankValue <= 95)
-		{
-			//return VERY_RARE
-		}
-		else if (ItemRankValue <= 99)
-		{
-			//return TROPHY
-		}
-		else
-		{
-			//return ANCESTAL
-		}
+		return (Item*)dropItemObj->GetArtifactItem(ItemRankValue, ItemIndexValue);
 	}
 
 	int RandomConsumableValue = GetRandomValue(0, 100);
 
-	if (RandomConsumableValue <= 20) {} //return 0 of Consumable Item List
-	else if (RandomConsumableValue <= 40) {} //return 1 of Consumable Item List
-	else if (RandomConsumableValue <= 60) {} //return 2 of Consumable Item List
-	else if (RandomConsumableValue <= 80) {} //return 3 of Consumable Item List
-	else {} //return 4 of Consumable Item List
-
-	return nullptr;
+	return (Item*)dropItemObj->GetConsumableItem(RandomConsumableValue);
 }
 
 void Monster::Hit(int damage)
 {
-	if (avoidRate < GetRandomValue(0, 100)) currentHealth -= damage;
-	else currentHealth -= damage * 0.7f;
-
-	cout << name << " Get Hit, current Hp is " << currentHealth << endl;
-
-	if (currentHealth <= 0)
-	{
-		currentHealth = 0;
-
-		Die();
-	}
+	int checkAvoidValue = GetRandomValue(0, 100);
+	int reflectionValue = GetRandomValue(0, 100);
+	monsterActionHandle->Hit(checkAvoidValue, damage, reflectionValue);
 }
 
 void Monster::Attack()
 {
-	if (coolDown1 > 0) --coolDown1;
-	if (coolDown2 > 0) --coolDown2;
-	if (coolDown3 > 0) --coolDown3;
+	int maxValue = 2;
 
-	int Skill = GetRandomValue(0, rank % 4);
+	if (GetMonsterType() >= 40) maxValue = 3;
 
-	switch (Skill)
-	{
-	case 0:
-		NormalAttack();
-		break;
+	int skill = GetRandomValue(0, maxValue);
+	int criticalValue = GetRandomValue(0, 100);
+	int hitValue = GetRandomValue(0, 100);
 
-	case 1:
-		FirstSkillAttack();
-		break;
-
-	case 2:
-		SecondSkillAttack();
-		break;
-
-	case 3:
-		FinalSkillAttack();
-		break;
-	}
+	monsterActionHandle->Attack(skill, criticalValue, hitValue);
 }
 
 void Monster::Die()
 {
-	for (int i = 0; i < maxItemCount; i++)
-	{
-		if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(DropItem());
-	}
-
+	for (int i = 0; i < maxItemCount; i++) if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(DropItem(), 1);
 	player->AddGold(500 * rank);
-}
-
-void Monster::FirstSkillAttack()
-{
-	if (coolDown1 > 0)
-	{
-		NormalAttack();
-		return;
-	}
-}
-
-void Monster::SecondSkillAttack()
-{
-	if (coolDown2 > 0)
-	{
-		FirstSkillAttack();
-		return;
-	}
-}
-
-void Monster::FinalSkillAttack()
-{
-	if (coolDown3 > 0)
-	{
-		SecondSkillAttack();
-		return;
-	}
 }
 
 void Monster::TestPrint()
 {
-	cout << name << " : if Player Level = " << playerLevel << ", DungeonLevel = " << dungeonLevel << " : \n"
+	cout << name << " : if Player Level = " << playerLevel <<  "\n"
 		<< "Rank = " << rank << ", Health = " << health << ", Damage = " << damage << "\n"
 		<< "Min Drop Value = " << minDropValue << ", MaxItemRank = " << maxItemRank << ", MaxItemCount = " << maxItemCount << "\n"
 		<< "AtrtifactRate = " << artifactRate << ", HitRate = " << hitRate << ", AvoidRate = " << avoidRate << "\n" << endl;

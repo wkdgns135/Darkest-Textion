@@ -15,6 +15,11 @@ void InputEvent::AddEvent(const EKeyEvent& key, function<void()>&& Callback, fun
 	keyStates[key] = false; // 초기 상태는 눌려있지 않음
 }
 
+void InputEvent::ClearEvent()
+{
+    events.clear();
+}
+
 void InputEvent::ProcessEvents()
 {
     for (const auto& event : events) {

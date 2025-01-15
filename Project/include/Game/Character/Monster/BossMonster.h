@@ -1,29 +1,39 @@
 #pragma once
 
 #include "Character/Monster/Monster.h"
+#include "Character/Monster/MonsterActionHandle.h"
 
-class BossMonster : public Monster
+
+class BossMonsterHeart : public Monster
 {
 
 public:
-    BossMonster(int dLevel);
-    ~BossMonster() override;
-    Item* DropItem() override;
-    void Hit(int damage) override;
-    void Attack() override;
-    void Die() override;
+    BossMonsterHeart();
+    ~BossMonsterHeart() override;
     
 private:
-    int skill3Counter;
-    int skill2Counter;
-    int skill1Counter;
-    int currentAvoidRate;
-    float getDamageRate;
-
-    void Magnification() override;
     void InitializeByDungeonLevel() override;
-    void NormalAttack() override;
-    void FirstSkillAttack() override;
-    void SecondSkillAttack() override;
-    void FinalSkillAttack() override;
+    void SetAttackInfo() override;
+};
+
+class BossMonsterSiren : public Monster
+{
+public:
+    BossMonsterSiren();
+    ~BossMonsterSiren() override;
+
+private:
+    void InitializeByDungeonLevel() override;
+    void SetAttackInfo() override;
+};
+
+class BossMonsterHag : public Monster
+{
+public:
+    BossMonsterHag();
+    ~BossMonsterHag() override;
+
+private:
+    void InitializeByDungeonLevel() override;
+    void SetAttackInfo() override;
 };

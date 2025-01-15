@@ -4,7 +4,7 @@
 using namespace cimg_library;
 using namespace std;
 
-Image::Image(string path, int width, int height)
+Image::Image(const string path, int width, int height)
 {
     this->width = width;
     this->height = height;

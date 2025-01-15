@@ -1,50 +1,87 @@
 #pragma once
-#include <iostream>
-#include <random>
+
+#include "GameManager.h"
 #include "Character/Character.h"
 #include "Item/Item.h"
-#include "GameManager.h"
+#include "Character/Monster/DropItemObj.h"
+//#include "Character/Monster/MonsterActionHandle.h" 
+//#include "Character/Monster/MonsterAttackInfo.h"
 
+class MonsterActionHandle;
+class MonsterAttackInfo;
 class Player;
 
 class Monster abstract : public Character
 {
 public:
-    //TODO : 몬스터 생성할 때 던전 난이도 값을 주어야 함. 0~3 /// 적 스탯이 캐릭터 레벨에 기반하므로 플레이어 레벨도 받아야 함.
-    Monster(int dLevel);
+    Monster();
     virtual ~Monster() = 0;
-    inline string GetName() const { return name; } // 모두 Name 이라는 값을 반환하는 같은 동작 하므로 순수 가상함수, 가상함수로 사용하지 않음
-    virtual Item* DropItem(); // Logic for item drop
+
+    inline string GetName() const { return name; }
+    virtual Item* DropItem();
     virtual void Hit(int damage) override;
     virtual void Attack() override;
     virtual void Die();
     virtual void TestPrint();
 
+    inline void SetRealDamage(int value) { realDamage = value; }
+    inline void SetSpeed(int value) { speed = value; }
+    inline void SetAvoidRate(int value) { avoidRate = value; }
+    inline void SetHitRate(int value) { hitRate = value; }
+    inline void SetDamageRate(float value) { damageRate = value; }
+    inline void SetCriticalRate(int value) { criticalRate = value; }
+    inline void SetCurrentHealth(int value) { currentHealth = value; }
+
+    inline int GetMonsterType() { return monsterType; }
+    inline int GetDamage() { return damage; }
+    inline int GetRealDamage() { return realDamage; }
+    inline int GetSpeed() { return speed; }
+    inline int GetAvoidRate() { return avoidRate; }
+    inline int GetHitRate() { return hitRate; }
+    inline int GetCriticalRate() { return criticalRate; }
+    inline int GetCurrentHealth() { return currentHealth; }
+    inline int GetMaxHealth() { return health; }
+    inline float GetDamageRate() { return damageRate; }
+    
+    inline void SetCurrentSkillName(string value) { skillName = value; }
+    inline string GetCurrentSkillName() { return skillName; }
+
+    inline void SetBoolSturn(bool value) { isSturn = value; }
+    inline void SetStateSturnToMonster(int turn) { isSturn = true; turnOfSturn = turn; }
+    inline void DecreaseTurnOfSturn() { --turnOfSturn; }
+
+    inline bool GetBoolSturn() { return isSturn; }
+    inline int GetTurnOfSturn() { return turnOfSturn; }
+
 protected:
-    int dungeonLevel;
     int playerLevel;
     int rank;
-    int realDamage;
+    int monsterType;
 
+    int speed;
+    int realDamage;
     int avoidRate;
     int hitRate;
-
+    int criticalRate;
+    float damageRate;
+    
     int minDropValue;
     int artifactRate;
     int maxItemRank;
     int maxItemCount;
 
-    int coolDown1;
-    int coolDown2;
-    int coolDown3;
+    bool isSturn;
+    int turnOfSturn;
 
     Player* player;
+    DropItemObj* dropItemObj;
+    MonsterActionHandle* monsterActionHandle;
 
-    virtual void Magnification();
+    vector<vector<MonsterAttackInfo>> attackInfo;
+    string skillName;
+
+    virtual void SetAttackInfo() = 0;
     virtual void InitializeByDungeonLevel();
-    virtual void NormalAttack() = 0;
-    virtual void FirstSkillAttack();
-    virtual void SecondSkillAttack();
-    virtual void FinalSkillAttack();
+    void Magnification();
     int GetRandomValue(int min, int max);
 };
