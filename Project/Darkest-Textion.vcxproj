@@ -206,6 +206,24 @@
     <ClInclude Include="include\Utility\Vector2d.h" />
     <ClInclude Include="lib\CImg.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\Downloads\DamageBooost.bmp" />
+    <Image Include="..\..\..\Downloads\ExpStone.bmp" />
+    <Image Include="..\..\..\Downloads\HealthPotion.bmp" />
+    <Image Include="..\..\..\Downloads\HealthStone.bmp" />
+    <Image Include="..\..\..\Downloads\KnightsCrew.bmp" />
+    <Image Include="..\..\..\Downloads\Lau.bmp" />
+    <Image Include="..\..\..\Downloads\SnakeOil.bmp" />
+    <Image Include="drawable\background\Inventory.bmp" />
+    <Image Include="drawable\background\ShopBackground.bmp" />
+    <Image Include="drawable\Item\DamageBoost.bmp" />
+    <Image Include="drawable\Item\ExpStone.bmp" />
+    <Image Include="drawable\Item\HealthPotion.bmp" />
+    <Image Include="drawable\Item\HealthStone.bmp" />
+    <Image Include="drawable\Item\KnightsCrest.bmp" />
+    <Image Include="drawable\Item\Laudanum.bmp" />
+    <Image Include="drawable\Item\SnakeOil.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
