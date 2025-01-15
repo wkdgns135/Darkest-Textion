@@ -44,7 +44,7 @@ int PrintNumber(unique_ptr<Renderer>& renderer, int number, Vector2d initLoc, Ve
 
 ShopScene::ShopScene()
 {
-	inventorySpriteCount = 0;
+	cursor = 0;
 	inventoryFlag = false;
 }
 
@@ -57,25 +57,12 @@ void ShopScene::Enter()
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
 	//goldPannel
-	Player* player = GameManager::GetInstance().GetPlayer();
-	string goldPannel = "drawable/Item/Gold.bmp";
-	//string goldPannel = "drawable/number/1.bmp";
-	Vector2d goldPannelLoc = { 20, 250 };
-	int goldPannelWidth = 120;
-	int goldPannelHeight = 40;
-	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
-	renderer->AddSprite(sprite);
+	ShowGoldPannel();
 
-	//HERE : player 연결 시 바꾸기
-	//PrintNumber(renderer, player->GetGold(), { goldPannelLoc.x + 55, goldPannelLoc.y + 5 });
-	PrintNumber(renderer, 12354, {goldPannelLoc.x + 55, goldPannelLoc.y + 5});
-
-
-	//bind Input
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->InventoryTrigger(); });
-	//AddInputEvent(EKeyEvent::Key_2, [this]() {this->ShowPurchaseInterface(); });
-	////AddInputEvent(EKeyEvent::Key_3, []() {	GameManager::GetInstance().GetPlayer()->ShowInventory(); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() {this->ShowSellInterface(); });
+
+	SetPurchaseMode();
+
 
 }
 
@@ -89,7 +76,7 @@ void ShopScene::Exit()
 
 }
 
-void ShopScene::OpenInventory() 
+void ShopScene::ShowInventory() 
 {
 	//Render Inventory frame
 	string invenImage = "drawable/background/Inventory.bmp";
@@ -98,7 +85,6 @@ void ShopScene::OpenInventory()
 	int invenHeight = 150;
 	Sprite* sprite = new Sprite(invenImage, invenLoc, invenWidth, invenHeight);
 	renderer->AddSprite(sprite);
-	inventorySpriteCount++;
 
 
 	//Player* player = GameManager::GetInstance().GetPlayer();
@@ -131,6 +117,7 @@ void ShopScene::OpenInventory()
 		{"10", Inventory(laudanum,3)},
 	};
 
+	cursorLoc.clear();
 
 	//Render Inventory Item
 	int i = 0;
@@ -145,19 +132,31 @@ void ShopScene::OpenInventory()
 		Vector2d itemLoc = { itemInitalLoc.x + itemWidth*(i%8) + xPadding*2, itemInitalLoc.y + (i/8 > 0 ? itemHeight + yPadding*2 : 0)};
 		Sprite* sprite = new Sprite(itemImage, itemLoc, itemWidth, itemHeight);
 		renderer->AddSprite(sprite);
-		inventorySpriteCount += PrintNumber(renderer, item.second.GetCount(), { itemLoc.x + 2, itemLoc.y + 2 }, { 7, 15 });
-		inventorySpriteCount++;
+		cursorLoc.push_back(itemLoc);
+		renderer->DrawNumber(item.second.GetCount(), { itemLoc.x + 2, itemLoc.y }, 10, 30);
 		i++;
 	}
 }
 
 void ShopScene::CloseInventory() {
-	for (int i = 0; i < inventorySpriteCount; i++)
-	{
-		renderer->RemoveSprite();
-	}
-	inventorySpriteCount = 0;
+	renderer->ClearSprite();
+	ShowGoldPannel();
 }
+
+void ShopScene::ShowGoldPannel()
+{
+	Player* player = GameManager::GetInstance().GetPlayer();
+	string goldPannel = "drawable/Item/Gold.bmp";
+	Vector2d goldPannelLoc = { 20, 250 };
+	int goldPannelWidth = 120;
+	int goldPannelHeight = 40;
+	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
+	renderer->AddSprite(sprite);
+
+	//HERE : player 연결 시 바꾸기
+	renderer->DrawNumber(12345, { goldPannelLoc.x + 55, goldPannelLoc.y + 5 }, 20, 35);
+}
+
 
 void ShopScene::InventoryTrigger()
 {
@@ -167,10 +166,69 @@ void ShopScene::InventoryTrigger()
 	}
 	else
 	{
-		OpenInventory();
+		ShowInventory();
 	}
 	inventoryFlag = (inventoryFlag + 1) % 2;
 }
 
 
+void ShopScene::SetPurchaseMode() 
+{
+	ClearInputEvent();
 
+	renderer->ClearSprite();
+	ShowGoldPannel();
+
+	cursorLoc = { {50, 50}, {100, 50}, {150, 50} };
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->Purchase(3, 1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetSellMode(); });
+	
+
+}
+
+void ShopScene::SetSellMode()
+{
+	ClearInputEvent();
+
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	ShowInventory();
+
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->Purchase(1, 1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetPurchaseMode(); });
+
+}
+
+
+void ShopScene::MoveCursor(int direction)
+{
+	if (direction > 0)
+	{
+		if (cursor >= cursorLoc.size() - 1) return;
+		else cursor++;
+	}
+	else
+	{
+		if (cursor <= 0) return;
+		else cursor--;
+	}
+	renderer->RemoveSprite();
+	ShowCursor();
+
+}
+
+void ShopScene::ShowCursor()
+{
+	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
+	renderer->AddSprite(sprite);
+}

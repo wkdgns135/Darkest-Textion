@@ -136,6 +136,7 @@
     <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="src\Game\Scene\IntroScene.cpp" />
     <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
+    <ClCompile Include="src\Game\Scene\ShopScene.cpp" />
     <ClCompile Include="src\System\IO\Renderer.cpp" />
     <ClCompile Include="src\System\IO\Sprite.cpp" />
     <ClCompile Include="src\System\IO\Animation.cpp" />
@@ -219,6 +220,7 @@
     <ClInclude Include="include\Game\Scene\Scene.h" />
     <ClInclude Include="include\Game\Scene\SceneManager.h" />
     <ClInclude Include="include\Game\Scene\SelectDungeonScene.h" />
+    <ClInclude Include="include\Game\Scene\ShopScene.h" />
     <ClInclude Include="include\Game\Scene\TitleScene.h" />
     <ClInclude Include="include\Game\Shop\Shop.h" />
     <ClInclude Include="include\System\IO\Animation.h" />
@@ -245,6 +247,7 @@
     <Image Include="drawable\background\Inventory.bmp" />
     <Image Include="drawable\background\ShopBackground.bmp" />
     <Image Include="drawable\background\ShopBackground2.bmp" />
+    <Image Include="drawable\Item\cursor.bmp" />
     <Image Include="drawable\Item\DamageBoost.bmp" />
     <Image Include="drawable\Item\ExpStone.bmp" />
     <Image Include="drawable\Item\HealthPotion.bmp" />
