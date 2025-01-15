@@ -11,25 +11,35 @@ MonsterSpawnHandle::~MonsterSpawnHandle()
 
 }
 
-Monster* MonsterSpawnHandle::GetSpawnMonsterByDungeonLevel(int dungeonLevel)
+Monster* MonsterSpawnHandle::GetSpawnMonsterByDungeonLevel(EDungeon dungeon)
 {
-	switch (dungeonLevel % 3)
+	switch (dungeon)
 	{
-	case 0: return GetRandomForestMonster(); break;
-	case 1: return GetRandomSeasideMonster(); break;
-	case 2: return GetRandomDarkestMonster(); break;
+	case Weald: return GetRandomForestMonster();
+		break;
+
+	case Cove: return GetRandomSeasideMonster();
+		break;
+
+	case DarkestDungeon: return GetRandomDarkestMonster();
+		break;
 	}
 
 	return nullptr;
 }
 
-Monster* MonsterSpawnHandle::GetSpawnBossByDungeonLevel(int dungeonLevel)
+Monster* MonsterSpawnHandle::GetSpawnBossByDungeonLevel(EDungeon dungeon)
 {
-	switch (dungeonLevel % 3)
+	switch (dungeon)
 	{
-	case 0: return new BossMonsterHag(); break;
-	case 1: return new BossMonsterSiren(); break;
-	case 2: return new BossMonsterHeart(); break;
+	case Weald: return new BossMonsterHag();
+		break;
+
+	case Cove: return new BossMonsterSiren();
+		break;
+
+	case DarkestDungeon: return new BossMonsterHeart();
+		break;
 	}
 
 	return nullptr;

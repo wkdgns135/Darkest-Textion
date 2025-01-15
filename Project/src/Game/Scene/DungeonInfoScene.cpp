@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void DungeonInfoScene::Enter()
+void DungeonInfoScene::InitBackground()
 {
 	switch (GameManager::GetInstance().GetCurrentDungeon())
 	{
@@ -21,8 +21,17 @@ void DungeonInfoScene::Enter()
 		renderer->AddBackground("drawable/WealdInfo.bmp");
 		break;
 	}
+}
+
+
+void DungeonInfoScene::Enter()
+{
+	//AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<DungeonScene>(); });
+	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<BattleScene>(); });
 	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
 	AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
+
+	InitBackground();
 }
 
 void DungeonInfoScene::Update()

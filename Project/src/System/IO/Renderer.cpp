@@ -1,6 +1,5 @@
 ﻿#include <Windows.h>
 #include "IO/Renderer.h"
-#include "Vector2d.h"
 
 using namespace cimg_library;
 
@@ -23,14 +22,14 @@ void Renderer::SetConsoleFontForDraw()
     CONSOLE_FONT_INFOEX cfi;
     cfi.cbSize = sizeof(cfi);
     cfi.nFont = 0;
-    cfi.dwFontSize.X = 0;
+    cfi.dwFontSize.X = 3;
     cfi.dwFontSize.Y = 3;
     cfi.FontFamily = FF_DONTCARE;
     cfi.FontWeight = FW_NORMAL;
     wcscpy_s(cfi.FaceName, L"Consolas");
 
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    SetConsoleWindowSize(width, height); // 콘솔 창 크기를 300x300으로 설정
+    SetConsoleWindowSize(width, height);
 }
 
 void Renderer::SetConsoleFontForText()
@@ -45,7 +44,7 @@ void Renderer::SetConsoleFontForText()
     wcscpy_s(cfi.FaceName, L"Consolas");
 
     SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
-    SetConsoleWindowSize(width / 6, height / 6); // 콘솔 창 크기를 300x300으로 설정
+    SetConsoleWindowSize(width / 6, height / 6);
 }
 
 
@@ -112,6 +111,7 @@ void Renderer::DrawImage(Image* image)
 
 void Renderer::DrawImage(Image* image, const Vector2d &pos)
 {
+    if (image == nullptr)return;
     const int left = pos.x;
     const int top = pos.y;
     const int width = image->GetWidth();
@@ -139,6 +139,21 @@ void Renderer::DrawImage(Image* image, const Vector2d &pos)
     isDraw = true;
 }
 
+void Renderer::DrawNumber(int number, const Vector2d& pos, int width, int height)
+{
+    string str = to_string(number);
+    vector<Sprite*> sprites;
+    for (int i = 0; i < str.size(); i++) {
+        string path = "drawable/Number/";
+        path += str[i];
+        path += ".bmp";
+        int x = pos.x - (width / 5) + (width / 2) * i;
+        int y = pos.y;
+        Sprite* sprite = new Sprite(path, { x, y }, width, height);
+        drawSprite.push_back(sprite);
+    }
+}
+
 void Renderer::ClearBuffer()
 {
     for (int i = 0; i < width * height; i++) {
@@ -147,14 +162,19 @@ void Renderer::ClearBuffer()
     }
 }
 
-void Renderer::FillBuffer()
+void Renderer::FillBuffer(float deltaTime)
 {
     if (background) {
         DrawBackground();
     }
 
+    for (Sprite* sprite : fixSprite) {
+        DrawImage(sprite->GetImage(deltaTime), sprite->pos);
+    }
+
     for (Sprite* sprite : drawSprite) {
-        DrawImage(sprite->image, sprite->pos);
+        DrawImage(sprite->GetImage(deltaTime), sprite->pos);
+        isDraw = true;
     }
 }
 

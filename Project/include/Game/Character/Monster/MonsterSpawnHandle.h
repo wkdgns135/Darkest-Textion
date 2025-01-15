@@ -4,6 +4,7 @@
 #include "Character/Monster/SeasideMonsters.h"
 #include "Character/Monster/DarkestMonsters.h"
 #include "Character//Monster/BossMonster.h"
+#include "Global/ProjectEnum.h"
 
 class MonsterSpawnHandle
 {
@@ -11,8 +12,8 @@ public:
 	MonsterSpawnHandle();
 	~MonsterSpawnHandle();
 
-	Monster* GetSpawnMonsterByDungeonLevel(int dungeonLevel);
-	Monster* GetSpawnBossByDungeonLevel(int dungeonLevel);
+	Monster* GetSpawnMonsterByDungeonLevel(EDungeon dungeon);
+	Monster* GetSpawnBossByDungeonLevel(EDungeon dungeon);
 
 private:
 	const int kindOfForestMonster = 3;

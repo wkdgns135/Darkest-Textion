@@ -6,6 +6,7 @@
 
 class Scene {
 private:
+	float deltaTime = 50;
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
 	vector<Image*> drawTarget;

@@ -11,11 +11,11 @@ void Scene::RootUpdate()
 {
 	while (isActive) {
 		renderer->ClearBuffer();
-		renderer->FillBuffer();
+		renderer->FillBuffer(deltaTime);
 		renderer->Render();
 		inputEvent->ProcessEvents();
 		Update();
-		Sleep(50); // Frame
+		Sleep(deltaTime); // Frame
 	}
 }
 
@@ -28,5 +28,6 @@ void Scene::RootEnter()
 void Scene::RootExit()
 {
 	isActive = false;
+	renderer->ClearSprite();
 	system("cls");
 }

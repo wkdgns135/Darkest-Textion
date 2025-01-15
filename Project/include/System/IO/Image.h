@@ -12,7 +12,7 @@ private:
     int height;
 
 public:
-    Image(string path, int w, int h);
+    Image(const string path, int w, int h);
     inline int GetWidth() { return this->width; }
     inline int GetHeight() { return this->height; }
     inline TCHAR GetPixel(int x, int y) { return this->data[y * this->width + x]; }

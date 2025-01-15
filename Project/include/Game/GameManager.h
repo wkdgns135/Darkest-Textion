@@ -7,7 +7,7 @@ class GameManager : public Singleton<GameManager> {
 private:
 	Player* player;
 	EDungeon currentDungeon;
-
+	
 public:
 	inline Player* GetPlayer() { return player; }
 	inline void SetPlayer(Player* player) { this->player = player; }

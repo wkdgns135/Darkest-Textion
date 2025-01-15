@@ -1,8 +1,8 @@
 #include <iostream>
-#include "IO/Renderer.h"
 #include "GameManager.h"
 #include "Scene/SceneManager.h"
 #include "Scene/NewPlayerScene.h"
+#include "Scene/IntroScene.h"
 using namespace std;
 
 void NewPlayerScene::Enter()
@@ -13,7 +13,7 @@ void NewPlayerScene::Enter()
     string name;
     cin >> name;
     GameManager::GetInstance().SetPlayer(new Player(name));
-    SceneManager::GetInstance().ChangeScene<MainScene>();
+    SceneManager::GetInstance().ChangeScene<IntroScene>();
 }
 
 void NewPlayerScene::Update()
