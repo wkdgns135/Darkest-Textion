@@ -32,3 +32,13 @@ enum EDungeon {
 	Cove,
 	DarkestDungeon,
 };
+enum EItemName
+{
+	EExpStone =0,
+	EHealthStone,
+	EKnightsCrest,
+	ESnkeOil,
+	EDamageBoost,
+	EHealthPotion,
+	EEnd
+};

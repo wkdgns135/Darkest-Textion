@@ -141,6 +141,9 @@
     <ClCompile Include="Darkest-Textion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="src\Game\Scene\TreasureScene.cpp">
+          <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="src\Game\Shop\Shop.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -309,6 +312,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Character\Monster\SeasideMonsters.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Game\Scene\TreasureScene.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="include\Game\Shop\Shop.h">
