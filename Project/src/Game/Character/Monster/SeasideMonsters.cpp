@@ -18,6 +18,7 @@ void SeasideMonsterPelagic::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 20;
 
 	switch (rank)
 	{
@@ -38,12 +39,15 @@ void SeasideMonsterPelagic::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 20;
+
+	hitRate = 80 + rank * 10;
+	avoidRate = 7 + rank * 10;
+	criticalRate = 5 + rank * 1;
+	speed = 10 + rank * 1;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 4;
-	avoidRate += rank * 3;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -80,6 +84,7 @@ void SeasideMonsterStinger::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 21;
 
 	switch (rank)
 	{
@@ -100,12 +105,15 @@ void SeasideMonsterStinger::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 21;
+
+	hitRate = 90 + 8 * rank;
+	avoidRate = 12 + rank * 10;
+	criticalRate = 6 + rank * 5;
+	speed = 7 + rank * 1;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 4;
-	avoidRate += rank * 3;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -142,6 +150,7 @@ void SeasideMonsterThrall::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = GetRandomValue(0, 2);
+	monsterType = 22;
 
 	switch (rank)
 	{
@@ -162,12 +171,15 @@ void SeasideMonsterThrall::InitializeByDungeonLevel()
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 22;
+
+	hitRate = 60 + rank * 10;
+	avoidRate = 0 + rank * 10;
+	criticalRate = 2 + rank * 2;
+	speed = 0 + rank * 1;
+
 	minDropValue += rank * 10;
 	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 4;
-	avoidRate += rank * 3;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 

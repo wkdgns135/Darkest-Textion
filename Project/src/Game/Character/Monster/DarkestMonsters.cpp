@@ -18,18 +18,22 @@ void DarkestMonsterHorror::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 2;
+	monsterType = 34;
 	name = "뒤섞이는 공포(Shuffling Horror)";
 
 	Magnification();
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 30;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
+
+	hitRate = 115;
+	avoidRate = 23;
+	criticalRate = 6;
+	speed = 2;
+
+	minDropValue += 30;
+	artifactRate += 10;
 	maxItemRank += rank * 10;
-	hitRate += rank * 10;
-	avoidRate += rank * 10;
 	maxItemCount += rank / 2;
 }
 
@@ -66,18 +70,22 @@ void DarkestMonsterCyst::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 2;
+	monsterType = 33;
 	name = "거대한 낭종(Mammoth Cyst)";
 
 	Magnification();
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 31;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
+
+	hitRate = 113;
+	avoidRate = 23;
+	criticalRate = 3;
+	speed = 3;
+
+	minDropValue += 30;
+	artifactRate += 10;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -114,18 +122,22 @@ void DarkestMonsterTemplar::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 2;
+	monsterType = 32;
 	name = "기사단 장군(Templar Warlord)";
 
 	Magnification();
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 32;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
+
+	hitRate = 110;
+	avoidRate = 28;
+	criticalRate = 10;
+	speed = 6;
+
+	minDropValue += 30;
+	artifactRate += 10;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -162,18 +174,22 @@ void DarkestMonsterHound::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 2;
+	monsterType = 31;
 	name = "살점 사냥개(Flesh Hound)";
 
 	Magnification();
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 0;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
+
+	hitRate = 90;
+	avoidRate = 29;
+	criticalRate = 10;
+	speed = 9;
+
+	minDropValue += 30;
+	artifactRate += 10;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 
@@ -210,18 +226,22 @@ void DarkestMonsterWitch::InitializeByDungeonLevel()
 	__super::InitializeByDungeonLevel();
 
 	rank = 2;
+	monsterType = 30;
 	name = "승천한 마녀(Ascended Witch)";
 
 	Magnification();
 	SetAttackInfo();
 
 	currentHealth = health;
-	monsterType = 0;
-	minDropValue += rank * 10;
-	artifactRate += rank * 4;
-	maxItemRank += rank * 10;
-	hitRate += rank * 5;
-	avoidRate += rank * 5;
+
+	hitRate = 103;
+	avoidRate = 36;
+	criticalRate = 12;
+	speed = 9;
+
+	minDropValue += 30;
+	artifactRate += 10;
+	maxItemRank += rank * 15;
 	maxItemCount += rank / 2;
 }
 

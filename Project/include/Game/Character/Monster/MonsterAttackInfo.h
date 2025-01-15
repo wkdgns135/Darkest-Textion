@@ -33,5 +33,4 @@ private:
 	int skillType;
 	float skillValue;
 	int targetType; // 0 : realDamage, 1 : hitRate, 2 : avoidRate, 3 : damageRate, 4 : currentHealth
-	//int monsterType; // 0 : boss, 1 : orc, 2 : goblin, 3 : troll
 };
