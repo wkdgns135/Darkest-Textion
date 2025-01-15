@@ -4,7 +4,8 @@ Animation::Animation(const vector<string>& path, const int width, const int heig
 {
 	this->updateTime = updateTime;
 	currentTime = 0;
-	isPlay = true;
+	isPlay = false;
+	isPlayOnce = false;
 
 	sheet.resize(path.size());
 	for (int i = 0; i < path.size(); i++) {
@@ -14,26 +15,33 @@ Animation::Animation(const vector<string>& path, const int width, const int heig
 
 Image* Animation::GetCurrentImage()
 {
-	//TODO : 애니메이션 현재 시간에 따른 이미지 업데이트
-	// currentTime은 50 단위로 증가 ->> 0.05초씩 증가
-	// 
 	const int size = sheet.size();
 	float t = currentTime / 1000; // 현재 시간 초단위
 	int index = (int)(t / updateTime) % size;
+
+	if (isPlayOnce && index == size - 1) {
+		isPlay = false;
+		isPlayOnce = false;
+		if (complete)complete();
+	}
 	return sheet[index];
 }
 
 void Animation::PlayLoop()
 {
-
+	isPlay = true;
 }
 
 void Animation::StopLoop()
 {
-
+	currentTime = 0;
+	isPlay = true;
 }
 
-void Animation::PlayOnce()
+void Animation::PlayOnce(function<void()>&& Complete)
 {
-
+	complete = move(Complete);
+	currentTime = 0;
+	isPlayOnce = true;
+	isPlay = true;
 }

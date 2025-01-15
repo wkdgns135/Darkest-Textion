@@ -1,6 +1,5 @@
 #include "IO/Sprite.h"
 
-
 Image* Sprite::GetImage(const float dt)
 {
 	if (animation && animation->isPlay) {

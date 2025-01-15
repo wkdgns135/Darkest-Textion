@@ -14,6 +14,12 @@ private :
 	Monster* monster;
 	BattleState battleState;
 
+	Sprite* monsterAttack;
+
+	void ImportMonsterSprite();
+	void ImportPlayerSprite();
+	void ImportUiSprite();
+
 	void MonsterTurn();
 	void PlayerTurn();
 	void InitInputEvent();

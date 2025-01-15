@@ -28,5 +28,6 @@ void Scene::RootEnter()
 void Scene::RootExit()
 {
 	isActive = false;
+	renderer->ClearSprite();
 	system("cls");
 }
