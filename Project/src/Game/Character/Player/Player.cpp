@@ -92,8 +92,6 @@ void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 
 void Player::Attack()
 {
-	//몬스터를 받아와서 그몬스터의 Hit 함수를 호출
-	mob->Hit(damage);
 }
 
 bool Player::IsDie() //캐릭터 사망시 발생할 함수
@@ -204,6 +202,8 @@ void Player::Skill1()
 	if (RandomProbability(50))
 	{
 		//Todo : 몬스터의 스턴 함수를 불러온다
+		mob->SetStateSturnToMonster(3);
+		mob->Hit(FinalDamage());
 	}
 	else 
 	{
@@ -229,9 +229,9 @@ void Player::Skill4()
 {
 	srand((unsigned int)time(NULL));
 	int rnd = rand() % 100;
-	int damagernd = rnd * 0.1;
+	float damagernd = rnd * 0.1;
 
-	mob->Hit(FinalDamage() * damagernd);
+	mob->Hit((int)(FinalDamage() * damagernd));
 }
 
 int Player::FinalDamage()
