@@ -238,12 +238,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\Downloads\DamageBooost.bmp" />
-    <Image Include="..\..\..\Downloads\ExpStone.bmp" />
-    <Image Include="..\..\..\Downloads\HealthPotion.bmp" />
-    <Image Include="..\..\..\Downloads\HealthStone.bmp" />
-    <Image Include="..\..\..\Downloads\KnightsCrew.bmp" />
-    <Image Include="..\..\..\Downloads\Lau.bmp" />
-    <Image Include="..\..\..\Downloads\SnakeOil.bmp" />
     <Image Include="drawable\background\Inventory.bmp" />
     <Image Include="drawable\background\ShopBackground.bmp" />
     <Image Include="drawable\background\ShopBackground2.bmp" />
