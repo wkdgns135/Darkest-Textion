@@ -116,32 +116,32 @@ bool Shop::IsPlayerItemAvailable(int index)
 	}
 }
 
-void Shop::RandomItemInitalize()
+void Shop::InitalizeWithRandomItem()
 {
 	// TODO : random하기 생성하기
-	unique_ptr<Artifact> item = make_unique<HealthStone>();
-	Item* healthStone = new RareArtifact(move(item));
-	Item* knightsCrest = new KnightsCrest();
-	Item* snakeOil = new SnakeOil();
-	Item* expStone = new ExpStone();
+	//unique_ptr<Artifact> item = make_unique<HealthStone>();
+	//Item* healthStone = new RareArtifact(move(item));
+	//Item* knightsCrest = new KnightsCrest();
+	//Item* snakeOil = new SnakeOil();
+	//Item* expStone = new ExpStone();
 
-	Item test = HealthStone();
+	//Item test = HealthStone();
 
-	itemlist[healthStone->GetName()] = healthStone;
-	itemlist[knightsCrest->GetName()] = knightsCrest;
-	itemlist[snakeOil->GetName()] = snakeOil;
-	itemlist[expStone->GetName()] = expStone;
+	//itemlist[healthStone->GetName()] = healthStone;
+	//itemlist[knightsCrest->GetName()] = knightsCrest;
+	//itemlist[snakeOil->GetName()] = snakeOil;
+	//itemlist[expStone->GetName()] = expStone;
 }
 
-void Shop::OnlyConsumableInitialize()
+void Shop::InitializeOnlyConsumable()
 {
 	Item* healthPotion = new HealthPotion();
 	Item* damageboost = new DamageBoost();
 	Item* laudanum = new Laudanum();
 
-	itemlist[healthPotion->GetName()] = healthPotion;
-	itemlist[damageboost->GetName()] = damageboost;
-	itemlist[laudanum->GetName()] = laudanum;
+	itemlist[1] = healthPotion;
+	itemlist[2] = damageboost;
+	itemlist[3] = laudanum;
 }
 
 // 아이템 목록 함수 번호까지 출력해서 알맞게 구매가능

@@ -10,6 +10,7 @@ private:
 
 	void ShowPurchaseInterface();
 	void ShowSellInterface();
+	void ShowInventory() const;
 public:
 	void Enter() override;
 	void Update() override;

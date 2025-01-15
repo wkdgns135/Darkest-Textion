@@ -19,7 +19,7 @@ using namespace std;
 class Shop
 {
 	private:
- 		map<string, Item*> itemlist;
+ 		map<int, Item*> itemlist;
 		string prefix = "[ 상점 ] ";
 
 		//검사 함수
@@ -28,10 +28,11 @@ class Shop
 
 	public:
 		Shop();
-		void RandomItemInitalize();
-		void OnlyConsumableInitialize();
+		void InitalizeWithRandomItem();
+		void InitializeOnlyConsumable();
 		void PurchaseItem(int index, int count);
 		void SellItem(int index, int count);
 		void ShowItemList();
+		inline Item* GetItem(int index) const { auto e = itemlist.find(index); return e->second; };
 
 };

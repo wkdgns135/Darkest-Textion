@@ -7,6 +7,7 @@ SnakeOil::SnakeOil()
 	price = 100;
 	rank = EArtifactRank::COMMON;
 	amount = 1;
+	imagePath = "drawable/Item/SnakeOil.bmp";
 }
 
 void SnakeOil::Attach(Player& player)
