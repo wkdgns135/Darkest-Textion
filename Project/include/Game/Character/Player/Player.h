@@ -52,7 +52,7 @@ public:
 	void AddCurrentHealth(int health);
 	inline void AddDamage(int damage) { this->damage += damage;}
 	void AddExp(int exp);
-	inline void AddStress(int stress) {this->stress += stress+additionalStress;}
+	inline void AddStress(int stress) { this->stress = ((this->stress + stress + additionalStress) >= 0) ? this->stress + stress + additionalStress : 0; }
 	inline void AddSpeed(int speed) { this->speed += speed; }
 	inline void SetMonster(Monster* mob) {this->mob = mob;}
 	inline void SetAdditionalStress(int stress) { additionalStress = stress; }

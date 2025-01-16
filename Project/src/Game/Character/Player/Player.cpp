@@ -151,8 +151,7 @@ void Player::LevelUp()
 
 void Player::UseItem(string name)
 {
-	if (inventory.find(name) != inventory.end())
-	{
+	if (inventory.find(name) != inventory.end()){
 		if (name == "DamageBoost" || name == "HealthPotion" || name == "Laudanum") //아이템이 사용가능한 아이템일때
 		{
 			static_cast<Consumable*>(inventory[name].GetItem())->Use(*this);
