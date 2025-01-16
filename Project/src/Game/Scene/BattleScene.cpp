@@ -85,6 +85,14 @@ void BattleScene::PlayerTurnMode()
 
 void BattleScene::RewardMode(pair<Item*, int> reward)
 {
+	SceneManager& sceneManager = SceneManager::GetInstance();
+	EDungeon dungeon = gameManager.GetCurrentDungeon();
+	if (gameManager.GetCurrentDungeon() == DarkestDungeon && gameManager.IsBossStage()) {
+		sceneManager.ChangeScene<EndingScene>();
+	}
+	int exp = 20 + dungeon * 20; // Weald = 20, Cove = 40, DD = 60
+	player->AddExp(exp);
+
 	renderer->ClearSprite();
 	ClearEvent();
 
@@ -102,10 +110,11 @@ void BattleScene::RewardMode(pair<Item*, int> reward)
 	renderer->DrawNumber(gold, { 255, 55 }, 45, 45);
 	UpdateNumber();
 
-	AddInputEvent(Key_1, []() {
-		if (GameManager::GetInstance().IsBossStage()) {
-			SceneManager::GetInstance().ChangeScene<MainScene>();
-		}else SceneManager::GetInstance().ChangeScene<RoomScene>(); 
+	AddInputEvent(Key_1, [this]() {
+		SceneManager& sceneManager = SceneManager::GetInstance();
+		if (gameManager.IsBossStage()) {
+			sceneManager.ChangeScene<MainScene>();
+		}else sceneManager.ChangeScene<RoomScene>(); 
 		});
 }
 
@@ -130,25 +139,24 @@ void BattleScene::PlayerAttackFinish(int skillIndex)
 
 	if (monster->GetCurrentHealth() <= 0) {
 		pair<Item*, int> reward = monster->Die();
-		if (GameManager::GetInstance().GetCurrentDungeon() == DarkestDungeon && GameManager::GetInstance().IsBossStage()) {
-			SceneManager::GetInstance().ChangeScene<EndingScene>();
-		}else RewardMode(reward);
+		RewardMode(reward);
 	}
 	else MonsterTurnMode();
 }
 
 void BattleScene::MonsterAttackFinish()
 {
+	SceneManager& sceneManager = SceneManager::GetInstance();
 	monster->Attack();
 	if (player->GetCurrentHealth() <= 0) {
-		SceneManager::GetInstance().ChangeScene<GameOverScene>();
+		sceneManager.ChangeScene<GameOverScene>();
 	}
 	else {
 		if (player->GetStress() >= 100) {
-			//TODO: 스트레스 100 이상시 붕괴 효과
+			player->SetAttliction();
 		}
 		else if (player->GetStress() >= 200) {
-			SceneManager::GetInstance().ChangeScene<GameOverScene>();
+			sceneManager.ChangeScene<GameOverScene>();
 		}
 		else {
 			this->PlayerTurnMode();
@@ -162,15 +170,16 @@ void BattleScene::UpdateNumber()
 	renderer->DrawNumber(player->GetStress(), { 150, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetDamage(), { 250, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetLevel(), { 50, 160 }, 25, 50);
-	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), {430, 250}, 25, 50);
+	renderer->DrawNumber(gameManager.GetFloor(), {430, 250}, 25, 50);
 	renderer->DrawNumber(monster->GetCurrentHealth() >= 0 ? monster->GetCurrentHealth() : 0, { 410, 0 }, 50, 50);
 }
 
 void BattleScene::Enter()
 {
 	DungeonScene::Enter();
-	GameManager gameManager = GameManager::GetInstance();
-	
+	gameManager = GameManager::GetInstance();
+	dungeon = gameManager.GetInstance().GetCurrentDungeon();
+
 	player = gameManager.GetPlayer();
 	MonsterSpawnHandle monsterSpawner;
 	EDungeon dungeon = gameManager.GetCurrentDungeon();

@@ -83,7 +83,7 @@ void Player::AddExp(int exp)
 {
 	if (level < 10) {
 		this->exp += exp + additionalExp;
-		if (this->exp > 100)
+		if (this->exp >= 100)
 		{
 			LevelUp();
 			this->exp -= 100;

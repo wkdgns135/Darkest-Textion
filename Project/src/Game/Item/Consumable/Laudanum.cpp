@@ -12,6 +12,6 @@ Laudanum::Laudanum()
 
 void Laudanum::Use(Player& player)
 {
-	player.AddStress(-amount);
+	if(player.GetStress() - amount >= 0) player.AddStress(-amount);
 	return;
 }

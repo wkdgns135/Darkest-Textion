@@ -96,6 +96,8 @@ void RoomScene::Enter()
 
 void RoomScene::UseItem()
 {
+	renderer->ClearSprite();
+
 	auto& inventory = player->GetItem();
 	auto it = inventory.begin(); //리스트 첫번째 칸
 	advance(it, cursor); //index만큼 뒤로 이동

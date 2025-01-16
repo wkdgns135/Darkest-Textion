@@ -96,7 +96,7 @@ pair<Item*, int> Monster::Die()
 {
 	Item* dropItem = DropItem();
 	int gold = 500 * rank;
-	for (int i = 0; i < maxItemCount; i++) if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(dropItem, 1);
+	player->AddItem(dropItem, 1);
 	player->AddGold(gold);
 
 	return { dropItem, gold };

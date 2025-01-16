@@ -1,6 +1,7 @@
 #pragma once
 #include "DungeonScene.h"
 #include "Character/Player/Player.h"
+#include "GameManager.h"
 
 enum BattleState {
 	EStandbyInput,
@@ -10,8 +11,10 @@ enum BattleState {
 
 class BattleScene : public DungeonScene {
 private :
+	GameManager gameManager;
 	Player* player;
 	Monster* monster;
+	EDungeon dungeon;
 	BattleState battleState;
 
 	Sprite* monsterAttackSprite;
