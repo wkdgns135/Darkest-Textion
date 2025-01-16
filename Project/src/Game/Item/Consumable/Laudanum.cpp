@@ -1,4 +1,5 @@
 ﻿#include "Item/Consumable/Laudanum.h"
+#include "Character/Player/Player.h"
 
 Laudanum::Laudanum()
 {
@@ -9,9 +10,8 @@ Laudanum::Laudanum()
 
 }
 
-void Laudanum::Use(Player& Player)
+void Laudanum::Use(Player& player)
 {
-	//HERE : player의 스트레스 줄이기
-	//player.[스트레스줄이기](amount);
+	player.AddStress(-amount);
 	return;
 }

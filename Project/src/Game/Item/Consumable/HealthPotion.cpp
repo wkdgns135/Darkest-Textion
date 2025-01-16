@@ -10,6 +10,6 @@ HealthPotion::HealthPotion()
 
 void HealthPotion::Use(Player& player)
 {
-	player.AddHealth(amount);
+	player.AddCurrentHealth(amount);
 	return;
 }
