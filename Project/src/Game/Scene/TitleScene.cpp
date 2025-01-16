@@ -8,14 +8,9 @@ using namespace std;
 void TitleScene::Enter()
 {
 	renderer->AddBackground("drawable/Title.bmp");
-	AddInputEvent(Key_1, []() {
-		GameManager::GetInstance().SetPlayer(new Player(" "));
-		SceneManager::GetInstance().ChangeScene<MainScene>();
-		});
-	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<NewPlayerScene>(); });
-
+	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<NewPlayerScene>();});
 	AddInputEvent(Key_ESC, []() {exit(0); });
-	AddInputEvent(Key_3, []() {exit(0); });
+	AddInputEvent(Key_2, []() {exit(0); });
 }
 
 void TitleScene::Update()
