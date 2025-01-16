@@ -2,6 +2,8 @@
 
 ### "심연은 모든 것을 삼킨다. 기억마저도. 하지만 너는 선택받았다. 타락한 왕국의 유산을 짊어지고, 끝없는 어둠에 맞설 운명이다. 너의 이름은 기억되지 않을지라도, 너의 선택은 이 세계를 바꿀 것이다."
 
+
+
 1. 팀 이름 : 불4조
 
 2. 팀원 : 안장훈(팀장), 장동주, 강동인, 김강현, 최재욱
@@ -36,7 +38,73 @@
    - 아스키 아트를 활용하여 인트로 영상과 부분적 애니메이션 기능 구현
    - 단순한 자동 전투가 아닌, 플레이어가 직접 입력으로 스킬을 사용하도록 구현
   
-7. 구현 내요
+7. 구현 내용 :
+   
+   7.1. 로직 :
+
+  
+   7.2. 시스템 :
+
+      * 입출력 시스템 :
+        
+        - 
+  
+      * Game Scene 시스템 :
+
+        - Title Scene :
+       
+        - New Play Scene :
+       
+        - Intro Scene :
+       
+        - Main Scene :
+       
+        - Shop Scene :
+       
+        - Select Dungeon Scene :
+       
+        - Dungeon Info Scene :
+       
+        - Room Scene :
+       
+        - Battle Scene :
+       
+        - Trap or Treasure Scene :
+       
+        - Scene :
+
+
+   7.3. 플레이어 :
+   
+     * 
+  
+   7.4. 몬스터 :
+   
+     * Monster Class :
+  
+     * Forest Monsters Class :
+  
+     * Seaside Monsters Class :
+  
+     * Darkest Monsters Class :
+  
+     * Boss Monster Class :
+  
+     * Monster Action Hnadle Class :
+  
+     * Monster Attack Class :
+  
+     * Monster Hit Class :
+  
+     * Drop Item Obj Class :
+  
+     * Monster Spawn Handle Class :
+
+  
+   7.5. 아이템 :
+
+     * 
+   
 
    
    
