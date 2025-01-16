@@ -19,5 +19,6 @@ void KnightsCrest::Attach(Player& player)
 void KnightsCrest::Detach(Player& player)
 {
 	//HERE : player의 데미지 내리기
+	player.AddDamage(-amount);
 	return;
 }
