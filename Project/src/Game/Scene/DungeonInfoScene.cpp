@@ -26,7 +26,10 @@ void DungeonInfoScene::InitBackground()
 
 void DungeonInfoScene::Enter()
 {
-	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<TrapScene>(); });
+	AddInputEvent(Key_1, []() {
+		GameManager::GetInstance().SetFloor(0);
+		SceneManager::GetInstance().ChangeScene<RoomScene>();
+		});
 	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
 	AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<SelectDungeonScene>(); });
 

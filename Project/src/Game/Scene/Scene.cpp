@@ -113,3 +113,4 @@ void Scene::ShowCursor()
 	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
 	renderer->AddSprite(sprite);
 }
+

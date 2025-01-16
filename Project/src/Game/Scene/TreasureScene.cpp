@@ -9,12 +9,14 @@
 #include "Item/Artifact/SnakeOil.h"
 #include "Item/Consumable/DamageBoost.h"
 #include "Item/Consumable/HealthPotion.h"
+#include "Scene/SceneManager.h"
 
 
 void TreasureScene::OpenBox()
 {
 	// 아이템을 랜덤으로 생성
 	int rnd = GetRandomValue(0, (int)EEnd-1);
+	Sprite* itemImage;
 	switch (rnd)
 	{
 	case (int)EExpStone:
@@ -26,7 +28,7 @@ void TreasureScene::OpenBox()
 		num = 1;
 		break;
 	case (int)EKnightsCrest:
-		item = new KnightsCrest();;
+		item = new KnightsCrest();
 		num = 1;
 		break;
 	case (int)ESnkeOil:
@@ -41,20 +43,27 @@ void TreasureScene::OpenBox()
 		item = new HealthPotion();
 		num = GetRandomValue(0, 5);
 		break;
+	case (int)ELaudanum:
+		item = new Laudanum();
+		num = GetRandomValue(0, 5);
+		break;
 	default:
 		item = nullptr;
+		itemImage = nullptr;
 		num = 0;
 		cout << "잘못된 값입니다" << endl;
 		break;
 	}
+	renderer->ClearSprite();
+	Sprite* panel = new Sprite("drawable/Treasure/Panel.bmp", { 170,110 }, 150, 50);
+	itemImage = new Sprite(item->GetImagePath(), {170,80}, 150, 150);
+	renderer->AddSprite(panel);
+	renderer->AddFixSprite(itemImage);
+}
 
-}
-void TreasureScene::GetItem(int num)
-{
-	InitInputEvent();
-}
 void TreasureScene::SelectItem()
 {
+	ClearEvent();
 	if (player->GetItem().size() < 10)
 	{
 		player->AddItem(item, num);
@@ -63,23 +72,38 @@ void TreasureScene::SelectItem()
 	{
 		//Todo : 인벤토리보여주며 버릴 아이템 선택하게 하기
 	}
-}
-void TreasureScene::GiveUpItem()
-{
-	//Todo : 룸씬으로 돌아가게
+	SceneManager::GetInstance().ChangeScene<RoomScene>();
 }
 
 void TreasureScene::InitInputEvent()
 {
 	AddInputEvent(Key_1, [this]() {SelectItem(); });
-	AddInputEvent(Key_2, [this]() {GiveUpItem(); });
+	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<RoomScene>(); });
+}
+
+void TreasureScene::SelectGetOrGiveUp()
+{
+	renderer->ClearSprite();
+
+	Sprite* question = new Sprite("drawable/Treasure/TreasuerQuestion.bmp", { 100, 60 }, 300, 50);
+	renderer->AddSprite(question);
+
+	Sprite* answer1 = new Sprite("drawable/Treasure/answer1.bmp", { 30, 250 }, 100, 20);
+	renderer->AddSprite(answer1);
+
+	Sprite* answer2 = new Sprite("drawable/Treasure/answer2.bmp", { 350, 250 }, 100, 20);
+	renderer->AddSprite(answer2);
+
+	InitInputEvent();
 }
 
 void TreasureScene::Enter()
 {
 	DungeonScene::Enter();
-	GameManager gameManager = GameManager::GetInstance();
+	gameManager = GameManager::GetInstance();
 	player = gameManager.GetPlayer();
+	OpenBox();
+	SelectGetOrGiveUp();
 }
 void TreasureScene::Update()
 {

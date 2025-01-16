@@ -15,15 +15,15 @@ class Player : Character {
 private:
 	const int levelUpDamage = 5;
 	const int levelUpHealth = 20;
-	int level;
-	int exp;
+	unsigned int level;
+	unsigned int exp;
 	int additionalExp;
 	int additionalStress;
-	int gold;
-	int stress;
-	int speed;
-	int evasion;
-	int criticalProbability;
+	unsigned int gold;
+	unsigned int stress;
+	unsigned int speed;
+	unsigned int evasion;
+	unsigned int criticalProbability;
 	float criticalDamage;
 	bool isStress;
 	map<string, Inventory> inventory;
@@ -47,10 +47,11 @@ public:
 	inline int GetStress() const { return stress; }
 	inline int GetSpeed() const { return speed; }
 	inline map<string,Inventory>& GetItem() { return inventory; }
+	inline map<string, Inventory>& GetEquip() { return equipInventory; }
 	inline void AddHealth(int health) { this->health += health;} //아이템으로 인한 변동될때 사용할 함수
 	void AddCurrentHealth(int health);
 	inline void AddDamage(int damage) { this->damage += damage;}
-	inline void AddExp(int exp) {this->exp += exp+additionalExp;}
+	void AddExp(int exp);
 	inline void AddStress(int stress) {this->stress += stress+additionalStress;}
 	inline void AddSpeed(int speed) { this->speed += speed; }
 	inline void SetMonster(Monster* mob) {this->mob = mob;}
@@ -61,7 +62,6 @@ public:
 	void SellItem(string name, int num);
 	int FinalDamage();
 	void AddGold(int gold);
-	void SelectItem(string name);
 	void AddItem(Item* item,int num);
 	void UseItem(string name);
 	void DeleteItem(string name);

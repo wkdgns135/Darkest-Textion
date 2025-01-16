@@ -6,18 +6,18 @@ SnakeOil::SnakeOil()
 	name = "SnakeOil";
 	price = 100;
 	rank = EArtifactRank::COMMON;
-	amount = 1;
+	amount = 10;
 	imagePath = "drawable/Item/SnakeOil.bmp";
 }
 
 void SnakeOil::Attach(Player& player)
 {
-	//HERE : player의 피격시 스트레스 감소
+	player.SetAdditionalStress(player.GetAdditionalStress() + amount);
 	return;
 }
 
 void SnakeOil::Detach(Player& player)
 {
-	//HERE : player의 피격시 스트레스 증가
+	player.SetAdditionalStress(player.GetAdditionalStress() - amount);
 	return;
 }

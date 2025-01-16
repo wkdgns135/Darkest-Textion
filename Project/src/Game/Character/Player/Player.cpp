@@ -7,14 +7,17 @@
 #include "Item/Item.h"
 #include "Item/Consumable/Consumable.h"
 #include "Item/Artifact/Artifact.h"
+#include "Item/Artifact/ExpStone.h"
+#include "Item/Artifact/HealthStone.h"
+#include "Item/Artifact/KnightsCrest.h"
+#include "Item/Artifact/SnakeOil.h"
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
-#include "Scene/Scene.h"
 
 using namespace std;
 
-#pragma region »ı¼ºÀÚ
+#pragma region ìƒì„±ì
 Player::Player(string name)
 {
 	mob = nullptr;
@@ -34,19 +37,19 @@ Player::Player(string name)
 	stress = 0;
 }
 
-#pragma endregion »ı¼ºÀÚ
+#pragma endregion ìƒì„±ì
 
 #pragma region GetSet
 void Player::AddItem(Item* item, int num)
 {
 	if (inventory.size() < 10)
 	{
-		// inventory map¿¡ item.name ÀÌ Å°°ªÀ¸·Î Á¸ÀçÇÏ¸é count°ª¸¸ Áõ°¡½ÃÅ°°í ¾øÀ¸¸é »õ·Î Ãß°¡ÇØÁØ´Ù
-		if (inventory.find(item->GetName()) != inventory.end()) //¾ÆÀÌÅÛÀÇ ÀÌ¸§À¸·Î Å°°¡ Á¸ÀçÇÒ¶§
+		// inventory mapì— item.name ì´ í‚¤ê°’ìœ¼ë¡œ ì¡´ì¬í•˜ë©´ countê°’ë§Œ ì¦ê°€ì‹œí‚¤ê³  ì—†ìœ¼ë©´ ìƒˆë¡œ ì¶”ê°€í•´ì¤€ë‹¤
+		if (inventory.find(item->GetName()) != inventory.end()) //ì•„ì´í…œì˜ ì´ë¦„ìœ¼ë¡œ í‚¤ê°€ ì¡´ì¬í• ë•Œ
 		{
 			inventory[item->GetName()].AddCount(num);
 		}
-		else //Å°°¡ Á¸ÀçÇÏÁö ¾ÊÀ»¶§
+		else //í‚¤ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ë•Œ
 		{
 			Inventory inven(item, num);
 			inventory.insert({ item->GetName(),inven });
@@ -76,21 +79,29 @@ void Player::AddGold(int gold)
 	}
 }
 
-#pragma endregion GetSetÇÔ¼ö
-
-#pragma region ÀÌº¥Æ®ÇÔ¼ö
-void Player::SelectItem(string name)
+void Player::AddExp(int exp)
 {
-
+	if (level < 10) {
+		this->exp += exp + additionalExp;
+		if (this->exp > 100)
+		{
+			LevelUp();
+			this->exp -= 100;
+		}
+	}
 }
 
-void Player::Hit(int damage) //Ä³¸¯ÅÍ ÇÇ°İ½Ã ¹ß»ıÇÒ ÇÔ¼ö
+#pragma endregion GetSetí•¨ìˆ˜
+
+#pragma region ì´ë²¤íŠ¸í•¨ìˆ˜
+
+void Player::Hit(int damage) //ìºë¦­í„° í”¼ê²©ì‹œ ë°œìƒí•  í•¨ìˆ˜
 {
 	if (IsDie())
 	{
 		if (GetRandomValue(0, 100) <= 10)
 		{
-			cout << "È¸ÇÇ ¼º°ø!!" << endl;
+			cout << "íšŒí”¼ ì„±ê³µ!!" << endl;
 		}
 		else 
 		{
@@ -105,7 +116,7 @@ void Player::Attack()
 {
 }
 
-bool Player::IsDie() //Ä³¸¯ÅÍ »ç¸Á½Ã ¹ß»ıÇÒ ÇÔ¼ö
+bool Player::IsDie() //ìºë¦­í„° ì‚¬ë§ì‹œ ë°œìƒí•  í•¨ìˆ˜
 {
 	if (currentHealth > 0)
 	{
@@ -113,16 +124,16 @@ bool Player::IsDie() //Ä³¸¯ÅÍ »ç¸Á½Ã ¹ß»ıÇÒ ÇÔ¼ö
 	}
 	else
 	{
-		//Todo:Ä³¸¯ÅÍ°¡ Á×À»½Ã ¹ß»ıÇÒ ÀÌº¥Æ® ÀÛ¼º
-		cout << "ÇÃ·¹ÀÌ¾î°¡ »ç¸ÁÇß½À´Ï´Ù!" << endl;
+		//Todo:ìºë¦­í„°ê°€ ì£½ì„ì‹œ ë°œìƒí•  ì´ë²¤íŠ¸ ì‘ì„±
+		cout << "í”Œë ˆì´ì–´ê°€ ì‚¬ë§í–ˆìŠµë‹ˆë‹¤!" << endl;
 		return false;
 	}
 }
 
-void Player::ShowStatus() // Ä³¸¯ÅÍ ½ºÅ×ÀÌÅÍ½º º¸¿©ÁÖ´Â ÇÔ¼ö
+void Player::ShowStatus() // ìºë¦­í„° ìŠ¤í…Œì´í„°ìŠ¤ ë³´ì—¬ì£¼ëŠ” í•¨ìˆ˜
 {
-	//ÇÃ·¹ÀÌ¾î ½ºÅÈÀ» Ç¥½ÃÇÔ ÇÔ¼ö
-	cout << "ÀÌ¸§ : " << name << " || " << "·¹º§ : " << level << " || " << "ÃÖ´ëÃ¼·Â : " << health << " || " << "ÇöÀçÃ¼·Â : " << currentHealth << " || " << "°ø°İ·Â : " << damage << " || " << "ÇöÀç°æÇèÄ¡ : " << exp << endl;
+	//í”Œë ˆì´ì–´ ìŠ¤íƒ¯ì„ í‘œì‹œí•¨ í•¨ìˆ˜
+	cout << "ì´ë¦„ : " << name << " || " << "ë ˆë²¨ : " << level << " || " << "ìµœëŒ€ì²´ë ¥ : " << health << " || " << "í˜„ì¬ì²´ë ¥ : " << currentHealth << " || " << "ê³µê²©ë ¥ : " << damage << " || " << "í˜„ì¬ê²½í—˜ì¹˜ : " << exp << endl;
 }
 
 void Player::LevelUp()
@@ -133,6 +144,7 @@ void Player::LevelUp()
 		AddDamage(levelUpDamage);
 		AddHealth(levelUpHealth);
 		currentHealth = health;
+
 	}
 
 }
@@ -141,7 +153,7 @@ void Player::UseItem(string name)
 {
 	if (inventory.find(name) != inventory.end())
 	{
-		if (typeid(inventory[name].GetItem()) == typeid(Consumable)) //¾ÆÀÌÅÛÀÌ »ç¿ë°¡´ÉÇÑ ¾ÆÀÌÅÛÀÏ¶§
+		if (name == "DamageBoost" || name == "HealthPotion" || name == "Laudanum") //ì•„ì´í…œì´ ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´í…œì¼ë•Œ
 		{
 			static_cast<Consumable*>(inventory[name].GetItem())->Use(*this);
 			inventory[name].AddCount(-1);
@@ -150,39 +162,23 @@ void Player::UseItem(string name)
 				DeleteItem(name);
 			}
 		}
-		else // »ç¿ëºÒ°¡´ÉÇÑ ¾ÆÀÌÅÛÀÏ¶§
-		{
-			cout << "Error : »ç¿ëºÒ°¡´ÉÇÑ ¾ÆÀÌÅÛ ÀÔ´Ï´Ù";
-		}
-	}
-	else
-	{
-		cout << "Error : ÇØ´ç ¾ÆÀÌÅÛÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù" << endl;
 	}
 }
 
-void Player::EquipItem(string name) //ÀÎº¥Åä¸®¿¡¼­ ¾ÆÀÌÅÛÀ» ÀåÂø
+void Player::EquipItem(string name) //ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œì„ ì¥ì°©
 {
 	if (equipInventory.size() < 2) {
-		if (typeid(inventory[name].GetItem()) == typeid(Artifact))
+		if (name == "ExpStone" || name == "HealthStone" || name == "KnightsCrest" || name == "SnakeOil")
 		{
-			// ¾ÆÀÌÅÛÀÇ È¿°ú »ç¿ëÇÏ±â
+			// ì•„ì´í…œì˜ íš¨ê³¼ ì‚¬ìš©í•˜ê¸°
 			equipInventory.insert({name,inventory[name]});
 			static_cast<Artifact*>(equipInventory[name].GetItem())->Attach(*this);
 			inventory.erase(name);
 		}
-		else
-		{
-			cout << "Error : ÀåÂø ºÒ°¡´ÉÇÑ ¾ÆÀÌÅÛ ÀÔ´Ï´Ù" << endl;
-		}
-	}
-	else
-	{
-		cout << "ÃÖ´ë ÀåÂø °¹¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù" << endl;
 	}
 }
 
-void Player::UnEquipItem(string name) //¾ÆÀÌÅÛÀ» ÀåÂø ÇØÁ¦ÇØ¼­ ´Ù½Ã ÀÎº¥Åä¸®·Î
+void Player::UnEquipItem(string name) //ì•„ì´í…œì„ ì¥ì°© í•´ì œí•´ì„œ ë‹¤ì‹œ ì¸ë²¤í† ë¦¬ë¡œ
 {
 	inventory.insert({ name,equipInventory[name] });
 	static_cast<Artifact*>(equipInventory[name].GetItem())->Detach(*this);
@@ -219,13 +215,15 @@ bool Player::RandomProbability(int num)
 		return false;
 	}
 }
+
 void Player::Skill1()
 {
-	//mob->Hit(FinalDamage() * GetRandomValue(0.75,1.2));
+	mob->Hit((int)(FinalDamage() * (GetRandomValue(75,120)*0.01)));
 }
+
 void Player::Skill2()
 {
-	//mob->Hit((int)(FinalDamage() * GetRandomValue(0.1,2.0)));
+	mob->Hit((int)(FinalDamage() * (GetRandomValue(1,20)*0.1)));
 }
 
 void Player::Skill3()
@@ -233,17 +231,17 @@ void Player::Skill3()
 	if (RandomProbability(50))
 	{
 		mob->SetStateSturnToMonster(1);
-		mob->Hit(FinalDamage()*0.2);
+		mob->Hit((int)(FinalDamage()*0.2));
 	}
 	else 
 	{
-		cout << "°ø°İ¿¡ ½ÇÆĞÇß´Ù!!" << endl;
+		cout << "ê³µê²©ì— ì‹¤íŒ¨í–ˆë‹¤!!" << endl;
 	}
 }
 
 void Player::Skill4()
 {
-	currentHealth += damage * 0.2;
+	currentHealth += (int)(damage * 0.2);
 	if (currentHealth > health)
 	{
 		currentHealth = health;
@@ -255,7 +253,7 @@ int Player::FinalDamage()
 	int finalDamage;
 	if (RandomProbability(criticalProbability))
 	{
-		cout << "Ä¡¸íÅ¸ ¹ßµ¿" << endl;
+		cout << "ì¹˜ëª…íƒ€ ë°œë™" << endl;
 		finalDamage = damage * criticalDamage;
 	}
 	else
@@ -336,5 +334,5 @@ void Player::SetAttliction()
 }
 
 
-#pragma endregion ÀÌº¥Æ®ÇÔ¼ö
+#pragma endregion ì´ë²¤íŠ¸í•¨ìˆ˜
 

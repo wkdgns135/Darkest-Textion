@@ -9,11 +9,12 @@ RareArtifact::RareArtifact(unique_ptr<Artifact> artifact) : ArtifactDecorator(mo
 
 void RareArtifact::Attach(Player& player)
 {
-	wrappee->SetAmount(wrappee->GetAmount() + 1);
+	wrappee->SetAmount(wrappee->GetAmount() + 5);
 	wrappee->Attach(player);
 }
 
 void RareArtifact::Detach(Player& player)
 {
 	wrappee->Detach(player);
+	wrappee->SetAmount(wrappee->GetAmount() - 5);
 }
