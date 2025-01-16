@@ -8,6 +8,7 @@ Scene::Scene()
 {
 	inputEvent = make_unique<InputEvent>();
 	renderer = make_unique<Renderer>();
+	equipCursorLoc = { {418, 79}, {460, 79} };
 }
 
 Scene::~Scene()
@@ -103,7 +104,7 @@ void Scene::ShowEquipPannel(Vector2d initLoc)
 	Player* player = GameManager::GetInstance().GetPlayer();
 	map<string, Inventory> inventory = player->GetEquip();
 
-	equipCursorLoc.clear();
+	//equipCursorLoc.clear();
 	int i = 0;
 	int xPadding = 4;
 	int yPadding = 4;
@@ -116,10 +117,10 @@ void Scene::ShowEquipPannel(Vector2d initLoc)
 		Vector2d itemLoc = { itemInitalLoc.x + itemWidth * (i % 8) + xPadding * 2, itemInitalLoc.y + (i / 8 > 0 ? itemHeight + yPadding * 2 : 0) };
 		Sprite* sprite = new Sprite(itemImage, itemLoc, itemWidth, itemHeight);
 		renderer->AddSprite(sprite);
-		equipCursorLoc.push_back(itemLoc);
+		//equipCursorLoc.push_back(itemLoc);
 		i++;
 	}
-	if (equipCursorLoc.empty()) equipCursorLoc.push_back(itemInitalLoc);
+	//if (equipCursorLoc.empty()) equipCursorLoc.push_back(itemInitalLoc);
 }
 
 
@@ -203,6 +204,7 @@ void Scene::SetInventoryMode()
 		if(itEquip != equipInventory.end())
 			player->UnEquipItem(itEquip->first);
 		player->EquipItem(it->first);
+		RedrawInventory();
 		});
 	AddInputEvent(EKeyEvent::Key_I, [this]() { this->SetCustomMode(); });
 }
