@@ -11,7 +11,7 @@ private:
 	unordered_map<EKeyEvent, bool> keyStates;
 	unordered_map<EKeyEvent, char> keyDict = {
 		{Key_1, '1'}, {Key_2, '2'}, {Key_3, '3'} ,{Key_ESC, 0x1B}, 
-		{Key_Q, 'Q'}, {Key_W, 'W'} , {Key_E, 'E'}, {Key_R, 'R'} };
+		{Key_Q, 'Q'}, {Key_W, 'W'} , {Key_E, 'E'}, {Key_R, 'R'}, {Key_I, 'I'}};
 	void SafeInvoke(function<void()> Func);
 
 public:

@@ -81,6 +81,7 @@ void BattleScene::EnableInputEvent()
 	AddInputEvent(Key_E, [this]() {this->PlayerAttack(3); });
 	AddInputEvent(Key_R, [this]() {this->PlayerAttack(4); });
 	//TODO : 인벤토리 및 아이템 사용 추가
+	AddInputEvent(Key_I, [this]() {UseInventory(); });
 }
 
 void BattleScene::PlayerAttack(int skillIndex)
@@ -127,6 +128,27 @@ void BattleScene::MonsterAttackFinish()
 			this->PlayerTurn();
 		}
 	}
+}
+
+void BattleScene::UseInventory()
+{
+	ClearEvent();
+	renderer->ClearSprite();
+
+	ShowInventory();
+
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { 
+		auto inventory = player->GetItem();
+		auto it = inventory.begin(); //리스트 첫번째 칸
+		advance(it, cursor); //index만큼 뒤로 이동
+		player->UseItem(it->first);
+		});
+	AddInputEvent(EKeyEvent::Key_I, [this]() { PlayerTurn(); });
 }
 
 void BattleScene::UpdateNumber()
