@@ -5,15 +5,15 @@
 class TreasureScene : public DungeonScene
 {
 private:
+	GameManager gameManager;
 	Player* player;
 	Item* item;
 	int num;
 
 	void OpenBox();
-	void GetItem(int num);
-	void GiveUpItem();
 	void SelectItem();
 	void InitInputEvent();
+	void SelectGetOrGiveUp();
 
 public:
 	void Enter() override;
