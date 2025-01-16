@@ -95,7 +95,9 @@ void Monster::Attack()
 pair<Item*, int> Monster::Die()
 {
 	Item* dropItem = DropItem();
-	int gold = 500 * rank;
+	int goldMin = GetRandomValue(0, pow(rank * 3, 2)); // 9, 36, 81
+	int goldMax = GetRandomValue(0, pow(rank * 5, 2)); // 25, 100, 225
+	int gold = GetRandomValue(goldMin, goldMax);
 	player->AddItem(dropItem, 1);
 	player->AddGold(gold);
 

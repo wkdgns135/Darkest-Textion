@@ -4,7 +4,7 @@
 Laudanum::Laudanum()
 {
 	name = "Laudanum";
-	price = 5;
+	price = 10;
 	amount = 10;
 	imagePath = "drawable/Item/Laudanum.bmp";
 

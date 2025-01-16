@@ -11,7 +11,6 @@ private:
 
 	void SetCustomMode() override;
 	void RedrawInventory() override;
-	void InventoryMode();
 	
 	void NextRoom();
 	void UseItem();

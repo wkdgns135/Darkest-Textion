@@ -19,7 +19,6 @@ using namespace std;
 ShopScene::ShopScene()
 {
 	cursor = 0;
-	//HERE: player Setting for Test
 	Player* player = GameManager::GetInstance().GetPlayer();
 }
 
@@ -131,8 +130,8 @@ void ShopScene::DisplayShopItems()
 	string damageBoostPath = "drawable/Item/DamageBoost.bmp";
 	
 	Vector2d healthPotionPos = { 260, 0 };
-	Vector2d laudanumPos = { 299, 0 };
-	Vector2d damageBoostPos = { 338, 0 };
+	Vector2d damageBoostPos = { 299, 0 };
+	Vector2d laudanumPos = { 338, 0 };
 
 	Sprite* healthPotionSprite = new Sprite(healthPotionPath, healthPotionPos, 34, 67);
 	Sprite* laudanumSprite = new Sprite(laudanumPath, laudanumPos, 34, 67);

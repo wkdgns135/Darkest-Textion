@@ -174,8 +174,8 @@ void Scene::RedrawInventory()
 	ShowEquipCursor();
 }
 
-//inventory°¡ ´ÝÈ÷°í »ç¿ëÇÒ custom mode¸¦ overrideÇØ¾ßÇÔ
-//inventory ¿­·ÈÀ»¶§´Â ´Ù¸¥¾À ÀÌµ¿ ºÒ°¡´É
+//inventoryï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ custom modeï¿½ï¿½ overrideï¿½Ø¾ï¿½ï¿½ï¿½
+//inventory ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù¸ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ ï¿½Ò°ï¿½ï¿½ï¿½
 void Scene::SetInventoryMode()
 {
 	ClearEvent();
@@ -187,9 +187,13 @@ void Scene::SetInventoryMode()
 	AddInputEvent(EKeyEvent::Key_2, [this]() { MoveCursor(1); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() {
 		auto& inventory = GameManager::GetInstance().GetPlayer()->GetItem();
-		auto it = inventory.begin(); //¸®½ºÆ® Ã¹¹øÂ° Ä­
-		advance(it, cursor); //index¸¸Å­ µÚ·Î ÀÌµ¿
-		GameManager::GetInstance().GetPlayer()->UseItem(it->first);
+		auto it = inventory.begin(); //ï¿½ï¿½ï¿½ï¿½Æ® Ã¹ï¿½ï¿½Â° Ä­
+		advance(it, cursor); //indexï¿½ï¿½Å­ ï¿½Ú·ï¿½ ï¿½Ìµï¿½
+		if (it != inventory.end())
+		{
+			GameManager::GetInstance().GetPlayer()->UseItem(it->first);
+		}
+		RedrawInventory();
 		});
 	AddInputEvent(EKeyEvent::Key_Q, [this]() { MoveEquipCursor(-1); });
 	AddInputEvent(EKeyEvent::Key_W, [this]() { MoveEquipCursor(1); });
@@ -197,9 +201,9 @@ void Scene::SetInventoryMode()
 		Player* player = GameManager::GetInstance().GetPlayer();
 		auto& inventory = player->GetItem();
 		auto& equipInventory = player->GetEquip();
-		auto it = inventory.begin(); //¸®½ºÆ® Ã¹¹øÂ° Ä­
+		auto it = inventory.begin(); //ï¿½ï¿½ï¿½ï¿½Æ® Ã¹ï¿½ï¿½Â° Ä­
 		auto itEquip = equipInventory.begin();
-		advance(it, cursor); //index¸¸Å­ µÚ·Î ÀÌµ¿
+		advance(it, cursor); //indexï¿½ï¿½Å­ ï¿½Ú·ï¿½ ï¿½Ìµï¿½
 		advance(itEquip, equipCursur);
 		if (it->first == "ExpStone" || it->first == "HealthStone" || it->first == "KnightsCrest" || it->first == "SnakeOil")
 		{

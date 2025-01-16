@@ -23,25 +23,12 @@ void RoomScene::SetCustomMode()
 
 void RoomScene::RedrawInventory()
 {
-	Scene::RedrawInventory();
-	UpdateNumber();
-}
-
-void RoomScene::InventoryMode()
-{
-	ClearEvent();
 	renderer->ClearSprite();
-
-	ShowInventory();
-	cursor = 0;
 	UpdateNumber();
+	ShowGoldPannel();
+	ShowInventory();
 	ShowCursor();
-
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
-	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	AddInputEvent(EKeyEvent::Key_3, [this]() { this->UseItem(); });
-	//AddInputEvent(EKeyEvent::Key_I, [this]() { this->ChooseMode(); });
-	//AddInputEvent(EKeyEvent::Key_ESC, [this]() { this->ChooseMode(); });
+	ShowEquipCursor();
 }
 
 
@@ -68,13 +55,8 @@ void RoomScene::NextRoom()
 			case Cove: proba * 0.8; break;
 			case DarkestDungeon: proba * 0.6; break;
 		}
-		if (proba < 10) {
-			//TODO: ITEM ¹æ
-			SceneManager::GetInstance().ChangeScene<TreasureScene>();
-		}
-		else if (proba < 30) {
-			//TODO: ±â¹Í ¹æ
-			SceneManager::GetInstance().ChangeScene<BattleScene>();
+		if (proba < 30) {
+			SceneManager::GetInstance().ChangeScene<TrapScene>();
 		}
 		else {
 			SceneManager::GetInstance().ChangeScene<BattleScene>();

@@ -3,8 +3,8 @@
 HealthPotion::HealthPotion()
 {
 	name = "HealthPotion";
-	price = 5;
-	amount = 10;
+	price = 10;
+	amount = 30;
 	imagePath = "drawable/Item/HealthPotion.bmp";
 }
 
