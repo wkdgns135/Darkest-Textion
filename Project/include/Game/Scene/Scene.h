@@ -9,16 +9,23 @@ private:
 	float deltaTime = 50;
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
-	vector<Image*> drawTarget;
+	vector<Vector2d> cursorLoc;
 
 protected:
 	unique_ptr<Renderer> renderer;
+	int cursor;
 
 public:
 	Scene();
+	~Scene();
 	void RootEnter();
 	void RootUpdate();
 	void RootExit();
+
+	void ShowInventory();
+	void ShowGoldPannel();
+	void ShowCursor();
+	void MoveCursor(int direction);
 
 	// Scene이 변경되고 1번 호출
 	virtual void Enter() = 0;
@@ -36,6 +43,6 @@ public:
 	void AddInputEvent(const EKeyEvent& key, Func&& Callback, function<void()> Complete = nullptr) {
 		inputEvent->AddEvent(key, function<void()>(forward<Func>(Callback)), move(Complete));
 	}
-  
+
 	inline void ClearEvent() { inputEvent->ClearEvent(); };
 };

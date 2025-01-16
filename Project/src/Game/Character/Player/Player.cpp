@@ -10,7 +10,6 @@
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
-#include "Scene/Scene.h"
 
 using namespace std;
 
@@ -79,10 +78,6 @@ void Player::AddGold(int gold)
 #pragma endregion GetSet함수
 
 #pragma region 이벤트함수
-void Player::SelectItem(string name)
-{
-
-}
 
 void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 {
@@ -221,7 +216,7 @@ bool Player::RandomProbability(int num)
 }
 void Player::Skill1()
 {
-	mob->Hit(FinalDamage() * GetRandomValue(0.75,1.2));
+	mob->Hit((int)(FinalDamage() * GetRandomValue(0.75,1.2)));
 }
 void Player::Skill2()
 {
@@ -233,7 +228,7 @@ void Player::Skill3()
 	if (RandomProbability(50))
 	{
 		mob->SetStateSturnToMonster(1);
-		mob->Hit(FinalDamage()*0.2);
+		mob->Hit((int)(FinalDamage()*0.2));
 	}
 	else 
 	{
@@ -243,7 +238,7 @@ void Player::Skill3()
 
 void Player::Skill4()
 {
-	currentHealth += damage * 0.2;
+	currentHealth += (int)(damage * 0.2);
 	if (currentHealth > health)
 	{
 		currentHealth = health;

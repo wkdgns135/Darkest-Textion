@@ -55,6 +55,7 @@ void TreasureScene::GetItem(int num)
 }
 void TreasureScene::SelectItem()
 {
+	ClearEvent();
 	if (player->GetItem().size() < 10)
 	{
 		player->AddItem(item, num);
@@ -63,9 +64,11 @@ void TreasureScene::SelectItem()
 	{
 		//Todo : 인벤토리보여주며 버릴 아이템 선택하게 하기
 	}
+	
 }
 void TreasureScene::GiveUpItem()
 {
+	ClearEvent();
 	//Todo : 룸씬으로 돌아가게
 }
 
