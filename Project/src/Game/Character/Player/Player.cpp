@@ -136,7 +136,7 @@ void Player::UseItem(string name)
 {
 	if (inventory.find(name) != inventory.end())
 	{
-		if (typeid(inventory[name].GetItem()) == typeid(Consumable)) //아이템이 사용가능한 아이템일때
+		if (typeid(inventory[name].GetItem()) == typeid(Consumable*)) //아이템이 사용가능한 아이템일때
 		{
 			static_cast<Consumable*>(inventory[name].GetItem())->Use(*this);
 			inventory[name].AddCount(-1);
@@ -151,7 +151,7 @@ void Player::UseItem(string name)
 void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
 {
 	if (equipInventory.size() < 2) {
-		if (typeid(inventory[name].GetItem()) == typeid(Artifact))
+		if (typeid(inventory[name].GetItem()) == typeid(Artifact*))
 		{
 			// 아이템의 효과 사용하기
 			equipInventory.insert({name,inventory[name]});
