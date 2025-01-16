@@ -14,6 +14,8 @@
 #include "RoomScene.h"
 #include "TrapScene.h"
 #include "TreasureScene.h"
+#include "GameOverScene.h"
+#include "EndingScene.h"
 
 using namespace std;
 

@@ -130,7 +130,9 @@ void BattleScene::PlayerAttackFinish(int skillIndex)
 
 	if (monster->GetCurrentHealth() <= 0) {
 		pair<Item*, int> reward = monster->Die();
-		RewardMode(reward);
+		if (GameManager::GetInstance().GetCurrentDungeon() == DarkestDungeon && GameManager::GetInstance().IsBossStage()) {
+			SceneManager::GetInstance().ChangeScene<EndingScene>();
+		}else RewardMode(reward);
 	}
 	else MonsterTurnMode();
 }
@@ -139,16 +141,14 @@ void BattleScene::MonsterAttackFinish()
 {
 	monster->Attack();
 	if (player->GetCurrentHealth() <= 0) {
-		//TODO: 나중에 게임 오버 씬 추가해서 넘어가도록
-		SceneManager::GetInstance().ChangeScene<TitleScene>();
+		SceneManager::GetInstance().ChangeScene<GameOverScene>();
 	}
 	else {
 		if (player->GetStress() >= 100) {
 			//TODO: 스트레스 100 이상시 붕괴 효과
 		}
 		else if (player->GetStress() >= 200) {
-			//TODO: 나중에 게임 오버 씬 추가해서 넘어가도록
-			SceneManager::GetInstance().ChangeScene<TitleScene>();
+			SceneManager::GetInstance().ChangeScene<GameOverScene>();
 		}
 		else {
 			this->PlayerTurnMode();
