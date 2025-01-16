@@ -1,21 +1,10 @@
 #include "Scene/SceneManager.h"
-#include "Item/Artifact/HealthStone.h"
-#include "Item/Artifact/SnakeOil.h"
-#include "Item/Artifact/ExpStone.h"
+
 using namespace std;
 
 void MainScene::Enter()
 {
 	renderer->AddBackground("drawable/Main.bmp");
-	Player* player = GameManager::GetInstance().GetPlayer();
-	Item* health = new HealthStone();
-	Item* snake = new SnakeOil();
-	Item* exp = new ExpStone();
-	player->AddItem(health, 2);
-	player->AddItem(snake, 2);
-	player->AddItem(exp,2);
-
-
 	SetCustomMode();
 }
 

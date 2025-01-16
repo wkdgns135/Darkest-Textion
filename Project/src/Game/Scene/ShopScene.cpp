@@ -21,7 +21,6 @@ ShopScene::ShopScene()
 	cursor = 0;
 	//HERE: player Setting for Test
 	Player* player = GameManager::GetInstance().GetPlayer();
-	player->AddGold(500);
 }
 
 void ShopScene::Enter()

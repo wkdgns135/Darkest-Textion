@@ -201,9 +201,12 @@ void Scene::SetInventoryMode()
 		auto itEquip = equipInventory.begin();
 		advance(it, cursor); //index만큼 뒤로 이동
 		advance(itEquip, equipCursur);
-		if(itEquip != equipInventory.end())
-			player->UnEquipItem(itEquip->first);
-		player->EquipItem(it->first);
+		if (it->first == "ExpStone" || it->first == "HealthStone" || it->first == "KnightsCrest" || it->first == "SnakeOil")
+		{
+			if (itEquip != equipInventory.end())
+				player->UnEquipItem(itEquip->first);
+			player->EquipItem(it->first);
+		}
 		RedrawInventory();
 		});
 	AddInputEvent(EKeyEvent::Key_I, [this]() { this->SetCustomMode(); });

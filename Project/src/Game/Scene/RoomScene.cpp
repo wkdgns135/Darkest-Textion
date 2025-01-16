@@ -3,7 +3,7 @@
 #include "Scene/SceneManager.h"
 #include "Utility.h"
 
-void RoomScene::ChooseMode()
+void RoomScene::SetCustomMode()
 {
 	renderer->ClearSprite();
 	ClearEvent();
@@ -17,8 +17,14 @@ void RoomScene::ChooseMode()
 	UpdateNumber();
 
 	AddInputEvent(Key_1, [this]() {NextRoom(); });
-	AddInputEvent(Key_I, [this]() {InventoryMode(); });
+	AddInputEvent(Key_I, [this]() {SetInventoryMode(); });
 	AddInputEvent(Key_ESC, [this]() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
+}
+
+void RoomScene::RedrawInventory()
+{
+	Scene::RedrawInventory();
+	UpdateNumber();
 }
 
 void RoomScene::InventoryMode()
@@ -34,8 +40,8 @@ void RoomScene::InventoryMode()
 	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
 	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() { this->UseItem(); });
-	AddInputEvent(EKeyEvent::Key_I, [this]() { this->ChooseMode(); });
-	AddInputEvent(EKeyEvent::Key_ESC, [this]() { this->ChooseMode(); });
+	//AddInputEvent(EKeyEvent::Key_I, [this]() { this->ChooseMode(); });
+	//AddInputEvent(EKeyEvent::Key_ESC, [this]() { this->ChooseMode(); });
 }
 
 
@@ -91,7 +97,7 @@ void RoomScene::Enter()
 	renderer->AddFixSprite(Lv);
 	renderer->AddFixSprite(Floor);
 	UpdateNumber();
-	ChooseMode();
+	SetCustomMode();
 }
 
 void RoomScene::UseItem()

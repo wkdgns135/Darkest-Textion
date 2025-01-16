@@ -35,7 +35,7 @@ public:
 
 	void SetInventoryMode();
 	virtual void SetCustomMode();
-	void RedrawInventory();
+	virtual void RedrawInventory();
 
 	// Scene이 변경되고 1번 호출
 	virtual void Enter() = 0;
