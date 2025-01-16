@@ -11,6 +11,7 @@ void TrapScene::Enter()
 	gameManager = GameManager::GetInstance();
 	dropItem = new DropItemObj();
 	player = gameManager.GetPlayer();
+	currentFunc = ECurrentFunc::Enter;
 
 	SelectSearchOrMove();
 }
@@ -121,7 +122,7 @@ void TrapScene::PrintDetectAntique(vector<string> value)
 
 	ClearEvent();
 	AddInputEvent(Key_1, [this]() {RandomTrapEncounter();});
-	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<DungeonInfoScene>();}); //수정해야함.
+	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<RoomScene>();}); //수정해야함.
 }
 
 void TrapScene::RandomTrapEncounter()
@@ -132,7 +133,7 @@ void TrapScene::RandomTrapEncounter()
 
 	int isIncrease = GetRandomValue(0, 100);
 
-	if (isIncrease < (10 + (int)dungeonRank * 10))
+	if (isIncrease < (10 + (int)dungeonRank * 10)) //10
 	{
 		//increase Animation
 		Sprite* increaseAnim = new Sprite({ 110,10 }, 280, 280);
@@ -149,7 +150,7 @@ void TrapScene::RandomTrapEncounter()
 		renderer->AddSprite(increaseAnim);
 		increaseAnim->animation->PlayOnce([this]() {ActionIncreaseEvent((int)gameManager.GetCurrentDungeon()); });
 	}
-	else if (isIncrease < 80 + ((int)dungeonRank * 10))
+	else if (isIncrease < 80 + ((int)dungeonRank * 10)) //80
 	{
 		//decrease Animation
 		Sprite* decreaseAnim = new Sprite({ 110,10 }, 280, 280);
@@ -177,12 +178,16 @@ void TrapScene::ActionIncreaseEvent(int dungeonLevel)
 	int randomValue = GetRandomValue(0, 100);
 	ETrap trap = ETrap::Health;
 
-	if (randomValue < 30) trap = ETrap::Health;
-	else if (randomValue < 60) trap = ETrap::Stress;
-	else if (randomValue < 80) trap = ETrap::Gold;
-	else if (randomValue < 90) trap = ETrap::Damage;
-	else if (randomValue < 95) trap = ETrap::Speed;
-	else AddOrDeleteItemEvent(false);
+	if (randomValue < 30) trap = ETrap::Health; //30
+	else if (randomValue < 60) trap = ETrap::Stress; //60
+	else if (randomValue < 80) trap = ETrap::Gold; //80
+	else if (randomValue < 90) trap = ETrap::Damage; //90
+	else if (randomValue < 95) trap = ETrap::Speed; //95
+	else
+	{
+		AddOrDeleteItemEvent(false);
+		return;
+	}
 
 	string path = "drawable/Trap/";
 	string notiPath = "drawable/Trap/";
@@ -196,7 +201,7 @@ void TrapScene::ActionIncreaseEvent(int dungeonLevel)
 		notiPath += "Hp.bmp";
 		sign = '+';
 		eventValue = player->GetHealth() * (dungeonLevel + 1) * 0.05f;
-		player->AddHealth(eventValue);
+		player->AddCurrentHealth(eventValue);
 		break;
 
 	case ETrap::Stress:
@@ -254,11 +259,11 @@ void TrapScene::ActionDecreaseEvent(int dungeonLevel)
 	int randomValue = GetRandomValue(0, 100);
 	ETrap trap = ETrap::Health;
 
-	if (randomValue < 30) trap = ETrap::Health;
-	else if (randomValue < 60) trap = ETrap::Stress;
-	else if (randomValue < 80) trap = ETrap::Gold;
-	else if (randomValue < 90) trap = ETrap::Damage;
-	else if (randomValue < 95) trap = ETrap::Speed;
+	if (randomValue < 30) trap = ETrap::Health; //30
+	else if (randomValue < 60) trap = ETrap::Stress; //60
+	else if (randomValue < 80) trap = ETrap::Gold; //80
+	else if (randomValue < 90) trap = ETrap::Damage; //90
+	else if (randomValue < 95) trap = ETrap::Speed; //95
 	else
 	{
 		AddOrDeleteItemEvent(true);
@@ -277,7 +282,7 @@ void TrapScene::ActionDecreaseEvent(int dungeonLevel)
 		notiPath += "Hp.bmp";
 		sign = '-';
 		eventValue = player->GetHealth() * (dungeonLevel + 1) * 0.05f;
-		player->AddHealth(-eventValue);
+		player->AddCurrentHealth(-eventValue);
 		break;
 
 	case ETrap::Stress:
@@ -366,12 +371,31 @@ void TrapScene::AddOrDeleteItemEvent(bool isDelete)
 			if (randomValue <= 90)
 			{
 				path += "deleteConsumable.bmp";
-				// TODO : delete consumable
+
+				for (auto& it : player->GetItem())
+				{
+					if (it.second.GetItem()->GetName().find("Boost") != string::npos || it.second.GetItem()->GetName().find("Potion") != string::npos || it.second.GetItem()->GetName().find("Laudanum") != string::npos)
+					{
+						consumableCount = GetRandomValue(1, 3);
+						it.second.AddCount(-consumableCount);
+						if (it.second.GetCount() <= 0) player->GetItem().erase(it.first);
+						break;
+					}
+				}
 			}
 			else
 			{
 				path += "deleteArtifact.bmp";
-				// TODO : delete artifact
+
+				for (auto& it : player->GetItem())
+				{
+					if (it.second.GetItem()->GetName().find("Stone") != string::npos || it.second.GetItem()->GetName().find("Crest") != string::npos || it.second.GetItem()->GetName().find("Snake") != string::npos)
+					{
+						it.second.AddCount(-1);
+						if (it.second.GetCount() <= 0) player->GetItem().erase(it.first);
+						break;
+					}
+				}
 			}
 		}
 		else path += "failDelete.bmp"; //가진 게 없다.
@@ -381,7 +405,6 @@ void TrapScene::AddOrDeleteItemEvent(bool isDelete)
 		if (randomValue <= 90)
 		{
 			path += "getConsumable.bmp";
-			//create consumable
 			item = dropItem->GetConsumableItem(GetRandomValue(0, 100));
 			consumableCount = GetRandomValue(1, 3);
 
@@ -391,8 +414,7 @@ void TrapScene::AddOrDeleteItemEvent(bool isDelete)
 		else
 		{
 			path += "getArtifact.bmp";
-			//create artifact
-			item = dropItem->GetConsumableItem(GetRandomValue(0, 100));
+			item = dropItem->GetArtifactItem(GetRandomValue(0, 100), GetRandomValue(0, 100));
 
 			Sprite* itemSprite = new Sprite(item->GetImagePath(), { 200, 100 }, 100, 100);
 			renderer->AddSprite(itemSprite);
@@ -404,7 +426,21 @@ void TrapScene::AddOrDeleteItemEvent(bool isDelete)
 		}
 		else
 		{
-			// TODO : 인벤토리에서 하나를 버릴지, 획득한 아이템을 버릴지 선택 필요
+			if (player->GetItem().find(item->GetName()) != player->GetItem().end()) player->GetItem()[item->GetName()].AddCount(1);
+			else
+			{
+				ClearEvent();
+
+				ShowInventory();
+				cursor = 0;
+				ShowCursor();
+
+				AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+				AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+				AddInputEvent(EKeyEvent::Key_3, [this]() { DeleteItem(); });
+
+				player->AddItem(item, consumableCount);
+			}
 		}
 	}
 	
@@ -440,7 +476,14 @@ void TrapScene::PrintMoveNext()
 	renderer->AddSprite(moveNext);
 
 	ClearEvent();
-	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<DungeonInfoScene>();}); // 수정해야함
+	AddInputEvent(Key_1, []() {SceneManager::GetInstance().ChangeScene<RoomScene>();}); // 수정해야함
+}
+
+void TrapScene::DeleteItem()
+{
+	auto it = player->GetItem().begin(); //리스트 첫번째 칸
+	advance(it, cursor); //index만큼 뒤로 이동
+	player->GetItem().erase(it->first);
 }
 
 vector<string> TrapScene::GetInfoByAntiqueOfWeald()

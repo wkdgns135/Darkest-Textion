@@ -54,6 +54,20 @@ enum EDarkestAntique
 	DisturbingDiversion, //충격적인 오락. 확률적 스트레스 증가, Hp 감소, 아무것도 없음.
 };
 
+enum ECurrentFunc
+{
+	Enter,
+	SelectSearchOrMove,
+	SelectRandomTrapByLevel,
+	PrintDetectAntique,
+	RandomTrapEncounter,
+	ActionIncreaseEvent,
+	ActionDecreaseEvent,
+	AddOrDeleteItemEvent,
+	PrintAvoidTrap,
+	PrintMoveNext
+};
+
 class TrapScene : public DungeonScene
 {
 public:
@@ -70,6 +84,7 @@ private:
 	GameManager gameManager;
 	DropItemObj* dropItem;
 	Player* player;
+	ECurrentFunc currentFunc;
 
 	void SelectSearchOrMove();
 	bool IsActiveEvent(EDungeon dungeonRank);
@@ -87,4 +102,5 @@ private:
 
 	void PrintAvoidTrap(bool isNotEvent);
 	void PrintMoveNext();
+	void DeleteItem();
 };
