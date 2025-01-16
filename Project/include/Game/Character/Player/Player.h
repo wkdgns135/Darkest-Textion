@@ -47,6 +47,7 @@ public:
 	inline int GetStress() const { return stress; }
 	inline int GetSpeed() const { return speed; }
 	inline map<string,Inventory>& GetItem() { return inventory; }
+	inline map<string, Inventory>& GetEquip() { return equipInventory; }
 	inline void AddHealth(int health) { this->health += health;} //아이템으로 인한 변동될때 사용할 함수
 	void AddCurrentHealth(int health);
 	inline void AddDamage(int damage) { this->damage += damage;}
