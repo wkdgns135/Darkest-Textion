@@ -9,6 +9,8 @@
 #include "Item/Artifact/Artifact.h";
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
+#include "Global/ProjectEnum.h"
+#include "Scene/Scene.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ Player::Player(string name)
 	additionalExp = 0;
 	additionalStress = 0;
 	level = 1;
+	isStress = false;
 	health = currentHealth = 200;
 	criticalProbability = 10;
 	criticalDamage = 1.5f;
@@ -30,19 +33,6 @@ Player::Player(string name)
 	exp = 0;
 	stress = 0;
 }
-
-/*Player::Player(string name, int level, int currentHealth, int exp, int gold, int stress, vector<Item*>& inventory) // 저장파일 불러올때 사용될 생성자
-{
-	this->name = name;
-	this->level = level;
-	this->gold = gold;
-	this->stress = stress;
-	damage = 30 + (level - 1 * levelUpDamage);
-	this->currentHealth = currentHealth;;
-	health = 200 + (level - 1 * levelUpHealth);
-	this->exp = exp;
-	this->inventory = inventory;
-}*/
 
 #pragma endregion 생성자
 
@@ -62,7 +52,23 @@ void Player::AddItem(Item* item, int num)
 			inventory.insert({ item->GetName(),inven });
 		}
 	}
+	else
+	{
+
+	}
 }
+void Player::AddCurrentHealth(int health)
+{
+	if(currentHealth < this->health)
+	{
+		currentHealth += health;
+		if (currentHealth > this->health)
+		{
+			currentHealth = health;
+		}
+	}
+}
+
 void Player::AddGold(int gold) 
 {
 	if (gold + this->gold >= 0) {
@@ -73,6 +79,10 @@ void Player::AddGold(int gold)
 #pragma endregion GetSet함수
 
 #pragma region 이벤트함수
+void Player::SelectItem(string name)
+{
+
+}
 
 void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 {
@@ -88,6 +98,7 @@ void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 			IsDie();
 		}
 	}
+	SetAttliction();
 }
 
 void Player::Attack()
@@ -182,6 +193,17 @@ void Player::DeleteItem(string name)
 {
 	inventory.erase(name);
 }
+void Player::SellItem(string name, int num)
+{
+	if (inventory[name].GetCount() - num > 0)
+	{
+		inventory[name].AddCount(-num);
+	}
+	else
+	{
+		DeleteItem(name);
+	}
+}
 
 bool Player::RandomProbability(int num)
 {
@@ -199,39 +221,33 @@ bool Player::RandomProbability(int num)
 }
 void Player::Skill1()
 {
+	mob->Hit(FinalDamage() * GetRandomValue(0.75,1.2));
+}
+void Player::Skill2()
+{
+	mob->Hit((int)(FinalDamage() * GetRandomValue(0.1,2.0)));
+}
+
+void Player::Skill3()
+{
 	if (RandomProbability(50))
 	{
-		//Todo : 몬스터의 스턴 함수를 불러온다
 		mob->SetStateSturnToMonster(1);
-		mob->Hit(FinalDamage());
+		mob->Hit(FinalDamage()*0.2);
 	}
 	else 
 	{
 		cout << "공격에 실패했다!!" << endl;
 	}
 }
-void Player::Skill2()
-{
-	srand((unsigned int)time(NULL));
-	int rnd = rand() % 100;
 
-	currentHealth += rnd;
+void Player::Skill4()
+{
+	currentHealth += damage * 0.2;
 	if (currentHealth > health)
 	{
 		currentHealth = health;
 	}
-}
-void Player::Skill3()
-{
-	mob->Hit(FinalDamage() * 2);
-}
-void Player::Skill4()
-{
-	srand((unsigned int)time(NULL));
-	int rnd = rand() % 100;
-	float damagernd = rnd * 0.1;
-
-	mob->Hit((int)(FinalDamage() * damagernd));
 }
 
 int Player::FinalDamage()
@@ -248,6 +264,77 @@ int Player::FinalDamage()
 	}
 	return finalDamage;
 }
+
+void Player::SetAttliction() 
+{
+	if (myAffliction = Normal)
+	{
+		if (stress >= 100)
+		{
+			myAffliction = (EAffliction)GetRandomValue(1, 3);
+			switch (myAffliction)
+			{
+			case Paranoid:
+				evasion += 10;
+				speed += 2;
+				damage -= 20;
+				break;
+			case Selfish:
+				evasion += 5;
+				damage -= 10;
+				break;
+			case Irrational:
+				evasion -= 5;
+				speed += 2;
+				damage -= 10;
+				break;
+			default:
+				break;
+			}
+		}
+	}
+	else
+	{
+		if (stress == 0)
+		{
+			switch (myAffliction)
+			{
+			case Paranoid:
+				evasion -= 10;
+				speed -= 2;
+				damage += 20;
+				break;
+			case Selfish:
+				evasion -= 5;
+				damage += 10;
+				break;
+			case Irrational:
+				evasion += 5;
+				speed -= 2;
+				damage += 10;
+				break;
+			default:
+				break;
+			}
+			myAffliction = Normal;
+		}
+		if (stress >= 200) 
+		{
+			if (myAffliction != DeathDoor)
+			{
+				myAffliction = DeathDoor;
+				currentHealth = 1;
+				stress = 170;
+			}
+			else if(myAffliction == DeathDoor)
+			{
+				IsDie();
+			}
+		}
+
+	}
+}
+
 
 #pragma endregion 이벤트함수
 
