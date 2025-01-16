@@ -206,6 +206,7 @@ void Scene::SetInventoryMode()
 		auto itEquip = equipInventory.begin();
 		advance(it, cursor); //index��ŭ �ڷ� �̵�
 		advance(itEquip, equipCursur);
+		if (it == inventory.end()) return;
 		if (it->first == "ExpStone" || it->first == "HealthStone" || it->first == "KnightsCrest" || it->first == "SnakeOil")
 		{
 			if (itEquip != equipInventory.end())
