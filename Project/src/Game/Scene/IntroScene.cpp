@@ -9,7 +9,7 @@
 void IntroScene::Enter()
 {
 	vector<string> path;
-    for (int i = 1; i <= 517; i++) {
+    for (int i = 1; i <= 689; i++) {
         ostringstream oss;
         oss << "drawable/Intro/" << setw(4) << setfill('0') << i << ".bmp";
         path.push_back(oss.str());
@@ -17,7 +17,7 @@ void IntroScene::Enter()
 
     Sprite* intro = new Sprite({0,0}, 500, 300);
     renderer->AddSprite(intro);
-    intro->AddAnimation(path, 0.15);
+    intro->AddAnimation(path, 0.1);
     intro->animation->PlayOnce([]() { SceneManager::GetInstance().ChangeScene<MainScene>();});
     AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
 }

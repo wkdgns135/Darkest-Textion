@@ -136,6 +136,7 @@
     <ClCompile Include="Darkest-Textion.cpp" />
     <ClCompile Include="src\Game\Scene\IntroScene.cpp" />
     <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
+    <ClCompile Include="src\Game\Scene\RoomScene.cpp" />
     <ClCompile Include="src\Game\Scene\TreasureScene.cpp" />
     <ClCompile Include="src\Game\Scene\ShopScene.cpp" />
     <ClCompile Include="src\Game\Shop\Shop.cpp" />
@@ -194,7 +195,6 @@
     <ClInclude Include="include\Game\Character\Monster\SeasideMonsters.h" />
     <ClInclude Include="include\Game\Character\Player\Inventory.h" />
     <ClInclude Include="include\Game\Character\Player\Player.h" />
-    <ClInclude Include="include\Game\Encounter\Encounter.h" />
     <ClInclude Include="include\Game\Game.h" />
     <ClInclude Include="include\Game\GameManager.h" />
     <ClInclude Include="include\Game\Item\Artifact\AncestalaArtifact.h" />
@@ -218,6 +218,7 @@
     <ClInclude Include="include\Game\Scene\MainScene.h" />
     <ClInclude Include="include\Game\Scene\MainShopScene.h" />
     <ClInclude Include="include\Game\Scene\NewPlayerScene.h" />
+    <ClInclude Include="include\Game\Scene\RoomScene.h" />
     <ClInclude Include="include\Game\Scene\Scene.h" />
     <ClInclude Include="include\Game\Scene\SceneManager.h" />
     <ClInclude Include="include\Game\Scene\SelectDungeonScene.h" />

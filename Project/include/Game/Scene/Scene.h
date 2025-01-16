@@ -9,13 +9,13 @@ private:
 	float deltaTime = 50;
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
-	vector<Image*> drawTarget;
 
 protected:
 	unique_ptr<Renderer> renderer;
 
 public:
 	Scene();
+	~Scene();
 	void RootEnter();
 	void RootUpdate();
 	void RootExit();

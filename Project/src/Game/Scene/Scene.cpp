@@ -8,6 +8,11 @@ Scene::Scene()
 	renderer = make_unique<Renderer>();
 }
 
+Scene::~Scene()
+{
+	
+}
+
 void Scene::RootUpdate()
 {
 	while (isActive) {

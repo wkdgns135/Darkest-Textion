@@ -17,6 +17,12 @@ Renderer::Renderer()
     isDraw = true;
 }
 
+Renderer::~Renderer()
+{
+    delete buffer;
+    delete background;
+}
+
 void Renderer::SetConsoleFontForDraw()
 {
     CONSOLE_FONT_INFOEX cfi;
