@@ -19,7 +19,7 @@ private:
 	unsigned int exp;
 	int additionalExp;
 	int additionalStress;
-	unsigned int gold;
+	int gold;
 	unsigned int stress;
 	unsigned int speed;
 	unsigned int evasion;
