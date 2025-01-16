@@ -61,7 +61,6 @@ public:
 	void SellItem(string name, int num);
 	int FinalDamage();
 	void AddGold(int gold);
-	void SelectItem(string name);
 	void AddItem(Item* item,int num);
 	void UseItem(string name);
 	void DeleteItem(string name);
