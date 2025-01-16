@@ -19,6 +19,9 @@ using namespace std;
 ShopScene::ShopScene()
 {
 	cursor = 0;
+	//HERE: player Setting for Test
+	Player* player = GameManager::GetInstance().GetPlayer();
+	player->AddGold(500);
 }
 
 void ShopScene::Enter()
@@ -32,7 +35,6 @@ void ShopScene::Enter()
 
 	//goldPannel
 	ShowGoldPannel();
-
 
 	SetPurchaseMode();
 
@@ -49,6 +51,72 @@ void ShopScene::Exit()
 
 }
 
+void ShopScene::SetPurchaseMode() 
+{
+	ClearEvent();
+
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+
+
+	cursorLoc = { { 260, 0 }, { 299, 0 }, { 338, 0 } };
+	cursor = 0;
+	ShowCursor();
+
+
+
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	AddInputEvent(EKeyEvent::Key_ESC, [this]() { this->Purchase(); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetSellMode(); });
+	//AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
+}
+
+void ShopScene::SetSellMode()
+{
+	ClearEvent();
+
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+	ShowInventory();
+
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	AddInputEvent(EKeyEvent::Key_ESC, [this]() { this->Sell(); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetPurchaseMode(); });
+	//AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<TitleScene>(); });
+
+}
+
+
+void ShopScene::Purchase()
+{
+	this->shop->PurchaseItem(cursor, 1);
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+	ShowCursor();
+
+}
+
+void ShopScene::Sell()
+{
+	this->shop->SellItem(cursor, 1);
+	renderer->ClearSprite();
+	ShowGoldPannel();
+	DisplayShopItems();
+	ShowInventory();
+	ShowCursor();
+}
+
+
+
 void ShopScene::ShowInventory() 
 {
 	//Render Inventory frame
@@ -60,35 +128,35 @@ void ShopScene::ShowInventory()
 	renderer->AddSprite(sprite);
 
 
-	//Player* player = GameManager::GetInstance().GetPlayer();
-	//map<string, Inventory> inventory = player->GetItem();
+	Player* player = GameManager::GetInstance().GetPlayer();
+	map<string, Inventory> inventory = player->GetItem();
 
-	Item* healthPotion = new HealthPotion();
-	Item* damageboost = new DamageBoost();
-	Item* laudanum = new Laudanum();
-	unique_ptr<Artifact> item = make_unique<HealthStone>();
-	Item* healthStone = new RareArtifact(move(item));
-	Item* knightsCrest = new KnightsCrest();
-	Item* snakeOil = new SnakeOil();
-	Item* expStone = new ExpStone();
+	//Item* healthPotion = new HealthPotion();
+	//Item* damageboost = new DamageBoost();
+	//Item* laudanum = new Laudanum();
+	//unique_ptr<Artifact> item = make_unique<HealthStone>();
+	//Item* healthStone = new RareArtifact(move(item));
+	//Item* knightsCrest = new KnightsCrest();
+	//Item* snakeOil = new SnakeOil();
+	//Item* expStone = new ExpStone();
 
-	map<string, Inventory> inventory = {
-		{healthPotion->GetName(), Inventory(healthPotion,3)},
-		{damageboost->GetName(), Inventory(damageboost,2)},
-		{laudanum->GetName(), Inventory(laudanum,4)},
-		{healthStone->GetName(), Inventory(healthStone,3)},
-		{expStone->GetName(), Inventory(expStone,3)},
-		{"1", Inventory(healthPotion,3)},
-		{"2", Inventory(laudanum,3)},
-		{"3", Inventory(healthPotion,3)},
-		{"4", Inventory(laudanum,3)},
-		{"5", Inventory(healthPotion,3)},
-		{"6", Inventory(laudanum,3)},
-		{"7", Inventory(healthPotion,3)},
-		{"8", Inventory(laudanum,3)},
-		{"9", Inventory(healthPotion,3)},
-		{"10", Inventory(laudanum,3)},
-	};
+	//map<string, Inventory> inventory = {
+	//	{healthPotion->GetName(), Inventory(healthPotion,3)},
+	//	{damageboost->GetName(), Inventory(damageboost,2)},
+	//	{laudanum->GetName(), Inventory(laudanum,4)},
+	//	{healthStone->GetName(), Inventory(healthStone,3)},
+	//	{expStone->GetName(), Inventory(expStone,3)},
+	//	{"1", Inventory(healthPotion,3)},
+	//	{"2", Inventory(laudanum,3)},
+	//	{"3", Inventory(healthPotion,3)},
+	//	{"4", Inventory(laudanum,3)},
+	//	{"5", Inventory(healthPotion,3)},
+	//	{"6", Inventory(laudanum,3)},
+	//	{"7", Inventory(healthPotion,3)},
+	//	{"8", Inventory(laudanum,3)},
+	//	{"9", Inventory(healthPotion,3)},
+	//	{"10", Inventory(laudanum,3)},
+	//};
 
 	cursorLoc.clear();
 
@@ -109,8 +177,9 @@ void ShopScene::ShowInventory()
 		renderer->DrawNumber(item.second.GetCount(), { itemLoc.x + 2, itemLoc.y }, 10, 30);
 		i++;
 	}
-}
 
+	if (cursorLoc.empty())cursorLoc.push_back(itemInitalLoc);
+}
 
 void ShopScene::ShowGoldPannel()
 {
@@ -122,75 +191,7 @@ void ShopScene::ShowGoldPannel()
 	Sprite* sprite = new Sprite(goldPannel, goldPannelLoc, goldPannelWidth, goldPannelHeight);
 	renderer->AddSprite(sprite);
 
-	renderer->DrawNumber(1234/*player->GetGold()*/, {goldPannelLoc.x + 55, goldPannelLoc.y + 5}, 20, 35);
-}
-
-
-
-
-
-void ShopScene::SetPurchaseMode() 
-{
-	ClearEvent();
-
-	renderer->ClearSprite();
-	ShowGoldPannel();
-	DisplayShopItems();
-
-
-	cursorLoc = { { 260, 0 }, { 299, 0 }, { 338, 0 } };
-	cursor = 0;
-	ShowCursor();
-
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
-	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->PurchaseItem(cursor, 1); });
-	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetSellMode(); });
-	
-
-}
-
-void ShopScene::SetSellMode()
-{
-	ClearEvent();
-
-	renderer->ClearSprite();
-	ShowGoldPannel();
-	DisplayShopItems();
-	ShowInventory();
-
-	cursor = 0;
-	ShowCursor();
-
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
-	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	//AddInputEvent(EKeyEvent::Key_3, [this]() { this->shop->SellItem(cursor, 1); });
-	AddInputEvent(EKeyEvent::Key_3, [this]() { this->SetPurchaseMode(); });
-
-}
-
-
-void ShopScene::MoveCursor(int direction)
-{
-	if (direction > 0)
-	{
-		if (cursor >= cursorLoc.size() - 1) return;
-		else cursor++;
-	}
-	else
-	{
-		if (cursor <= 0) return;
-		else cursor--;
-	}
-	renderer->RemoveSprite();
-	ShowCursor();
-
-}
-
-void ShopScene::ShowCursor()
-{
-	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
-	renderer->AddSprite(sprite);
+	renderer->DrawNumber(player->GetGold(), {goldPannelLoc.x + 55, goldPannelLoc.y + 5}, 20, 35);
 }
 
 void ShopScene::DisplayShopItems()
@@ -215,10 +216,36 @@ void ShopScene::DisplayShopItems()
 	Item* damageboost = new DamageBoost();
 	Item* laudanum = new Laudanum();
 
-	
-
-
-	renderer->DrawNumber(healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 }, 10, 30);
-	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 10, 30);
-	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 10, 30);
+	renderer->DrawNumber(healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 }, 15, 33);
+	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 15, 33);
+	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 15, 33);
 }
+
+void ShopScene::MoveCursor(int direction)
+{
+	if (direction > 0)
+	{
+		if (cursor >= cursorLoc.size() - 1) return;
+		else cursor++;
+	}
+	else
+	{
+		if (cursor <= 0) return;
+		else cursor--;
+	}
+	renderer->RemoveSprite();
+	ShowCursor();
+
+}
+
+void ShopScene::ShowCursor()
+{
+	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
+	renderer->AddSprite(sprite);
+}
+
+
+
+
+
+

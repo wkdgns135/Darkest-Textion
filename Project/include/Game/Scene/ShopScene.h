@@ -12,6 +12,7 @@ private:
 	void SetPurchaseMode();
 	void SetSellMode();
 
+
 	void DisplayShopItems();
 	void ShowGoldPannel();
 	void ShowInventory();
@@ -22,4 +23,6 @@ public:
 	void Enter() override;
 	void Update() override;
 	void Exit() override;
+	void Purchase();
+	void Sell();
 };
