@@ -74,7 +74,7 @@ void TrapScene::SelectRandomTrapByLevel()
 
 	if (IsActiveEvent(dungeonRank))
 	{
-		Sprite* panel = new Sprite("drawable/Trap/Panel.bmp", { 150, 100 }, 200, 100); //다른 이미지 그냥 얹으면 구분 안 가서 밝은 패널 넣음
+		Sprite* panel = new Sprite("drawable/Ui/Panel.bmp", { 150, 100 }, 200, 100); //다른 이미지 그냥 얹으면 구분 안 가서 밝은 패널 넣음
 		renderer->AddSprite(panel);
 
 		switch (dungeonRank)
