@@ -43,6 +43,10 @@ void TreasureScene::OpenBox()
 		item = new HealthPotion();
 		num = GetRandomValue(0, 5);
 		break;
+	case (int)ELaudanum:
+		item = new Laudanum();
+		num = GetRandomValue(0, 5);
+		break;
 	default:
 		item = nullptr;
 		itemImage = nullptr;
