@@ -216,14 +216,6 @@ void ShopScene::DisplayShopItems()
 	Item* damageboost = new DamageBoost();
 	Item* laudanum = new Laudanum();
 
-	string invenImage = "drawable/Item/RareArtifact.bmp";
-	Vector2d invenLoc = { 50, 50 };
-	int invenWidth = 40;
-	int invenHeight = 65;
-	Sprite* sprite = new Sprite(invenImage, healthPotionPos, 36, 73);
-	renderer->AddSprite(sprite);
-
-
 	renderer->DrawNumber(healthPotion->GetPrice(), { healthPotionPos.x + 10, healthPotionPos.y + 68 }, 15, 33);
 	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 15, 33);
 	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 15, 33);
