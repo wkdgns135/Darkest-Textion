@@ -9,9 +9,9 @@ private:
 	float deltaTime = 50;
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
-	vector<Vector2d> cursorLoc;
 
 protected:
+	vector<Vector2d> cursorLoc;
 	unique_ptr<Renderer> renderer;
 	int cursor;
 
