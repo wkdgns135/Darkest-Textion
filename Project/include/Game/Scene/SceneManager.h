@@ -12,6 +12,7 @@
 #include "IntroScene.h"
 #include "ShopScene.h"
 #include "RoomScene.h"
+#include "TrapScene.h"
 
 using namespace std;
 
