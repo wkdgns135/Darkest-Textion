@@ -1,6 +1,6 @@
 ﻿#include <Windows.h>
+#include <queue>
 #include "IO/Renderer.h"
-
 using namespace cimg_library;
 
 Renderer::Renderer()
@@ -96,6 +96,8 @@ void Renderer::CenterConsoleWindow() {
 
 void Renderer::DrawBackground()
 {
+    if (background == nullptr)return;
+
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             if (x < 0 || x >= width || y < 0 || y >= height) {
@@ -169,25 +171,52 @@ void Renderer::ClearBuffer()
 
 void Renderer::FillBuffer(float deltaTime)
 {
-    if (background) {
+    /* NOTE:Fill Buffer 설명
+    * 현재 렌더러가 보유하고 있는 스프라이트들 순회하며 갱신해야할 스프라이트가 있는지 확인하고
+    * 갱신해야 할 스프라이트가 있을때만 배경 -> 고정 스프라이트 -> 스프라이트 순서로 버퍼에 이미지를 그림
+    */
+    bool drawFlag = false;
+
+    if (background != nullptr && background->drawCall) {
+        background->drawCall = false;
         DrawBackground();
     }
 
     for (Sprite* sprite : fixSprite) {
-        if (!sprite->GetDrawCall())continue;
-        DrawImage(sprite->GetImage(), sprite->pos);
+        if (sprite->GetDrawCall() == true) {
+            drawFlag = true;
+            break;
+        }
     }
 
     for (Sprite* sprite : drawSprite) {
-        if (sprite->animation == nullptr) { // 애니메이션이 없을 경우 드로우 콜이 트루일때만 드로우
+        if (sprite->animation == nullptr) {
             if (sprite->GetDrawCall() == true) {
+                drawFlag = true;
+                break;
+            }
+        }
+        else {
+            sprite->animation->UpdateDeltaTime(deltaTime);
+            if (sprite->animation->GetCurrentImage()->drawCall == true) {
+                drawFlag = true;
+                break;
+            }
+        }
+    }
+
+    if (drawFlag) {
+        DrawBackground();
+        for (Sprite* sprite : fixSprite) {
+            sprite->SetDrawCall(false);
+            DrawImage(sprite->GetImage(), sprite->pos);
+        }
+        for (Sprite* sprite : drawSprite) {
+            if (sprite->animation == nullptr) {
                 sprite->SetDrawCall(false);
                 DrawImage(sprite->GetImage(), sprite->pos);
             }
-        }
-        else { // 애니메이션이 있을경우 현재 애니메이션 스프라이트가 업데이트 됬을때만 드로우
-            sprite->animation->UpdateDeltaTime(deltaTime);
-            if (sprite->animation->GetCurrentImage()->drawCall == true) {
+            else {
                 sprite->animation->GetCurrentImage()->drawCall = false;
                 DrawImage(sprite->GetImage(), sprite->pos);
             }
