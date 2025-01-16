@@ -12,7 +12,7 @@ Scene::Scene()
 
 Scene::~Scene()
 {
-
+	
 }
 
 void Scene::RootUpdate()
@@ -62,7 +62,7 @@ void Scene::ShowInventory()
 	int xPadding = 4;
 	int yPadding = 4;
 	Vector2d itemInitalLoc = { invenLoc.x + xPadding + 6, invenLoc.y + yPadding };
-	for (auto& item : inventory)
+	for (auto &item : inventory)
 	{
 		string itemImage = item.second.GetItem()->GetImagePath();
 		int itemWidth = invenWidth / 7 - xPadding * 2;
@@ -113,3 +113,4 @@ void Scene::ShowCursor()
 	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", cursorLoc[cursor], 35, 65);
 	renderer->AddSprite(sprite);
 }
+

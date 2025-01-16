@@ -17,6 +17,12 @@ Renderer::Renderer()
     isDraw = true;
 }
 
+Renderer::~Renderer()
+{
+    delete buffer;
+    delete background;
+}
+
 void Renderer::SetConsoleFontForDraw()
 {
     CONSOLE_FONT_INFOEX cfi;
@@ -135,8 +141,6 @@ void Renderer::DrawImage(Image* image, const Vector2d &pos)
             buffer[dIndex].Char.UnicodeChar = image->GetPixel(x, y);
         }
     }
-
-    isDraw = true;
 }
 
 void Renderer::DrawNumber(int number, const Vector2d& pos, int width, int height)
@@ -174,7 +178,6 @@ void Renderer::FillBuffer(float deltaTime)
 
     for (Sprite* sprite : drawSprite) {
         DrawImage(sprite->GetImage(deltaTime), sprite->pos);
-        isDraw = true;
     }
 }
 

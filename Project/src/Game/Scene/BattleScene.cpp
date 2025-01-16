@@ -14,7 +14,7 @@ void BattleScene::ImportMonsterSprite()
 		path += ".bmp";
 		sheetPath.push_back(path);
 	}
-	monsterAttack->AddAnimation(sheetPath, 0.1f);
+	monsterAttack->AddAnimation(sheetPath, 0.05f);
 
 	string monsterPath = "drawable/Monster/" + monster->GetName() + ".bmp";
 	Sprite* monsterSprite = new Sprite(monsterPath, {150, 0}, 200, 200);
@@ -32,7 +32,7 @@ void BattleScene::ImportPlayerSprite()
 		path += ".bmp";
 		sheetPath.push_back(path);
 	}
-	playerAttack->AddAnimation(sheetPath, 0.1f);
+	playerAttack->AddAnimation(sheetPath, 0.05f);
 }
 
 void BattleScene::ImportUiSprite()
@@ -80,6 +80,7 @@ void BattleScene::EnableInputEvent()
 	AddInputEvent(Key_W, [this]() {this->PlayerAttack(2); });
 	AddInputEvent(Key_E, [this]() {this->PlayerAttack(3); });
 	AddInputEvent(Key_R, [this]() {this->PlayerAttack(4); });
+	AddInputEvent(Key_I, [this]() {UseInventory(); });
 }
 
 void BattleScene::PlayerAttack(int skillIndex)
@@ -103,7 +104,7 @@ void BattleScene::PlayerAttackFinish(int skillIndex)
 
 	if (monster->GetCurrentHealth() <= 0) {
 		monster->Die();
-		SceneManager::GetInstance().ChangeScene<DungeonScene>();
+		SceneManager::GetInstance().ChangeScene<RoomScene>();
 	}else this->MonsterTurn();
 }
 
@@ -126,6 +127,27 @@ void BattleScene::MonsterAttackFinish()
 			this->PlayerTurn();
 		}
 	}
+}
+
+void BattleScene::UseInventory()
+{
+	ClearEvent();
+	renderer->ClearSprite();
+
+	ShowInventory();
+
+	cursor = 0;
+	ShowCursor();
+
+	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
+	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
+	AddInputEvent(EKeyEvent::Key_3, [this]() { 
+		auto inventory = player->GetItem();
+		auto it = inventory.begin(); //리스트 첫번째 칸
+		advance(it, cursor); //index만큼 뒤로 이동
+		player->UseItem(it->first);
+		});
+	AddInputEvent(EKeyEvent::Key_I, [this]() { PlayerTurn(); });
 }
 
 void BattleScene::UpdateNumber()
@@ -168,8 +190,4 @@ void BattleScene::Update()
 void BattleScene::Exit()
 {
 	DungeonScene::Exit();
-
-	delete monsterAttack;
-	delete playerTurn;
-	delete monsterTurn;
 }

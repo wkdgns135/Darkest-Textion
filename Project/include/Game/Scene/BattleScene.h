@@ -32,6 +32,7 @@ private :
 	void PlayerAttack(int skillIndex);
 	void PlayerAttackFinish(int skillIndex);
 	void MonsterAttackFinish();
+	void UseInventory();
 	void UpdateNumber();
 	
 public:

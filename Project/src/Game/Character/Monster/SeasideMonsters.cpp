@@ -23,15 +23,15 @@ void SeasideMonsterPelagic::InitializeByDungeonLevel()
 	switch (rank)
 	{
 	case 0:
-		name = "대양인 주술사(Pelagic Shaman)";
+		name = "대양인 일족(Pelagic)";
 		break;
 
 	case 1:
-		name = "대양인 예언자(Pelagic Oracle)";
+		name = "대양인 수호자(Pelagic Guardian)";
 		break;
 
 	case 2:
-		name = "대양인 조류대가(Pelagic TideMaster)";
+		name = "대양인 주술사(Pelagic Shaman)";
 		break;
 	}
 
@@ -89,15 +89,15 @@ void SeasideMonsterStinger::InitializeByDungeonLevel()
 	switch (rank)
 	{
 	case 0:
-		name = "심해의 가시 해파리(Deep Stinger)";
+		name = "가시 해파리(Stinger)";
 		break;
 
 	case 1:
-		name = "충전된 가시 해파리(Energized Stinger)";
+		name = "바다 구더기(Sea Maggot)";
 		break;
 
 	case 2:
-		name = "마비의 가시 해파리(Paralyzing Stinger)";
+		name = "거대 농게(Uca Major)";
 		break;
 	}
 
@@ -155,15 +155,15 @@ void SeasideMonsterThrall::InitializeByDungeonLevel()
 	switch (rank)
 	{
 	case 0:
-		name = "익사한 노예(Drowned Thrall)";
+		name = "노예(Thrall)";
 		break;
 
 	case 1:
-		name = "고름덩어리 노예(Pustulent Thrall)";
+		name = "술에 절은 망자(Squiffy Ghast)";
 		break;
 
 	case 2:
-		name = "불어터진 노예(Bloated Thrall)";
+		name = "익사한 선원(Drowned Crew)";
 		break;
 	}
 
