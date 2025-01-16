@@ -15,15 +15,15 @@ class Player : Character {
 private:
 	const int levelUpDamage = 5;
 	const int levelUpHealth = 20;
-	int level;
-	int exp;
+	unsigned int level;
+	unsigned int exp;
 	int additionalExp;
 	int additionalStress;
-	int gold;
-	int stress;
-	int speed;
-	int evasion;
-	int criticalProbability;
+	unsigned int gold;
+	unsigned int stress;
+	unsigned int speed;
+	unsigned int evasion;
+	unsigned int criticalProbability;
 	float criticalDamage;
 	bool isStress;
 	map<string, Inventory> inventory;

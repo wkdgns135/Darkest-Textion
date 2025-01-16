@@ -40,6 +40,7 @@ enum EItemName
 	ESnkeOil,
 	EDamageBoost,
 	EHealthPotion,
+	ELaudanum,
 	EEnd
 };
 enum EAffliction

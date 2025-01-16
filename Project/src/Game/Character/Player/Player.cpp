@@ -7,6 +7,10 @@
 #include "Item/Item.h"
 #include "Item/Consumable/Consumable.h"
 #include "Item/Artifact/Artifact.h"
+#include "Item/Artifact/ExpStone.h"
+#include "Item/Artifact/HealthStone.h"
+#include "Item/Artifact/KnightsCrest.h"
+#include "Item/Artifact/SnakeOil.h"
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
@@ -149,7 +153,7 @@ void Player::UseItem(string name)
 {
 	if (inventory.find(name) != inventory.end())
 	{
-		if (typeid(inventory[name].GetItem()) == typeid(Consumable*)) //아이템이 사용가능한 아이템일때
+		if (name == "DamageBoost" || name == "HealthPotion" || name == "Laudanum") //아이템이 사용가능한 아이템일때
 		{
 			static_cast<Consumable*>(inventory[name].GetItem())->Use(*this);
 			inventory[name].AddCount(-1);
@@ -164,7 +168,7 @@ void Player::UseItem(string name)
 void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
 {
 	if (equipInventory.size() < 2) {
-		if (typeid(inventory[name].GetItem()) == typeid(Artifact*))
+		if (name == "ExpStone" || name == "HealthStone" || name == "KnightsCrest" || name == "SnakeOil")
 		{
 			// 아이템의 효과 사용하기
 			equipInventory.insert({name,inventory[name]});
