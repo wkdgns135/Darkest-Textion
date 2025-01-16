@@ -80,7 +80,6 @@ void BattleScene::EnableInputEvent()
 	AddInputEvent(Key_W, [this]() {this->PlayerAttack(2); });
 	AddInputEvent(Key_E, [this]() {this->PlayerAttack(3); });
 	AddInputEvent(Key_R, [this]() {this->PlayerAttack(4); });
-	//TODO : 인벤토리 및 아이템 사용 추가
 	AddInputEvent(Key_I, [this]() {UseInventory(); });
 }
 

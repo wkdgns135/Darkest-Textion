@@ -74,6 +74,7 @@ void Scene::ShowInventory()
 		renderer->DrawNumber(item.second.GetCount(), { itemLoc.x + 2, itemLoc.y }, 10, 30);
 		i++;
 	}
+	if (cursorLoc.empty())cursorLoc.push_back(itemInitalLoc);
 }
 
 void Scene::ShowGoldPannel()
