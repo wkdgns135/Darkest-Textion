@@ -75,7 +75,6 @@ void Scene::ShowInventory()
 		i++;
 	}
 	if (cursorLoc.empty())cursorLoc.push_back(itemInitalLoc);
-
 	ShowEquipPannel(invenLoc);
 }
 
@@ -102,7 +101,7 @@ void Scene::ShowEquipPannel(Vector2d initLoc)
 	renderer->AddSprite(sprite);
 
 	Player* player = GameManager::GetInstance().GetPlayer();
-	map<string, Inventory> inventory = player->GetItem();
+	map<string, Inventory> inventory = player->GetEquip();
 
 	equipCursorLoc.clear();
 	int i = 0;
@@ -161,7 +160,7 @@ void Scene::MoveEquipCursor(int direction)
 }
 void Scene::ShowEquipCursor()
 {
-	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", equipCursorLoc[cursor], 35, 65);
+	Sprite* sprite = new Sprite("drawable/Item/cursor.bmp", equipCursorLoc[equipCursur], 35, 65);
 	renderer->AddSprite(sprite);
 }
 
@@ -179,9 +178,9 @@ void Scene::RedrawInventory()
 void Scene::SetInventoryMode()
 {
 	ClearEvent();
+	RedrawInventory();
 	cursor = 0;
 	equipCursur = 0;
-	RedrawInventory();
 
 	AddInputEvent(EKeyEvent::Key_1, [this]() { MoveCursor(-1); });
 	AddInputEvent(EKeyEvent::Key_2, [this]() { MoveCursor(1); });
@@ -196,12 +195,13 @@ void Scene::SetInventoryMode()
 	AddInputEvent(EKeyEvent::Key_E, [this]() {
 		Player* player = GameManager::GetInstance().GetPlayer();
 		auto& inventory = player->GetItem();
-		//auto& equipInventory = player->GetEquipItem();
+		auto& equipInventory = player->GetEquip();
 		auto it = inventory.begin(); //리스트 첫번째 칸
-		//auto itEquip = equipInventory.begin();
+		auto itEquip = equipInventory.begin();
 		advance(it, cursor); //index만큼 뒤로 이동
-		//advance(itEquip, equipCursur);
-		//player->UnEquipItem(itEquip->first);
+		advance(itEquip, equipCursur);
+		if(itEquip != equipInventory.end())
+			player->UnEquipItem(itEquip->first);
 		player->EquipItem(it->first);
 		});
 	AddInputEvent(EKeyEvent::Key_I, [this]() { this->SetCustomMode(); });
