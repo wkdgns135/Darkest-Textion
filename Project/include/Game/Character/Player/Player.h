@@ -15,15 +15,15 @@ class Player : Character {
 private:
 	const int levelUpDamage = 5;
 	const int levelUpHealth = 20;
-	int level;
-	int exp;
+	unsigned int level;
+	unsigned int exp;
 	int additionalExp;
 	int additionalStress;
-	int gold;
-	int stress;
-	int speed;
-	int evasion;
-	int criticalProbability;
+	unsigned int gold;
+	unsigned int stress;
+	unsigned int speed;
+	unsigned int evasion;
+	unsigned int criticalProbability;
 	float criticalDamage;
 	bool isStress;
 	map<string, Inventory> inventory;
@@ -51,7 +51,7 @@ public:
 	inline void AddHealth(int health) { this->health += health;} //아이템으로 인한 변동될때 사용할 함수
 	void AddCurrentHealth(int health);
 	inline void AddDamage(int damage) { this->damage += damage;}
-	inline void AddExp(int exp) {this->exp += exp+additionalExp;}
+	void AddExp(int exp);
 	inline void AddStress(int stress) {this->stress += stress+additionalStress;}
 	inline void AddSpeed(int speed) { this->speed += speed; }
 	inline void SetMonster(Monster* mob) {this->mob = mob;}
