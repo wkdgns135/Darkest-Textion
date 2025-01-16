@@ -10,6 +10,7 @@
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
+#include "Scene/Scene.h"
 
 using namespace std;
 
@@ -78,6 +79,10 @@ void Player::AddGold(int gold)
 #pragma endregion GetSet함수
 
 #pragma region 이벤트함수
+void Player::SelectItem(string name)
+{
+
+}
 
 void Player::Hit(int damage) //캐릭터 피격시 발생할 함수
 {
