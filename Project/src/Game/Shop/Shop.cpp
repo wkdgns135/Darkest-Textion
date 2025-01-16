@@ -55,7 +55,9 @@ bool Shop::SellItem(int index, int count) //아이템 판매
 	Player* player = GameManager::GetInstance().GetPlayer();
 	
 	//map<string, Inventory> inven = player->GetItem();
-	auto it = player->GetItem().begin(); //리스트 첫번째 칸
+	auto inven = player->GetItem();
+	auto it = inven.begin(); //리스트 첫번째 칸
+	if (it == inven.end()) return false;
 	advance(it, index); //index만큼 뒤로 이동
 	int totalprice = static_cast<int>(it->second.GetItem()->GetPrice() * count * 0.6); //해당 값 + 수량의 60% 
 
