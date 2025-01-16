@@ -68,13 +68,13 @@ void TreasureScene::SelectItem()
 	{
 		//Todo : 인벤토리보여주며 버릴 아이템 선택하게 하기
 	}
-	SceneManager::GetInstance().ChangeScene<DungeonInfoScene>();
+	SceneManager::GetInstance().ChangeScene<RoomScene>();
 }
 
 void TreasureScene::InitInputEvent()
 {
 	AddInputEvent(Key_1, [this]() {SelectItem(); });
-	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<DungeonInfoScene>(); });
+	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<RoomScene>(); });
 }
 
 void TreasureScene::SelectGetOrGiveUp()
@@ -98,7 +98,6 @@ void TreasureScene::Enter()
 	DungeonScene::Enter();
 	gameManager = GameManager::GetInstance();
 	player = gameManager.GetPlayer();
-	player = new Player("dddd");
 	OpenBox();
 	SelectGetOrGiveUp();
 }

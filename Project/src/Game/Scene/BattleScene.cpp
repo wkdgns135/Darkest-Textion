@@ -41,18 +41,21 @@ void BattleScene::ImportUiSprite()
 	playerSkillSprite = new Sprite("drawable/Ui/PlayerSkill.bmp", { 10, 240 }, 325, 60);
 	monsterTurnSprite = new Sprite("drawable/Ui/MonsterTurn.bmp", { 0, 0 }, 100, 50);
 	playerTurnSprite = new Sprite("drawable/Ui/PlayerTurn.bmp", { 0, 0 }, 100, 50);
-	inventorySprite = new Sprite("drawable/Ui/Inventory.bmp", { 375, 200 }, 75, 100);
 
 	// 정적인 스프라이트 생성
 	Sprite* Hp = new Sprite("drawable/Ui/HP.bmp", { 0, 200 }, 50, 50);
 	Sprite* Str = new Sprite("drawable/Ui/STR.bmp", { 100, 200 }, 50, 50);
 	Sprite* Dmg = new Sprite("drawable/Ui/Dmg.bmp", { 200, 200 }, 50, 50);
 	Sprite* monsterHp = new Sprite("drawable/Ui/MonsterHpText.bmp", { 320, 0 }, 100, 50);
+	Sprite* Floor = new Sprite("drawable/Ui/Floor.bmp", { 0, 35 }, 100, 50);
+	Sprite* Lv = new Sprite("drawable/Ui/LV.bmp", { 0, 160 }, 50, 50);
 
 	renderer->AddFixSprite(Hp);
 	renderer->AddFixSprite(Dmg);
 	renderer->AddFixSprite(Str);
 	renderer->AddFixSprite(monsterHp);
+	renderer->AddFixSprite(Lv);
+	renderer->AddFixSprite(Floor);
 }
 
 void BattleScene::MonsterTurnMode()
@@ -72,14 +75,12 @@ void BattleScene::PlayerTurnMode()
 
 	renderer->AddSprite(playerSkillSprite);
 	renderer->AddSprite(playerTurnSprite);
-	renderer->AddSprite(inventorySprite);
 	UpdateNumber();
 
 	AddInputEvent(Key_Q, [this]() {this->PlayerAttack(1); });
 	AddInputEvent(Key_W, [this]() {this->PlayerAttack(2); });
 	AddInputEvent(Key_E, [this]() {this->PlayerAttack(3); });
 	AddInputEvent(Key_R, [this]() {this->PlayerAttack(4); });
-	AddInputEvent(Key_I, [this]() {this->UseInventory(); });
 }
 
 void BattleScene::RewardMode(pair<Item*, int> reward)
@@ -90,13 +91,22 @@ void BattleScene::RewardMode(pair<Item*, int> reward)
 	Item* item = reward.first;
 	int gold = reward.second;
 
-	Sprite* itemSprite = new Sprite(item->GetImagePath(), { 150, 50 }, 100, 100);
-	Sprite* goldSprite = new Sprite("drawable/Ui/Gold.bmp", { 250, 50 }, 200, 100);
-	Sprite* panelSprite = new Sprite("drawable/Ui/Panel.bmp", { 150, 50 }, 200, 100);
+	Sprite* itemSprite = new Sprite(item->GetImagePath(), { 155, 55 }, 95, 95);
+	Sprite* goldSprite = new Sprite("drawable/Ui/Gold.bmp", { 255, 55 }, 95, 95);
+	Sprite* panelSprite = new Sprite("drawable/Ui/Panel.bmp", { 140, 40 }, 220, 120);
+	Sprite* textSprite = new Sprite("drawable/Ui/RewardText.bmp", { 140, 150 }, 220, 50);
 	renderer->AddSprite(panelSprite);
 	renderer->AddSprite(goldSprite);
 	renderer->AddSprite(itemSprite);
-	renderer->DrawNumber(gold, { 250, 70 }, 30, 30);
+	renderer->AddSprite(textSprite);
+	renderer->DrawNumber(gold, { 255, 55 }, 45, 45);
+	UpdateNumber();
+
+	AddInputEvent(Key_1, []() {
+		if (GameManager::GetInstance().IsBossStage()) {
+			SceneManager::GetInstance().ChangeScene<MainScene>();
+		}else SceneManager::GetInstance().ChangeScene<RoomScene>(); 
+		});
 }
 
 void BattleScene::PlayerAttack(int skillIndex)
@@ -146,33 +156,14 @@ void BattleScene::MonsterAttackFinish()
 	}
 }
 
-void BattleScene::UseInventory()
-{
-	ClearEvent();
-	renderer->ClearSprite();
-
-	UpdateNumber();
-	ShowInventory();
-	cursor = 0;
-	ShowCursor();
-
-	AddInputEvent(EKeyEvent::Key_1, [this]() { this->MoveCursor(-1); });
-	AddInputEvent(EKeyEvent::Key_2, [this]() { this->MoveCursor(1); });
-	AddInputEvent(EKeyEvent::Key_3, [this]() { 
-		auto &inventory = player->GetItem();
-		auto it = inventory.begin(); //리스트 첫번째 칸
-		advance(it, cursor); //index만큼 뒤로 이동
-		player->UseItem(it->first);
-		});
-	AddInputEvent(EKeyEvent::Key_I, [this]() { PlayerTurnMode(); });
-}
-
 void BattleScene::UpdateNumber()
 {
 	renderer->DrawNumber(player->GetCurrentHealth(), { 50, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetStress(), { 150, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetDamage(), { 250, 200 }, 25, 50);
-	renderer->DrawNumber(monster->GetCurrentHealth(), { 410, 0 }, 50, 50);
+	renderer->DrawNumber(player->GetLevel(), { 50, 160 }, 25, 50);
+	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), {100, 35}, 25, 50);
+	renderer->DrawNumber(monster->GetCurrentHealth() >= 0 ? monster->GetCurrentHealth() : 0, { 410, 0 }, 50, 50);
 }
 
 void BattleScene::Enter()
@@ -182,7 +173,13 @@ void BattleScene::Enter()
 	
 	player = gameManager.GetPlayer();
 	MonsterSpawnHandle monsterSpawner;
-	monster = monsterSpawner.GetSpawnMonsterByDungeonLevel(gameManager.GetCurrentDungeon());
+	EDungeon dungeon = gameManager.GetCurrentDungeon();
+
+	if (gameManager.IsBossStage())
+	{
+		monster = monsterSpawner.GetSpawnBossByDungeonLevel(dungeon);
+	}
+	else monster = monsterSpawner.GetSpawnMonsterByDungeonLevel(dungeon);
 
 	ImportUiSprite();
 	ImportMonsterSprite();
