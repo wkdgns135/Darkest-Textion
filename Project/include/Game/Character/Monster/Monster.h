@@ -21,7 +21,7 @@ public:
     virtual Item* DropItem();
     virtual void Hit(int damage) override;
     virtual void Attack() override;
-    virtual void Die();
+    virtual pair<Item*, int> Die();
     virtual void TestPrint();
 
     inline void SetRealDamage(int value) { realDamage = value; }
