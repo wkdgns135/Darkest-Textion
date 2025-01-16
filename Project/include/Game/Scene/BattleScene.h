@@ -14,21 +14,21 @@ private :
 	Monster* monster;
 	BattleState battleState;
 
-	Sprite* monsterAttack;
-	Sprite* monsterTurn;
+	Sprite* monsterAttackSprite;
+	Sprite* monsterTurnSprite;
 
-	Sprite* playerAttack;
-	Sprite* playerTurn;
-	Sprite* playerSkill;
+	Sprite* playerAttackSprite;
+	Sprite* playerTurnSprite;
+	Sprite* playerSkillSprite;
+	Sprite* inventorySprite;
 
 	void ImportMonsterSprite();
 	void ImportPlayerSprite();
 	void ImportUiSprite();
 
-	void EnableInputEvent();
-
-	void MonsterTurn();
-	void PlayerTurn();
+	void MonsterTurnMode();
+	void PlayerTurnMode();
+	void RewardMode(pair<Item*, int> reward);
 	void PlayerAttack(int skillIndex);
 	void PlayerAttackFinish(int skillIndex);
 	void MonsterAttackFinish();

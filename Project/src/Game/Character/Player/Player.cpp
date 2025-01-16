@@ -5,8 +5,8 @@
 #include <ctime>
 #include "Character/Player/Player.h"
 #include "Item/Item.h"
-#include "Item/Consumable/Consumable.h";
-#include "Item/Artifact/Artifact.h";
+#include "Item/Consumable/Consumable.h"
+#include "Item/Artifact/Artifact.h"
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
@@ -145,14 +145,6 @@ void Player::UseItem(string name)
 				DeleteItem(name);
 			}
 		}
-		else // 사용불가능한 아이템일때
-		{
-			cout << "Error : 사용불가능한 아이템 입니다";
-		}
-	}
-	else
-	{
-		cout << "Error : 해당 아이템이 존재하지 않습니다" << endl;
 	}
 }
 
@@ -166,14 +158,6 @@ void Player::EquipItem(string name) //인벤토리에서 아이템을 장착
 			static_cast<Artifact*>(equipInventory[name].GetItem())->Attach(*this);
 			inventory.erase(name);
 		}
-		else
-		{
-			cout << "Error : 장착 불가능한 아이템 입니다" << endl;
-		}
-	}
-	else
-	{
-		cout << "최대 장착 갯수를 초과하였습니다" << endl;
 	}
 }
 

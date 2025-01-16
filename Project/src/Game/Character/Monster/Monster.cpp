@@ -92,10 +92,14 @@ void Monster::Attack()
 	monsterActionHandle->Attack(skill, criticalValue, hitValue);
 }
 
-void Monster::Die()
+pair<Item*, int> Monster::Die()
 {
-	for (int i = 0; i < maxItemCount; i++) if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(DropItem(), 1);
-	player->AddGold(500 * rank);
+	Item* dropItem = DropItem();
+	int gold = 500 * rank;
+	for (int i = 0; i < maxItemCount; i++) if (GetRandomValue(minDropValue, 100) >= 50) player->AddItem(dropItem, 1);
+	player->AddGold(gold);
+
+	return { dropItem, gold };
 }
 
 void Monster::TestPrint()

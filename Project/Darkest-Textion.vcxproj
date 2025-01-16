@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Darkest-Textion.cpp" />
+    <ClCompile Include="src\Game\Character\Player\Player.cpp" />
     <ClCompile Include="src\Game\Scene\IntroScene.cpp" />
     <ClCompile Include="src\Game\Scene\NewPlayerScene.cpp" />
     <ClCompile Include="src\Game\Scene\RoomScene.cpp" />
@@ -173,7 +174,6 @@
     <ClCompile Include="src\Game\Game.cpp" />
     <ClCompile Include="src\System\IO\InputEvent.cpp" />
     <ClCompile Include="src\Game\Character\Character.cpp" />
-    <ClCompile Include="src\Game\Character\Player\Player.cpp" />
     <ClCompile Include="src\Game\GameManager.cpp" />
     <ClCompile Include="src\Game\Item\Consumable\DamageBoost.cpp" />
     <ClCompile Include="src\Game\Item\Consumable\HealthPotion.cpp" />

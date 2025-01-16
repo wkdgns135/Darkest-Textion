@@ -21,7 +21,7 @@ Consumable* DropItemObj::GetConsumableItem(int index)
 
 Artifact* DropItemObj::GetArtifactItem(int rank, int index)
 {
-	int value = 100 % kindOfArtifact;
+	int value = index % kindOfArtifact;
 	int rankValue = 0;
 
 	if (rank <= 60) rankValue = 0;

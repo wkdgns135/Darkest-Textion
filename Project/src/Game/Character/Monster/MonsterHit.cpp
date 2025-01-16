@@ -23,22 +23,9 @@ void MonsterHit::HitByPlayer(int value, int damage, int randValue)
 	}
 
 	if (monster->GetAvoidRate() < value) monster->SetCurrentHealth(monster->GetCurrentHealth() - damage);
-	//else monster->SetCurrentHealth(monster->GetCurrentHealth() - damage * monster->GetDamageRate());
-
-	if (monster->GetCurrentHealth() <= 0)
-	{
-		monster->SetCurrentHealth(0);
-		monster->Die();
-	}
 }
 
 void MonsterHit::HitByTick(int damage)
 {
 	monster->SetCurrentHealth(monster->GetCurrentHealth() - damage);
-
-	if (monster->GetCurrentHealth() <= 0)
-	{
-		monster->SetCurrentHealth(0);
-		monster->Die();
-	}
 }
