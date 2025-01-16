@@ -248,6 +248,7 @@
     <ClInclude Include="lib\CImg.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="drawable\background\EquipPannel.bmp" />
     <Image Include="drawable\background\Inventory.bmp" />
     <Image Include="drawable\background\ShopBackground.bmp" />
     <Image Include="drawable\background\ShopBackground2.bmp" />
@@ -258,6 +259,7 @@
     <Image Include="drawable\Item\HealthStone.bmp" />
     <Image Include="drawable\Item\KnightsCrest.bmp" />
     <Image Include="drawable\Item\Laudanum.bmp" />
+    <Image Include="drawable\Item\RareArtifact.bmp" />
     <Image Include="drawable\Item\SnakeOil.bmp" />
     <Image Include="drawable\number\0.bmp" />
     <Image Include="drawable\number\1.bmp" />

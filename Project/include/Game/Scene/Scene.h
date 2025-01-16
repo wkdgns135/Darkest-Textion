@@ -10,10 +10,13 @@ private:
 	bool isActive = false;
 	unique_ptr<InputEvent> inputEvent;
 
+	void ShowEquipPannel(Vector2d initLoc);
 protected:
 	vector<Vector2d> cursorLoc;
+	vector<Vector2d> equipCursorLoc;
 	unique_ptr<Renderer> renderer;
 	int cursor;
+	int equipCursur;
 
 public:
 	Scene();
@@ -24,8 +27,15 @@ public:
 
 	void ShowInventory();
 	void ShowGoldPannel();
-	void ShowCursor();
-	void MoveCursor(int direction);
+	virtual void ShowCursor();
+	virtual void MoveCursor(int direction);
+
+	void ShowEquipCursor();
+	void MoveEquipCursor(int direction);
+
+	void SetInventoryMode();
+	virtual void SetCustomMode();
+	virtual void RedrawInventory();
 
 	// Scene이 변경되고 1번 호출
 	virtual void Enter() = 0;

@@ -9,7 +9,8 @@ class RoomScene : public DungeonScene{
 private:
 	class Player* player;
 
-	void ChooseMode();
+	void SetCustomMode() override;
+	void RedrawInventory() override;
 	void InventoryMode();
 	
 	void NextRoom();
