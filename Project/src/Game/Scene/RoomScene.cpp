@@ -44,28 +44,35 @@ void RoomScene::UpdateNumber()
 	renderer->DrawNumber(player->GetCurrentHealth(), { 50, 10 }, 25, 50);
 	renderer->DrawNumber(player->GetStress(), { 150, 10 }, 25, 50);
 	renderer->DrawNumber(player->GetDamage(), { 250, 10 }, 25, 50);
+	renderer->DrawNumber(player->GetLevel(), { 50, 35 }, 25, 50);
+	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), { 100, 250 }, 25, 50);
 }
 
 void RoomScene::NextRoom()
 {
 	int proba = GetRandomValue(0, 100);
 	GameManager::GetInstance().IncreaseFloor();
-	switch (GameManager::GetInstance().GetCurrentDungeon())
-	{
-		case Weald: break;
-		case Cove: proba * 0.8; break;
-		case DarkestDungeon: proba * 0.6; break;
-	}
-	if (proba < 10) {
-		//TODO: ITEM 号
-		//SceneManager::GetInstance().ChangeScene<>()
-	}
-	else if (proba < 30) {
-		//TODO: 奄考 号
-		
+	if (GameManager::GetInstance().IsBossStage()) {
+		SceneManager::GetInstance().ChangeScene<BattleScene>();
 	}
 	else {
-		SceneManager::GetInstance().ChangeScene<BattleScene>();
+		switch (GameManager::GetInstance().GetCurrentDungeon())
+		{
+			case Weald: break;
+			case Cove: proba * 0.8; break;
+			case DarkestDungeon: proba * 0.6; break;
+		}
+		if (proba < 10) {
+			//TODO: ITEM 号
+			SceneManager::GetInstance().ChangeScene<TreasureScene>();
+		}
+		else if (proba < 30) {
+			//TODO: 奄考 号
+			SceneManager::GetInstance().ChangeScene<BattleScene>();
+		}
+		else {
+			SceneManager::GetInstance().ChangeScene<BattleScene>();
+		}
 	}
 }
 
@@ -76,10 +83,13 @@ void RoomScene::Enter()
 	Sprite* Hp = new Sprite("drawable/Ui/HP.bmp", { 0, 10 }, 50, 50);
 	Sprite* Str = new Sprite("drawable/Ui/STR.bmp", { 100, 10 }, 50, 50);
 	Sprite* Dmg = new Sprite("drawable/Ui/Dmg.bmp", { 200, 10 }, 50, 50);
-
+	Sprite* Lv = new Sprite("drawable/Ui/LV.bmp", { 0, 35 }, 50, 50);
+	Sprite* Floor = new Sprite("drawable/Ui/Floor.bmp", { 0, 250 }, 100, 50);
 	renderer->AddFixSprite(Hp);
 	renderer->AddFixSprite(Dmg);
 	renderer->AddFixSprite(Str);
+	renderer->AddFixSprite(Lv);
+	renderer->AddFixSprite(Floor);
 	UpdateNumber();
 	ChooseMode();
 }

@@ -47,11 +47,15 @@ void BattleScene::ImportUiSprite()
 	Sprite* Str = new Sprite("drawable/Ui/STR.bmp", { 100, 200 }, 50, 50);
 	Sprite* Dmg = new Sprite("drawable/Ui/Dmg.bmp", { 200, 200 }, 50, 50);
 	Sprite* monsterHp = new Sprite("drawable/Ui/MonsterHpText.bmp", { 320, 0 }, 100, 50);
+	Sprite* Floor = new Sprite("drawable/Ui/Floor.bmp", { 0, 35 }, 100, 50);
+	Sprite* Lv = new Sprite("drawable/Ui/LV.bmp", { 0, 160 }, 50, 50);
 
 	renderer->AddFixSprite(Hp);
 	renderer->AddFixSprite(Dmg);
 	renderer->AddFixSprite(Str);
 	renderer->AddFixSprite(monsterHp);
+	renderer->AddFixSprite(Lv);
+	renderer->AddFixSprite(Floor);
 }
 
 void BattleScene::MonsterTurnMode()
@@ -157,6 +161,8 @@ void BattleScene::UpdateNumber()
 	renderer->DrawNumber(player->GetCurrentHealth(), { 50, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetStress(), { 150, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetDamage(), { 250, 200 }, 25, 50);
+	renderer->DrawNumber(player->GetLevel(), { 50, 160 }, 25, 50);
+	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), {100, 35}, 25, 50);
 	renderer->DrawNumber(monster->GetCurrentHealth() >= 0 ? monster->GetCurrentHealth() : 0, { 410, 0 }, 50, 50);
 }
 
@@ -174,7 +180,6 @@ void BattleScene::Enter()
 		monster = monsterSpawner.GetSpawnBossByDungeonLevel(dungeon);
 	}
 	else monster = monsterSpawner.GetSpawnMonsterByDungeonLevel(dungeon);
-
 
 	ImportUiSprite();
 	ImportMonsterSprite();
