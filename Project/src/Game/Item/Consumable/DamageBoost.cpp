@@ -4,7 +4,7 @@ DamageBoost::DamageBoost()
 {
 	name = "DamageBoost";
 	price = 5;
-	amount = 5;
+	amount = 1;
 	duration = 5.f;
 	imagePath = "drawable/Item/DamageBoost.bmp";
 }
