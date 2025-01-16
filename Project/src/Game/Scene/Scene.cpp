@@ -76,6 +76,7 @@ void Scene::ShowInventory()
 		i++;
 	}
 	if (cursorLoc.empty())cursorLoc.push_back(itemInitalLoc);
+	if (cursor > cursorLoc.size()) cursor = cursorLoc.size() - 1;
 	ShowEquipPannel(invenLoc);
 }
 

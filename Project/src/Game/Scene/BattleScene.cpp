@@ -23,22 +23,27 @@ void BattleScene::ImportMonsterSprite()
 
 void BattleScene::ImportPlayerSprite()
 {
-	playerAttackSprite = new Sprite({ 150, 25 }, 150, 150);
-
-	vector<string> sheetPath;
-	for (char i = '0'; i < '6'; i++) {
-		string path = "drawable/SpriteSheet/Attack_";
-		path += i;
-		path += ".bmp";
-		sheetPath.push_back(path);
+	playerSkill.resize(4);
+	for (char i = '1'; i <= '4'; i++) {
+		int index = i - '0' - 1;
+		playerSkill[index] = new Sprite({150, 25}, 150, 150);
+		vector<string> sheetPath;
+		for (char j = '0'; j <= '5'; j++) {
+			string path = "drawable/SpriteSheet/Skill_";
+			path += i;
+			path += "_";
+			path += j;
+			path += ".bmp";
+			sheetPath.push_back(path);
+		}
+		playerSkill[index]->AddAnimation(sheetPath, 0.05f);
 	}
-	playerAttackSprite->AddAnimation(sheetPath, 0.05f);
 }
 
 void BattleScene::ImportUiSprite()
 {
 	// 동적인 스프라이트 생성
-	playerSkillSprite = new Sprite("drawable/Ui/PlayerSkill.bmp", { 10, 240 }, 325, 60);
+	playerSkillPanel = new Sprite("drawable/Ui/PlayerSkill.bmp", { 10, 240 }, 325, 60);
 	monsterTurnSprite = new Sprite("drawable/Ui/MonsterTurn.bmp", { 0, 0 }, 100, 50);
 	playerTurnSprite = new Sprite("drawable/Ui/PlayerTurn.bmp", { 0, 0 }, 100, 50);
 
@@ -73,7 +78,7 @@ void BattleScene::PlayerTurnMode()
 	ClearEvent();
 	renderer->ClearSprite();
 
-	renderer->AddSprite(playerSkillSprite);
+	renderer->AddSprite(playerSkillPanel);
 	renderer->AddSprite(playerTurnSprite);
 	UpdateNumber();
 
@@ -122,8 +127,8 @@ void BattleScene::PlayerAttack(int skillIndex)
 {
 	ClearEvent();
 	player->SetMonster(monster);
-	renderer->AddSprite(playerAttackSprite);
-	playerAttackSprite->animation->PlayOnce([this, skillIndex]() {PlayerAttackFinish(skillIndex); });
+	renderer->AddSprite(playerSkill[skillIndex - 1]);
+	playerSkill[skillIndex - 1]->animation->PlayOnce([this, skillIndex]() {PlayerAttackFinish(skillIndex); });
 }
 
 void BattleScene::PlayerAttackFinish(int skillIndex)

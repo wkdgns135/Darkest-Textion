@@ -20,9 +20,10 @@ private :
 	Sprite* monsterAttackSprite;
 	Sprite* monsterTurnSprite;
 
-	Sprite* playerAttackSprite;
+	vector<Sprite*> playerSkill;
+
+	Sprite* playerSkillPanel;
 	Sprite* playerTurnSprite;
-	Sprite* playerSkillSprite;
 
 	void ImportMonsterSprite();
 	void ImportPlayerSprite();
