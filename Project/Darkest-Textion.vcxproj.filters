@@ -47,6 +47,7 @@
     <ClCompile Include="src\Game\Scene\SceneManager.cpp" />
     <ClCompile Include="src\Game\Scene\TitleScene.cpp" />
     <ClCompile Include="src\Game\Scene\RoomScene.cpp" />
+    <ClCompile Include="src\Game\Scene\TrapScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Game\Character\Character.h" />
@@ -106,6 +107,7 @@
     <ClInclude Include="include\Utility\Vector2d.h" />
     <ClInclude Include="lib\CImg.h" />
     <ClInclude Include="include\Game\Scene\RoomScene.h" />
+    <ClInclude Include="include\Game\Scene\TrapScene.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="drawable\background\Inventory.bmp" />
