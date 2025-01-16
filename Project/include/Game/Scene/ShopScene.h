@@ -19,4 +19,5 @@ public:
 	void Exit() override;
 	void Purchase();
 	void Sell();
+	void MoveCursor(int direction) override;
 };

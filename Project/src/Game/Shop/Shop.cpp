@@ -54,15 +54,15 @@ bool Shop::SellItem(int index, int count) //아이템 판매
 	//판매할 아이템 가격 계산 (60% 반환)
 	Player* player = GameManager::GetInstance().GetPlayer();
 	
-	map<string, Inventory> inven = player->GetItem();
-	auto it = inven.begin(); //리스트 첫번째 칸
+	//map<string, Inventory> inven = player->GetItem();
+	auto it = player->GetItem().begin(); //리스트 첫번째 칸
 	advance(it, index); //index만큼 뒤로 이동
 	int totalprice = static_cast<int>(it->second.GetItem()->GetPrice() * count * 0.6); //해당 값 + 수량의 60% 
 
 
 	player->AddGold(totalprice); //판매 수량의 60% 골드 추가
 	//HERE : 인벤토리 접근해서 삭제하는게 필요
-	it->second.AddCount(-1); // 판매 처리;
+	player->SellItem(it->first, count); // 판매 처리;
 	return true;
 }
 

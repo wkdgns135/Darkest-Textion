@@ -32,13 +32,7 @@ void ShopScene::Enter()
 	//background
 	renderer->AddBackground("drawable/background/ShopBackground2.bmp");
 
-
-	//goldPannel
-	ShowGoldPannel();
-
 	SetPurchaseMode();
-
-
 }
 
 void ShopScene::Update()
@@ -59,11 +53,9 @@ void ShopScene::SetPurchaseMode()
 	ShowGoldPannel();
 	DisplayShopItems();
 
-
 	cursorLoc = { { 260, 0 }, { 299, 0 }, { 338, 0 } };
 	cursor = 0;
 	ShowCursor();
-
 
 
 
@@ -90,7 +82,7 @@ void ShopScene::SetSellMode()
 	AddInputEvent(EKeyEvent::Key_2, [this]() { MoveCursor(1); });
 	AddInputEvent(EKeyEvent::Key_3, [this]() { this->Sell(); });
 	AddInputEvent(EKeyEvent::Key_I, [this]() { this->SetPurchaseMode(); });
-	AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<TitleScene>(); });
+	AddInputEvent(Key_ESC, []() {SceneManager::GetInstance().ChangeScene<MainScene>(); });
 
 }
 
@@ -112,6 +104,22 @@ void ShopScene::Sell()
 	ShowGoldPannel();
 	DisplayShopItems();
 	ShowInventory();
+	ShowCursor();
+}
+
+void ShopScene::MoveCursor(int direction)
+{
+	if (direction > 0)
+	{
+		if (cursor >= cursorLoc.size() - 1) return;
+		else cursor++;
+	}
+	else
+	{
+		if (cursor <= 0) return;
+		else cursor--;
+	}
+	renderer->RemoveSprite();
 	ShowCursor();
 }
 
@@ -143,7 +151,6 @@ void ShopScene::DisplayShopItems()
 	renderer->DrawNumber(damageboost->GetPrice(), { damageBoostPos.x + 10, damageBoostPos.y + 68 }, 15, 33);
 	renderer->DrawNumber(laudanum->GetPrice(), { laudanumPos.x + 10, laudanumPos.y + 68 }, 15, 33);
 }
-
 
 
 
