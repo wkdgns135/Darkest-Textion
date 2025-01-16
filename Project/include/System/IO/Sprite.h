@@ -22,6 +22,8 @@ public:
 		animation = nullptr;
 	};
 
-	Image* GetImage(const float dt);
+	Image* GetImage();
 	void AddAnimation(const vector<string> &path, const float updateTime);
+	inline bool GetDrawCall() { return image->drawCall; }
+	inline void SetDrawCall(bool flag) { image->drawCall = flag; }
 };

@@ -31,7 +31,10 @@ public:
 	void Render();
 
 	inline void AddBackground(string path) { background = new Image(path, width, height); };
-	inline void AddSprite(Sprite* sprite) { drawSprite.push_back(sprite); }; // ĳ���ͳ� ����Ʈ�� ���� ������ ��������Ʈ�� �߰��մϴ�.
+	inline void AddSprite(Sprite* sprite) {
+		if(sprite->GetImage() != nullptr)sprite->SetDrawCall(true);
+		drawSprite.push_back(sprite);
+	};
 	inline void AddFixSprite(Sprite* sprite) { fixSprite.push_back(sprite); }; // UI�� ���� ������ ��������Ʈ�� �߰��մϴ�.
 	inline void ClearSprite() { drawSprite.clear(); };
 	inline void RemoveSprite() { drawSprite.pop_back();}
