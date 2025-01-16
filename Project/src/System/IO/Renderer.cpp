@@ -141,6 +141,7 @@ void Renderer::DrawImage(Image* image, const Vector2d &pos)
             buffer[dIndex].Char.UnicodeChar = image->GetPixel(x, y);
         }
     }
+    isDraw = true;
 }
 
 void Renderer::DrawNumber(int number, const Vector2d& pos, int width, int height)
@@ -173,11 +174,24 @@ void Renderer::FillBuffer(float deltaTime)
     }
 
     for (Sprite* sprite : fixSprite) {
-        DrawImage(sprite->GetImage(deltaTime), sprite->pos);
+        if (!sprite->GetDrawCall())continue;
+        DrawImage(sprite->GetImage(), sprite->pos);
     }
 
     for (Sprite* sprite : drawSprite) {
-        DrawImage(sprite->GetImage(deltaTime), sprite->pos);
+        if (sprite->animation == nullptr) { // 애니메이션이 없을 경우 드로우 콜이 트루일때만 드로우
+            if (sprite->GetDrawCall() == true) {
+                sprite->SetDrawCall(false);
+                DrawImage(sprite->GetImage(), sprite->pos);
+            }
+        }
+        else { // 애니메이션이 있을경우 현재 애니메이션 스프라이트가 업데이트 됬을때만 드로우
+            sprite->animation->UpdateDeltaTime(deltaTime);
+            if (sprite->animation->GetCurrentImage()->drawCall == true) {
+                sprite->animation->GetCurrentImage()->drawCall = false;
+                DrawImage(sprite->GetImage(), sprite->pos);
+            }
+        }
     }
 }
 

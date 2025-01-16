@@ -9,7 +9,7 @@ private:
 	float updateTime;
 	vector<Image*> sheet;
 	function<void()> complete;
-
+	int index;
 public:
 	float currentTime;
 	bool isPlay;
@@ -20,4 +20,5 @@ public:
 	void PlayLoop();
 	void StopLoop();
 	void PlayOnce(function<void()>&& Complete = nullptr);
+	void UpdateDeltaTime(float dt);
 };

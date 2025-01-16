@@ -42,3 +42,11 @@ enum EItemName
 	EHealthPotion,
 	EEnd
 };
+enum EAffliction
+{
+	Normal,
+	Paranoid,
+	Selfish,
+	Irrational,
+	DeathDoor
+};
