@@ -29,6 +29,8 @@ Image::Image(const string path, int width, int height)
             this->mask[y * width + x] = (R == 255 && G == 255 && B == 255) ? 0 : 1;
         }
     }
+
+    drawCall = true;
 }
 
 Image::~Image()

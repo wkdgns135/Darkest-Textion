@@ -221,11 +221,11 @@ bool Player::RandomProbability(int num)
 }
 void Player::Skill1()
 {
-	mob->Hit(FinalDamage() * GetRandomValue(0.75,1.2));
+	//mob->Hit(FinalDamage() * GetRandomValue(0.75,1.2));
 }
 void Player::Skill2()
 {
-	mob->Hit((int)(FinalDamage() * GetRandomValue(0.1,2.0)));
+	//mob->Hit((int)(FinalDamage() * GetRandomValue(0.1,2.0)));
 }
 
 void Player::Skill3()

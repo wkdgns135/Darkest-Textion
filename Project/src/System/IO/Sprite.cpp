@@ -1,9 +1,8 @@
 #include "IO/Sprite.h"
 
-Image* Sprite::GetImage(const float dt)
+Image* Sprite::GetImage()
 {
 	if (animation && animation->isPlay) {
-		animation->currentTime += dt;
 		return animation->GetCurrentImage();
 	}
 	return image;

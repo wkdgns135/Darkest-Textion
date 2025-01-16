@@ -10,8 +10,8 @@ private:
     bool* mask;
     int width;
     int height;
-
 public:
+    bool drawCall;
     Image(const string path, int w, int h);
     ~Image();
     inline int GetWidth() const { return this->width; }
