@@ -136,9 +136,20 @@
      * Monster Spawn Handle Class :
 
   
-   8.5. 아이템 :
-
-     * 
+   8.5. 아이템 : 아이템은 소비형(Consumable)과 장착형(Artifact)로 구분된다.
+   
+     * Item Class : 상점에서 구매, 판매 가능, 인벤토리에 저장 가능
+     * Consumable Class : 소비 가능한 아이템, 사용 후 인벤토리에서 없어진다. 
+         - HealthPotion : 사용 시 체력을 회복시켜주는 아이템
+         - DamageBoost : 사용 시 플레이어의 데미지를 영구적으로 올려주는 아이템
+         - Laudanum : 사용 시 스트레스를 감소시키는 아이템
+     * Artifact Class : 장착 가능한 아이템, 장착 칸에 장착가능, 장착 시 특정 능력치 증가, 아이템 등급 
+         - HealthStone : 장착 시 최대체력을 올려준다.
+         - KnightsCrest : 장착 시 데미지를 올려준다.
+         - ExpStone : 장착 시 경험치 획득시 추가 경험치를 얻는다.
+         - SnakeOil : 장착 시 받는 스트레스를 감소시킨다. 
+         - RareArtifact : 해당 클래스로 Artifact를 감싸면 레어 아이템이 된다. (추가 판매골드, 추가 능력치 증가)
+         - AncestalaArtifact : 해당 클래스로 Artifact를 감싸면 선조 아이템이 된다. (추가 판매골드, 추가 능력치 증가)
    
 
    
