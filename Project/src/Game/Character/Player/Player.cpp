@@ -5,8 +5,8 @@
 #include <ctime>
 #include "Character/Player/Player.h"
 #include "Item/Item.h"
-#include "Item/Consumable/Consumable.h";
-#include "Item/Artifact/Artifact.h";
+#include "Item/Consumable/Consumable.h"
+#include "Item/Artifact/Artifact.h"
 #include "Character/Monster/Monster.h"
 #include "Utility.h"
 #include "Global/ProjectEnum.h"
