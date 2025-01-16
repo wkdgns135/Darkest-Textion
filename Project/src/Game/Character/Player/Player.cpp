@@ -75,6 +75,18 @@ void Player::AddGold(int gold)
 	}
 }
 
+void Player::AddExp(int exp)
+{
+	if (level < 10) {
+		this->exp += exp + additionalExp;
+		if (this->exp > 100)
+		{
+			LevelUp();
+			this->exp -= 100;
+		}
+	}
+}
+
 #pragma endregion GetSet함수
 
 #pragma region 이벤트함수
@@ -128,6 +140,7 @@ void Player::LevelUp()
 		AddDamage(levelUpDamage);
 		AddHealth(levelUpHealth);
 		currentHealth = health;
+
 	}
 
 }
