@@ -50,8 +50,11 @@ void TreasureScene::OpenBox()
 		cout << "잘못된 값입니다" << endl;
 		break;
 	}
-	itemImage = new Sprite(item->GetImagePath(), {100,60}, 100, 100);
-	renderer->AddSprite(itemImage);
+	renderer->ClearSprite();
+	Sprite* panel = new Sprite("drawable/Treasure/Panel.bmp", { 170,110 }, 150, 50);
+	itemImage = new Sprite(item->GetImagePath(), {170,80}, 150, 150);
+	renderer->AddSprite(panel);
+	renderer->AddFixSprite(itemImage);
 }
 
 void TreasureScene::SelectItem()
@@ -65,13 +68,13 @@ void TreasureScene::SelectItem()
 	{
 		//Todo : 인벤토리보여주며 버릴 아이템 선택하게 하기
 	}
-	
+	SceneManager::GetInstance().ChangeScene<RoomScene>();
 }
 
 void TreasureScene::InitInputEvent()
 {
 	AddInputEvent(Key_1, [this]() {SelectItem(); });
-	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<DungeonInfoScene>(); });
+	AddInputEvent(Key_2, []() {SceneManager::GetInstance().ChangeScene<RoomScene>(); });
 }
 
 void TreasureScene::SelectGetOrGiveUp()
