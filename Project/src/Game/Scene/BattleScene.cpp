@@ -47,7 +47,7 @@ void BattleScene::ImportUiSprite()
 	Sprite* Str = new Sprite("drawable/Ui/STR.bmp", { 100, 200 }, 50, 50);
 	Sprite* Dmg = new Sprite("drawable/Ui/Dmg.bmp", { 200, 200 }, 50, 50);
 	Sprite* monsterHp = new Sprite("drawable/Ui/MonsterHpText.bmp", { 320, 0 }, 100, 50);
-	Sprite* Floor = new Sprite("drawable/Ui/Floor.bmp", { 0, 35 }, 100, 50);
+	Sprite* Floor = new Sprite("drawable/Ui/Floor.bmp", { 330, 250 }, 100, 50);
 	Sprite* Lv = new Sprite("drawable/Ui/LV.bmp", { 0, 160 }, 50, 50);
 
 	renderer->AddFixSprite(Hp);
@@ -162,7 +162,7 @@ void BattleScene::UpdateNumber()
 	renderer->DrawNumber(player->GetStress(), { 150, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetDamage(), { 250, 200 }, 25, 50);
 	renderer->DrawNumber(player->GetLevel(), { 50, 160 }, 25, 50);
-	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), {100, 35}, 25, 50);
+	renderer->DrawNumber(GameManager::GetInstance().GetFloor(), {430, 250}, 25, 50);
 	renderer->DrawNumber(monster->GetCurrentHealth() >= 0 ? monster->GetCurrentHealth() : 0, { 410, 0 }, 50, 50);
 }
 
