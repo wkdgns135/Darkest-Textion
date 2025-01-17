@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/904491c0-a6d5-4b0b-a820-b6d1eb38509e)
+![GIF 25-01-17(금) 오후 8-33-48](https://github.com/user-attachments/assets/6caa6166-bc30-43d9-908d-611d71774c9a)
 
 
 1. 팀 이름 : 불4조
