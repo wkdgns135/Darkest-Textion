@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BattleScene" Collapsed="true">
+    <Position X="19.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFQCAAAAAIMgAAggAMAAAEAAAAAECgABIAQAAAKAAUA=</HashCode>
+      <FileName>include\Game\Scene\BattleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonInfoScene" Collapsed="true">
+    <Position X="19" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEABAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\DungeonInfoScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DungeonScene" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEABAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\DungeonScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EndingScene" Collapsed="true">
+    <Position X="26.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\EndingScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameOverScene" Collapsed="true">
+    <Position X="12" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\GameOverScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IntroScene" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\IntroScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainScene" Collapsed="true">
+    <Position X="21.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAABAA=</HashCode>
+      <FileName>include\Game\Scene\MainScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MainShopScene" Collapsed="true">
+    <Position X="25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\MainShopScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NewPlayerScene" Collapsed="true">
+    <Position X="28.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\NewPlayerScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RoomScene" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAQAAAAAAAAAAEAAAAAAAAAEAAABIAgAAAAABAA=</HashCode>
+      <FileName>include\Game\Scene\RoomScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Scene" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAQAACEAEQEACIEAggAAIBDCQAAEgAQAKAAACAAAhAA=</HashCode>
+      <FileName>include\Game\Scene\Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SceneManager" Collapsed="true">
+    <Position X="33.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>include\Game\Scene\SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SelectDungeonScene" Collapsed="true">
+    <Position X="30.25" Y="1.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAABAAEAAIIIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\SelectDungeonScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShopScene" Collapsed="true">
+    <Position X="13.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAQAAAACCABAAEAAgApAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\ShopScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TitleScene" Collapsed="true">
+    <Position X="17.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAEAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\TitleScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TrapScene" Collapsed="true">
+    <Position X="24" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFSACAAMggAAEAQoAQBAAAAAAAAEAQBBIAABAAQgACA=</HashCode>
+      <FileName>include\Game\Scene\TrapScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TreasureScene" Collapsed="true">
+    <Position X="26.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQAACAAAAAAAAAAAJQAAAIAAAAEAAABIAQAAAAAAAA=</HashCode>
+      <FileName>include\Game\Scene\TreasureScene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="35" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>include\Utility\DesignPattern\Singleton.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="36.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAABAAiAEAACAAAAACACABAAAAAKAAAAA=</HashCode>
+      <FileName>include\Game\GameManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Renderer" Collapsed="true">
+    <Position X="15.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAwQAAAgAAIAASQQAAAAoAQAAAECAMAAhDEAAEAIIA=</HashCode>
+      <FileName>include\System\IO\Renderer.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="맑은 고딕" Size="9" />
+</ClassDiagram>

@@ -26,7 +26,7 @@ void Animation::PlayLoop()
 void Animation::StopLoop()
 {
 	currentTime = 0;
-	isPlay = true;
+	isPlay = false;
 }
 
 void Animation::PlayOnce(function<void()>&& Complete)

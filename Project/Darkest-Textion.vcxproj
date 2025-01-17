@@ -272,6 +272,9 @@
     <Image Include="drawable\number\8.bmp" />
     <Image Include="drawable\number\9.bmp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
